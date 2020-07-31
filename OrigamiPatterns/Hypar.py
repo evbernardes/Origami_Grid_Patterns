@@ -1,47 +1,19 @@
-#! /usr/bin/env python
-# -*- coding: utf-8 -*-
+#! /usr/bin/env python3
+
 import numpy as np
-
 from math import pi, tan, sqrt, sin, cos
-
 import inkex
-
 from Path import Path
 from Pattern import Pattern
 
-
 class Hypar(Pattern):
-
     def __init__(self):
-        """ Constructor
-        """
         Pattern.__init__(self)  # Must be called in order to parse common options
-
-        # save all custom parameters defined on .inx file
-        self.add_argument("-p", "--pattern",
-                          action="store", type=self.str,
-                          dest="pattern", default="template1",
-                          help="Origami pattern")
-
-        self.add_argument("--radius",
-                          action="store", type=self.float,
-                          dest="radius", default=10.0,
-                          help="Radius of tower (mm)")
-
-        self.add_argument("--sides",
-                          action="store", type=self.int,
-                          dest="sides", default=4,
-                          help="Number of polygon sides")
-
-        self.add_argument("--rings",
-                          action="store", type=self.int,
-                          dest="rings", default=7,
-                          help="Number of rings")
-
-        self.add_argument("--simplify_center",
-                          action="store", type=self.bool,
-                          dest="simplify_center", default=0,
-                          help="Simplify center")
+        self.add_argument("-p", "--pattern",  default="template1", help="Origami pattern")
+        self.add_argument("--radius", type=float, default=10.0, help="Radius of tower (mm)")
+        self.add_argument("--sides", type=int, default=4, help="Number of polygon sides")
+        self.add_argument("--rings", type=int, default=7, help="Number of rings")
+        self.add_argument("--simplify_center", type=inkex.Boolean, default=0, help="Simplify center")
 
     def generate_path_tree(self):
         """ Specialized path generation for your origami pattern
@@ -137,5 +109,4 @@ class Hypar(Pattern):
 
 # Main function, creates an instance of the Class and calls inkex.affect() to draw the origami on inkscape
 if __name__ == '__main__':
-    e = Hypar()  # remember to put the name of your Class here!
-    e.draw()
+    Hypar().run()

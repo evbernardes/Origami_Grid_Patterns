@@ -1,42 +1,22 @@
-#! /usr/bin/env python
-# -*- coding: utf-8 -*-
+#! /usr/bin/env python3
+
 import numpy as np
 from math import pi
-
 import inkex
-
 from Path import Path
 from Pattern import Pattern
-
 
 # Select name of class, inherits from Pattern
 # TODO:
 # 1) Implement __init__ method to get all custom options and then call Pattern's __init__
 # 2) Implement generate_path_tree to define all of the desired strokes
 
-
 class Template(Pattern):
-
     def __init__(self):
-        """ Constructor
-        """
-        Pattern.__init__(self)  # Must be called in order to parse common options
-
-        # save all custom parameters defined on .inx file
-        self.add_argument('-p', '--pattern',
-                          action="store", type=self.str,
-                          dest="pattern", default="template1",
-                          help="Origami pattern")
-
-        self.add_argument('--length',
-                          action="store", type=self.float,
-                          dest="length", default=10.0,
-                          help="Length of grid square")
-
-        self.add_argument('--theta',
-                          action="store", type=self.int,
-                          dest="theta", default=0,
-                          help="Rotation angle (degree)")
+        Pattern.__init__(self)
+        self.add_argument('-p', '--pattern', default="template1", help="Origami pattern")
+        self.add_argument('--length', type=float, default=10.0, help="Length of grid square")
+        self.add_argument('--theta', type=int, default=0, help="Rotation angle (degree)")
 
     def generate_path_tree(self):
         """ Specialized path generation for your origami pattern
@@ -114,5 +94,4 @@ class Template(Pattern):
 # Main function, creates an instance of the Class and calls self.draw() to draw the origami on inkscape
 # self.draw() is either a call to inkex.affect() or to svg.run(), depending on python version
 if __name__ == '__main__':
-    e = Template()  # remember to put the name of your Class here!
-    e.draw()
+    Template().run()

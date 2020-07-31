@@ -1,8 +1,7 @@
-#! /usr/bin/env python
-# -*- coding: utf-8 -*-
+#! /usr/bin/env python3
+
 from math import sin, cos, sqrt, asin, pi, ceil
 import inkex
-
 from Path import Path
 from Pattern import Pattern
 from Kresling import Kresling
@@ -15,35 +14,12 @@ class Kresling_Full(Kresling):
         """
         Kresling.__init__(self)  # Must be called in order to parse common options
 
-        self.add_argument('--measure_value',
-                         action="store", type=self.float,
-                         dest="measure_value", default=10.0,
-                         help="Length")
-
-        self.add_argument('--measure_type',
-                         action="store", type=self.str,
-                         dest="measure_type", default=60,
-                         help="Type of length")
-
-        self.add_argument('--parameter_type',
-                         action="store", type=self.str,
-                         dest="parameter_type", default=60,
-                         help="Type of parameter")
-
-        self.add_argument('--radial_ratio',
-                         action="store", type=self.float,
-                         dest="radial_ratio", default=0.5,
-                         help="Radial ratio")
-
-        self.add_argument('--angle_ratio',
-                         action="store", type=self.float,
-                         dest="angle_ratio", default=0.5,
-                         help="Anle ratio")
-
-        self.add_argument('--lambdatheta',
-                         action="store", type=self.float,
-                         dest="lambdatheta", default=45,
-                         help="lambdatheta")
+        self.add_argument('--measure_value', type=float, default=10.0, help="Length")
+        self.add_argument('--measure_type', default=60, help="Type of length")
+        self.add_argument('--parameter_type', default=60, help="Type of parameter")
+        self.add_argument('--radial_ratio', type=float, default=0.5, help="Radial ratio")
+        self.add_argument('--angle_ratio', type=float, default=0.5, help="Anle ratio")
+        self.add_argument('--lambdatheta', type=float, default=45, help="lambdatheta")
         
     def generate_path_tree(self):
         """ Convert radial to angular ratio, then call regular Kresling constructor
@@ -109,7 +85,5 @@ class Kresling_Full(Kresling):
 
         Kresling.generate_path_tree(self)
 
-
 if __name__ == '__main__':
-    e = Kresling_Full()
-    e.draw()
+    Kresling_Full().run()

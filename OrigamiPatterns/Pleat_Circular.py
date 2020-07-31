@@ -1,9 +1,8 @@
-#! /usr/bin/env python
-# -*- coding: utf-8 -*-
+#! /usr/bin/env python3
+
+import inkex
 import numpy as np
-
 from math import pi, sin, cos
-
 from Path import Path
 from Pattern import Pattern
 
@@ -13,44 +12,15 @@ from Pattern import Pattern
 # 1) Implement __init__ method to get all custom options and then call Pattern's __init__
 # 2) Implement generate_path_tree to define all of the desired strokes
 
-
 class PleatCircular(Pattern):
-
     def __init__(self):
-        """ Constructor
-        """
-        Pattern.__init__(self)  # Must be called in order to parse common options
-
-        # save all custom parameters defined on .inx file
-        self.add_argument("-p", "--pattern",
-                          action="store", type=self.str,
-                          dest="pattern", default="pleat_circular",
-                          help="Origami pattern")
-
-        self.add_argument("--radius",
-                          action="store", type=self.float,
-                          dest="radius", default=55.0,
-                          help="Radius of circle")
-
-        self.add_argument("--ratio",
-                          action="store", type=self.float,
-                          dest="ratio", default=0.4,
-                          help="Opening ratio")
-
-        self.add_argument("--rings",
-                          action="store", type=self.int,
-                          dest="rings", default=15,
-                          help="Number of rings")
-
-        self.add_argument("--simulation_mode",
-                          action="store", type=self.bool,
-                          dest="simulation_mode", default=True,
-                          help="Approximate circle and draw semicreases for simulation?")
-
-        self.add_argument("--sides",
-                          action="store", type=self.int,
-                          dest="sides", default=20,
-                          help="Number of sides for polygon approximating half circle")
+        Pattern.__init__(self)
+        self.add_argument("-p", "--pattern", default="pleat_circular", help="Origami pattern")
+        self.add_argument("--radius",  type=float, default=55.0, help="Radius of circle")
+        self.add_argument("--ratio", type=float, default=0.4, help="Opening ratio")
+        self.add_argument("--rings", type=int, default=15, help="Number of rings")
+        self.add_argument("--simulation_mode", type=inkex.Boolean, default=True, help="Approximate circle and draw semicreases for simulation?")
+        self.add_argument("--sides", type=int, default=20, help="Number of sides for polygon approximating half circle")
 
     def generate_path_tree(self):
         """ Specialized path generation for your origami pattern
@@ -116,10 +86,6 @@ class PleatCircular(Pattern):
 
             self.path_tree = all_paths
 
-
-
-
 # Main function, creates an instance of the Class and calls inkex.affect() to draw the origami on inkscape
 if __name__ == '__main__':
-    e = PleatCircular()  # remember to put the name of your Class here!
-    e.draw()
+    PleatCircular().run()

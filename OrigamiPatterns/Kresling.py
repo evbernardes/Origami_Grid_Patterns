@@ -1,48 +1,19 @@
-#! /usr/bin/env python
-# -*- coding: utf-8 -*-
+#! /usr/bin/env python3
+
 from math import pi, sin, cos, tan, acos, sqrt
 import inkex
-
 from Path import Path
 from Pattern import Pattern
 
-
 class Kresling(Pattern):
-
     def __init__(self):
-        """ Constructor
-        """
         Pattern.__init__(self)  # Must be called in order to parse common options
-
-        self.add_argument("-p", "--pattern",
-                          action="store", type=self.str,
-                          dest="pattern", default="kresling",
-                          help="Origami pattern")
-        
-        self.add_argument("--lines",
-                          action="store", type=self.int,
-                          dest="lines", default=1,
-                          help="Number of lines")
-        
-        self.add_argument("--sides",
-                          action="store", type=self.int,
-                          dest="sides", default=3,
-                          help="Number of polygon sides")
-
-        self.add_argument("--add_attachment",
-                          action="store", type=self.bool,
-                          dest="add_attachment", default=False,
-                          help="Add attachment?")
-
-        self.add_argument("--attachment_percentage",
-                          action="store", type=self.float,
-                          dest="attachment_percentage", default=100.,
-                          help="Length percentage of extra facet")
-
-        self.add_argument("--mirror_cells",
-                          action="store", type=self.bool,
-                          dest="mirror_cells", default=False,
-                          help="Mirror odd cells?")
+        self.add_argument("-p", "--pattern",  default="kresling", help="Origami pattern")
+        self.add_argument("--lines", type=int, default=1, help="Number of lines")
+        self.add_argument("--sides", type=int, default=3, help="Number of polygon sides")
+        self.add_argument("--add_attachment",  type=inkex.Boolean, default=False, help="Add attachment?")
+        self.add_argument("--attachment_percentage", type=float, default=100., help="Length percentage of extra facet")
+        self.add_argument("--mirror_cells", type=inkex.Boolean, default=False,  help="Mirror odd cells?")
 
     @staticmethod
     def generate_kresling_zigzag(sides, radius, angle_ratio, add_attachment):
@@ -179,8 +150,5 @@ class Kresling(Pattern):
 
         self.path_tree = [grid_h, zigzags, vertices]
 
-
 if __name__ == '__main__':
-
-    e = Kresling()
-    e.affect()
+    Kresling().run()

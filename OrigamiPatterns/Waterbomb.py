@@ -1,58 +1,24 @@
-#! /usr/bin/env python
-# -*- coding: utf-8 -*-
+#! /usr/bin/env python3
+
 import math
 import numpy as np
-
 import inkex
-
 from Path import Path
 from Pattern import Pattern
 
 # TODO:
 # Add fractional column number option
 
-
-class Waterbomb(Pattern):
-    
+class Waterbomb(Pattern): 
     def __init__(self):
-        """ Constructor
-        """
-        Pattern.__init__(self)  # Must be called in order to parse common options
-
-        self.add_argument("-p", "--pattern",
-                                     action="store", type=self.str,
-                                     dest="pattern", default="waterbomb",
-                                     help="Origami pattern")
-
-        self.add_argument("--pattern_first_line",
-                                     action="store", type=self.str,
-                                     dest="pattern_first_line", default="waterbomb",
-                                     help="Origami pattern")
-
-        self.add_argument("--pattern_last_line",
-                                     action="store", type=self.str,
-                                     dest="pattern_last_line", default="waterbomb",
-                                     help="Origami pattern")
-        
-        self.add_argument("--lines",
-                                     action="store", type=self.int,
-                                     dest="lines", default=8,
-                                     help="Number of lines")
-        
-        self.add_argument("--columns",
-                                     action="store", type=self.int, 
-                                     dest="columns", default=16,
-                                     help="Number of columns")
-
-        self.add_argument("--length",
-                                     action="store", type=self.float, 
-                                     dest="length", default=10.0,
-                                     help="Length of grid square")
-        
-        self.add_argument('--phase_shift', action='store',
-                                     type=self.bool, dest='phase_shift',
-                                     default=True,
-                                     help='Shift phase of tesselation.')
+        Pattern.__init__(self)
+        self.add_argument("-p", "--pattern", default="waterbomb", help="Origami pattern")
+        self.add_argument("--pattern_first_line", default="waterbomb", help="Origami pattern")
+        self.add_argument("--pattern_last_line", default="waterbomb", help="Origami pattern")
+        self.add_argument("--lines", type=int, default=8, help="Number of lines")
+        self.add_argument("--columns", type=int, default=16, help="Number of columns")
+        self.add_argument("--length", type=float, default=10.0, help="Length of grid square")
+        self.add_argument('--phase_shift', type=inkex.Boolean, default=True, help='Shift phase of tesselation.')
     
     def generate_path_tree(self):
         """ Specialized path generation for Waterbomb tesselation pattern
@@ -134,6 +100,4 @@ class Waterbomb(Pattern):
 
 
 if __name__ == '__main__':
-
-    e = Waterbomb()
-    e.draw()
+    Waterbomb().run()

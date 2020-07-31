@@ -1,32 +1,8 @@
-"""
-Path Class
+#! /usr/bin/env python3
 
-Defines a path and what it is supposed to be (mountain, valley, edge)
-
-"""
-
-import inkex        # Required
-import simplestyle  # will be needed here for styles support
-
-# compatibility hack
-try:
-    from lxml import etree
-    inkex.etree = etree
-except:
-    pass
-
+import inkex
+from lxml import etree
 from math import sin, cos, pi
-
-# compatibility hack for formatStyle
-def format_style(style):
-    try:
-        return str(inkex.Style(style)) # new
-    except:
-        return simplestyle.formatStyle(style) # old
-# def format_style(style):
-    # return simplestyle.formatStyle(style)
-
-
 
 class Path:
     """ Class that defines an svg stroke to be drawn in Inkscape
@@ -150,7 +126,7 @@ class Path:
         - Draws strokes defined on "path_tree" to "group"
         - Inputs:
         -- path_tree [nested list] of Path instances
-        -- group [inkex.etree.SubElement]
+        -- group [etree.SubElement]
         -- styles_dict [dict] containing all styles for path_tree
         """
     @staticmethod
@@ -162,7 +138,7 @@ class Path:
                 if len(subpath) == 1:
                     subgroup = group
                 else:
-                    subgroup = inkex.etree.SubElement(group, 'g')
+                    subgroup = etree.SubElement(group, 'g')
                 Path.draw_paths_recursively(subpath, subgroup, styles_dict)
             else:
                 if styles_dict[subpath.style]['draw']:
@@ -175,13 +151,13 @@ class Path:
                         if subpath.closed:
                             path = path + 'L{},{} Z'.format(*points[0])
 
-                        attribs = {'style': format_style(styles_dict[subpath.style]), 'd': path}
-                        inkex.etree.SubElement(group, inkex.addNS('path', 'svg'), attribs)
+                        attribs = {'style': str(inkex.Style(styles_dict[subpath.style])), 'd': path}
+                        etree.SubElement(group, inkex.addNS('path', 'svg'), attribs)
                     else:
-                        attribs = {'style': format_style(styles_dict[subpath.style]),
+                        attribs = {'style': str(inkex.Style(styles_dict[subpath.style])),
                                    'cx': str(subpath.points[0][0]), 'cy': str(subpath.points[0][1]),
                                    'r': str(subpath.radius)}
-                        inkex.etree.SubElement(group, inkex.addNS('circle', 'svg'), attribs)
+                        etree.SubElement(group, inkex.addNS('circle', 'svg'), attribs)
 
     @classmethod
     def generate_hgrid(cls, xlims, ylims, nb_of_divisions, style, include_edge=False):
@@ -488,4 +464,3 @@ class Path:
             paths_new.append(Path.reflect(path, p1, p2))
 
         return paths_new
-
