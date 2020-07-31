@@ -404,28 +404,28 @@ class Pattern(inkex.Effect):
         # check if dashed option selected
         if self.options.mountain_dashes_bool:
             dash = self.options.mountain_dashes_len*self.options.mountain_dashes_duty*unit_factor
-            gap = dash - self.options.mountain_dashes_len*unit_factor
-            mountain_style['stroke-dasharray'] = "{} {}".format(dash, gap)
+            gap = abs(dash - self.options.mountain_dashes_len*unit_factor)
+            mountain_style['stroke-dasharray'] = "{},{}".format(dash, gap)
         if self.options.valley_dashes_bool:
             dash = self.options.valley_dashes_len * self.options.valley_dashes_duty*unit_factor
-            gap = dash - self.options.valley_dashes_len*unit_factor
-            valley_style['stroke-dasharray'] = "{} {}".format(dash, gap)
+            gap = abs(dash - self.options.valley_dashes_len*unit_factor)
+            valley_style['stroke-dasharray'] = "{},{}".format(dash, gap)
         if self.options.edge_dashes_bool:
             dash = self.options.edge_dashes_len * self.options.edge_dashes_duty*unit_factor
-            gap = dash - self.options.edge_dashes_len*unit_factor
-            edge_style['stroke-dasharray'] = "{} {}".format(dash, gap)
+            gap = abs(dash - self.options.edge_dashes_len*unit_factor)
+            edge_style['stroke-dasharray'] = "{},{}".format(dash, gap)
         if self.options.universal_dashes_bool:
             dash = self.options.universal_dashes_len * self.options.universal_dashes_duty*unit_factor
-            gap = dash - self.options.universal_dashes_len*unit_factor
-            universal_style['stroke-dasharray'] = "{} {}".format(dash, gap)
+            gap = abs(dash - self.options.universal_dashes_len*unit_factor)
+            universal_style['stroke-dasharray'] = "{},{}".format(dash, gap)
         if self.options.semicrease_dashes_bool:
             dash = self.options.semicrease_dashes_len * self.options.semicrease_dashes_duty*unit_factor
-            gap = dash - self.options.semicrease_dashes_len*unit_factor
-            semicrease_style['stroke-dasharray'] = "{} {}".format(dash, gap)
+            gap = abs(dash - self.options.semicrease_dashes_len*unit_factor)
+            semicrease_style['stroke-dasharray'] = "{},{}".format(dash, gap)
         if self.options.cut_dashes_bool:
             dash = self.options.cut_dashes_len * self.options.cut_dashes_duty*unit_factor
-            gap = dash - self.options.cut_dashes_len*unit_factor
-            cut_style['stroke-dasharray'] = "{} {}".format(dash, gap)
+            gap = abs(dash - self.options.cut_dashes_len*unit_factor)
+            cut_style['stroke-dasharray'] = "{},{}".format(dash, gap)
 
         self.styles_dict = {'m': mountain_style,
                             'v': valley_style,
