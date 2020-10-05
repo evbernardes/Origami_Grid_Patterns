@@ -89,7 +89,7 @@ class Template(Pattern):
         # edges = Path.list_reflect(edges, line_reflect)
 
         # IMPORTANT: at the end, save edge points as "self.edge_points", to simplify selection of single or multiple
-        # strokes for the edge
+        # strokes for the edge 
         self.edge_points = edges.points
 
         # IMPORTANT: the attribute "path_tree" must be created at the end, saving all strokes
