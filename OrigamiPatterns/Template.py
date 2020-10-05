@@ -58,8 +58,6 @@ class Template(Pattern):
         valleys = [Path(valley_1st_stroke_points, 'v' if pattern == 'template1' else 'm'),
                    Path(valley_2nd_stroke_points, 'v' if pattern == 'template1' else 'm')]
 
-
-
         vertices = []
         for i in range(3):
             for j in range(3):
