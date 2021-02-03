@@ -105,6 +105,7 @@ class Pattern(inkex.Effect):
         self.add_argument('--mountain_dashes_duty', type=self.float, default=0.5)
         self.add_argument('--mountain_dashes_bool', type=self.bool, default=True)
         self.add_argument('--mountain_bool', type=self.bool, default=True)
+        self.add_argument('--mountain_bool_only', type=self.bool, default=False)
 
         # valley options
         self.add_argument('--valley_stroke_color', type=self.str, default=65535)  # Blue
@@ -113,6 +114,7 @@ class Pattern(inkex.Effect):
         self.add_argument('--valley_dashes_duty', type=self.float, default=0.25)
         self.add_argument('--valley_dashes_bool', type=self.bool, default=True)
         self.add_argument('--valley_bool', type=self.bool, default=True)
+        self.add_argument('--valley_bool_only', type=self.bool, default=False)
 
         # edge options
         self.add_argument('--edge_stroke_color', type=self.str,  default=255)  # Black
@@ -121,6 +123,7 @@ class Pattern(inkex.Effect):
         self.add_argument('--edge_dashes_duty', type=self.float, default=0.25)
         self.add_argument('--edge_dashes_bool', type=self.bool, default=False)
         self.add_argument('--edge_bool', type=self.bool, default=True)
+        self.add_argument('--edge_bool_only', type=self.bool, default=False)
         self.add_argument('--edge_single_path', type=self.bool, default=True)
 
         # universal crease options
@@ -130,6 +133,7 @@ class Pattern(inkex.Effect):
         self.add_argument('--universal_dashes_duty', type=self.float, default=0.25)
         self.add_argument('--universal_dashes_bool', type=self.bool, default=False)
         self.add_argument('--universal_bool', type=self.bool, default=True)
+        self.add_argument('--universal_bool_only', type=self.bool, default=False)
 
         # semicrease options
         self.add_argument('--semicrease_stroke_color', type=self.str, default=4294902015)  # Yellow
@@ -138,6 +142,7 @@ class Pattern(inkex.Effect):
         self.add_argument('--semicrease_dashes_duty', type=self.float, default=0.25)
         self.add_argument('--semicrease_dashes_bool', type=self.bool, default=False)
         self.add_argument('--semicrease_bool', type=self.bool, default=True)
+        self.add_argument('--semicrease_bool_only', type=self.bool, default=False)
 
         # cut options
         self.add_argument('--cut_stroke_color', type=self.str, default=16711935)  # Green
@@ -146,13 +151,15 @@ class Pattern(inkex.Effect):
         self.add_argument('--cut_dashes_duty', type=self.float, default=0.25)
         self.add_argument('--cut_dashes_bool', type=self.bool, default=False)
         self.add_argument('--cut_bool', type=self.bool, default=True)
+        self.add_argument('--cut_bool_only', type=self.bool, default=False)
 
         # vertex options
         self.add_argument('--vertex_stroke_color', type=self.str, default=255)  # Black
         self.add_argument('--vertex_stroke_width', type=self.float, default=0.1)
         self.add_argument('--vertex_radius', type=self.float, default=0.1)
-        self.add_argument('--vertex_bool', type=self.bool, default=True)
         self.add_argument('--vertex_dashes_bool', type=self.bool, default=False)
+        self.add_argument('--vertex_bool', type=self.bool, default=True)
+        self.add_argument('--vertex_bool_only', type=self.bool, default=False)
 
         # here so we can have tabs - but we do not use it directly - else error
         self.add_argument('--active-tab', type=self.str, default='title')  # use a legitimate default
@@ -165,6 +172,23 @@ class Pattern(inkex.Effect):
     def effect(self):
         """ Main function, called when the extension is run.
         """
+        # check if any selected to print only some of the crease types:
+        bool_only_list = [self.options.mountain_bool_only,
+                          self.options.valley_bool_only,
+                          self.options.edge_bool_only,
+                          self.options.universal_bool_only,
+                          self.options.semicrease_bool_only,
+                          self.options.cut_bool_only,
+                          self.options.vertex_bool_only]
+        if sum(bool_only_list) > 0:
+            self.options.mountain_bool = self.options.mountain_bool and self.options.mountain_bool_only
+            self.options.valley_bool = self.options.valley_bool and self.options.valley_bool_only
+            self.options.edge_bool = self.options.edge_bool and self.options.edge_bool_only
+            self.options.universal_bool = self.options.universal_bool and self.options.universal_bool_only
+            self.options.semicrease_bool = self.options.semicrease_bool and self.options.semicrease_bool_only
+            self.options.cut_bool = self.options.cut_bool and self.options.cut_bool_only
+            self.options.vertex_bool = self.options.vertex_bool and self.options.vertex_bool_only
+
         # construct dictionary containing styles
         self.create_styles_dict()
 
