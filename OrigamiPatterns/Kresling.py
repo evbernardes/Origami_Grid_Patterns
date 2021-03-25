@@ -87,7 +87,6 @@ class Kresling(Pattern):
         # create a horizontal grid, then offset each line according to angle
         grid_h = Path.generate_hgrid([0, a * sides], [0, dy * lines], lines, 'm')
 
-
         if not mirror_cells:
             # shift every mountain line of the grid to the right by increasing amounts
             grid_h = Path.list_add(grid_h, [(i * dx, 0) for i in range(lines - 1, 0, -1)])
@@ -98,7 +97,6 @@ class Kresling(Pattern):
                 for i in range(lines%2, lines-1, 2):
                     # hacky solution, changes length of every other mountain line
                     grid_h[i].points[1-i%2] = (grid_h[i].points[1-i%2][0] + a*attachment_percentage, grid_h[i].points[1-i%2][1])
-
 
         # create MV zigzag for Kresling pattern
         zigzag = Kresling.generate_kresling_zigzag(sides, radius, angle_ratio, add_attachment)

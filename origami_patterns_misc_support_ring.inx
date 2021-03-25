@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <!-- Name of effect -->
+	<_name>Support ring</_name>
+    <!-- Name of id -->
+	<id>org.inkscape.Origami_patterns.support_ring</id>
+	<dependency type="executable" location="extensions">OrigamiPatterns</dependency>
+	<dependency type="executable" location="extensions">simplestyle.py</dependency>
+
+	<!-- start notebook -->
+	<param name='active-tab' type="notebook">
+
+		<!-- Change this first page, fill with desired parameters and help texts-->
+		<page name="title" _gui-text="Options">
+            <param name="sides" type="int" min="3" max="100" _gui-text="Number of polygon sides">6</param>
+			<param name="radius_external" type="float" max="10000"  precision="3" _gui-text="External radius:">10.0</param>
+			<param name="radius_ratio" type="float" min="0" max="0.9"  precision="3" _gui-text="Radial ratio:">0.5</param>
+<!--            <param name="radius_type" type="optiongroup" appearance="minimal" _gui-text="Internal radius type:">-->
+<!--				<option value="polygonal">Polygonal</option>-->
+<!--                <option value="circular">Circular</option>-->
+<!--            </param>-->
+            <_param name="help"   type="description" xml:space="preserve">------------------------------------------------------------</_param>
+            <param name="connector_length" type="float" max="10000"  precision="3" _gui-text="Connector length:">3.0</param>
+            <param name="connector_thickness" type="float" max="10000"  precision="3" _gui-text="Connector thickness:">3.0</param>
+            <param name="head_length" type="float" max="10000"  precision="3" _gui-text="Head extra length:">1.0</param>
+            <param name="head_thickness" type="float" max="10000"  precision="3" _gui-text="Head extra thickness:">1.0</param>
+			<param name="units" type="optiongroup" appearance="minimal" _gui-text="">
+				<option value="mm">mm</option>
+				<option value="cm">cm</option>
+				<option value="in">in</option>
+				<option value="pt">pt</option>
+				<option value="px">px</option></param>
+		</page>
+		<page name="mountains" _gui-text="Mountain creases">
+			<param name="mountain_dashes_bool" type="boolean" _gui-text="Dashed strokes?">false</param>
+			<param name="mountain_dashes_len" type="float"  min="0.1" max="10" appearance="full" precision="2" _gui-text="Mountain dash + gap length">1</param>
+			<param name="mountain_dashes_duty" type="float"  min="0.1" max="1" appearance="full" precision="2" _gui-text="Mountain dash duty cycle">0.5</param>
+			<param name="mountain_stroke_width" type="float" min="0.01" max="3" appearance="full" _gui-text="Width of mountain strokes">0.1</param>
+			<param name="mountain_stroke_color" type="color" gui-text="Mountain creases color: ">4278190335</param>
+		</page>
+	</param>
+	<!-- classify which menu it appears under - can be new name -->
+	<effect>
+	<object-type>all</object-type>
+		<effects-menu>
+            <submenu _name="Origami Patterns">
+				<submenu _name="_Misc" />
+			</submenu>
+		</effects-menu>
+	</effect>
+	<!-- Python file for pattern -->
+
+	<script>
+		<command reldir="extensions" interpreter="python">OrigamiPatterns/SupportRing.py</command>
+	</script>
+
+</inkscape-extension>
