@@ -27,6 +27,7 @@ class SupportRing(Pattern):
         self.add_argument('--radius_external', type=self.float, default=10.0)
         self.add_argument('--radius_ratio', type=self.float, default=0.5)
         self.add_argument('--radius_type', type=self.str, default='polygonal')
+        self.add_argument('--radius_draw', type=self.bool, default=True)
         self.add_argument('--connector_length', type=self.float, default=3.0)
         self.add_argument('--connector_thickness', type=self.float, default=3.0)
         self.add_argument('--head_length', type=self.float, default=1.0)
@@ -75,18 +76,23 @@ class SupportRing(Pattern):
             x, y = external_lines[-1].points[-1]
             external_lines.append(external_lines_0*(1, 2*(i+1)*angle) + (x, y))
 
-        if radius_type == 'polygonal':
-            internal_lines_0 = Path(internal_points, 'm')
-            internal_lines = [internal_lines_0]
-            for i in range(sides - 1):
-                x, y = internal_lines[-1].points[-1]
-                internal_lines.append(internal_lines_0*(1, 2*(i+1)*angle) + (x, y))
-            internal_lines = Path.list_add(internal_lines, ((length_external - length_internal) / 2, dradius * cos(angle)))
-        elif radius_type == 'circular':
-            internal_lines = Path((length_external/2, 0), radius=radius_internal, style = 'm')
+        self.path_tree = [external_lines]
+
+        if self.options.radius_draw == True:
+            if radius_type == 'polygonal':
+                internal_lines_0 = Path(internal_points, 'm')
+                internal_lines = [internal_lines_0]
+                for i in range(sides - 1):
+                    x, y = internal_lines[-1].points[-1]
+                    internal_lines.append(internal_lines_0*(1, 2*(i+1)*angle) + (x, y))
+                internal_lines = Path.list_add(internal_lines, ((length_external - length_internal) / 2, dradius * cos(angle)))
+            elif radius_type == 'circular':
+                internal_lines = Path((length_external / 2, radius_internal + dradius/2), radius=radius_internal, style = 'm')
+
+            self.path_tree.append(internal_lines)
 
 
-        self.path_tree = [external_lines, internal_lines]
+
 
 
 
