@@ -41,12 +41,15 @@
 			<param name="h1" type="float" min="0" max="200.0" precision="3" _gui-text="Height of superior cone (h1)">1</param>
 			<param name="h2" type="float" min="0" max="200.0" precision="3" _gui-text="Height of inferior cone (h2)">2</param>
 
+
 			<param name="units" type="optiongroup" appearance="minimal" _gui-text="">
 				<option value="mm">mm</option>
 				<option value="cm">cm</option>
 				<option value="in">in</option>
 				<option value="pt">pt</option>
 				<option value="px">px</option></param>
+
+            <_param name="help"   type="description" xml:space="preserve">As published in: https://doi.org/10.1115/1.4052222</_param>
 		</page>
 		<page name="title" _gui-text="Extra">
 			<param name="add_attachment" type="boolean" _gui-text="Add attachments?">false</param>
@@ -131,7 +134,6 @@
 	<object-type>all</object-type>
 		<effects-menu>
             <submenu _name="Origami Patterns">
-				<submenu _name="Experimental" />
 			</submenu>
 		</effects-menu>
 	</effect>

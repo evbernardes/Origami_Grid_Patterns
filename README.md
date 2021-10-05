@@ -65,6 +65,7 @@ waterbomb
 - Waterbomb tesselation (and Magic Ball)
 - Kresling tower
 - Hypar (hyperbolic paraboloid approximate)
+- Bendy Straw (as published in: [https://doi.org/10.1115/1.4052222](https://doi.org/10.1115/1.4052222))
 
 ## For creation of new patterns:
 - See `origami_patterns_template.inx` and `OrigamiPatterns/Template.py` for an example!
