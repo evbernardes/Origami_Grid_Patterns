@@ -63,16 +63,19 @@ waterbomb
 
 ## Patterns implemented until now:
 - Waterbomb tesselation (and Magic Ball)
-- Kresling tower
 - Hypar (hyperbolic paraboloid approximate)
+- Kresling tower
 - Bendy Straw (as published in: [https://doi.org/10.1115/1.4052222](https://doi.org/10.1115/1.4052222))
+
+## Cylindrical Origami:
+Instead of fast cutting, these origami patterns are created with easy of implementation in mind:
+- defining only the edges and interiors of one row, the extension automatically creates support slots for easy prototyping
 
 ## For creation of new patterns:
 - See `origami_patterns_template.inx` and `OrigamiPatterns/Template.py` for an example!
 
 ## Todo:
-- Add more patterns if necessary
-- Add option to draw points
+- Implement Bendy Straw and Kresling Tower as Cylindrical origami patterns
 
 ## Deprecation and compatibility issues:
 Deprecated functions are being replaced for Inkscape 1.0 while making sure it still works with older versions of Inkscape.
