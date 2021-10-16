@@ -21,34 +21,54 @@ class Template(Cylindrical):
     def __init__(self):
         """ Constructor
         """
-        Pattern.__init__(self)  # Must be called in order to parse common options
         Cylindrical.__init__(self)  # Must be called in order to parse common options
 
         # save all custom parameters defined on .inx file
         self.add_argument('--pattern', type=self.str, default='cylindrical_template')
-        self.add_argument('--radius', type=self.float, default=10.0)
-        self.add_argument('--n', type=self.int, default=6)
-        self.add_argument('--lines', type=self.int, default=3)
-
-        self.add_argument('--add_attachment', type=self.bool, default=False)
-
-        # slot options for support ring
-        self.add_argument('--add_base_slot', type=self.bool, default=False)
-        self.add_argument('--base_slot_position', type=self.str, default="1")
-        self.add_argument('--base_height', type=self.float, default=5.0)
-        self.add_argument('--base_slot_height', type=self.float, default=3.0)
-        self.add_argument('--base_slot_width', type=self.float, default=3.0)
-
-        self.add_argument('--add_middle_slot', type=self.bool, default=False)
-        self.add_argument('--middle_slot_position', type=self.str, default="0")
-        self.add_argument('--distance', type=self.float, default=3.0)
-        self.add_argument('--middle_slot_height', type=self.float, default=3.0)
-        self.add_argument('--middle_slot_width', type=self.float, default=3.0)
+        self.add_argument('--length', type=self.float, default=10.)
+        self.add_argument('--angle', type=self.int, default=0)
 
     def generate_cell(self):
         """ Generate the the origami cell
         """
-        return []
+        # retrieve conversion factor for selected unit
+        unit_factor = self.calc_unit_factor()
+        sides = self.options.sides
+        rows = self.options.rows
+
+        length = self.options.length * unit_factor
+        angle = self.options.angle * unit_factor
+        width = self.options.width * unit_factor # use pre-calculated width
+
+        dx = length * sin(pi * angle / 180)
+        dy = length * cos(pi * angle / 180)
+
+        # init dict that holds everything
+        cell_data = {}
+
+        # displacement in x at the bottom of each cell
+        cell_data['dx'] = [dx*i for i in range(1, rows + 1)]
+
+        # height of cells
+        # TODO: make this variable for every cell
+        cell_data['height'] = dy
+
+        # divider (supposed to be the same)
+        cell_data['divider'] = Path([(0,0), (width*sides, 0)], style='m')
+
+        # IMPORTANT: left edges from TOP to BOTTOM
+        cell_data['edge_left'] = [Path([(0,0), (dx, dy)], style='e')]*rows
+
+        # IMPORTANT: right edges from BOTTOM to TOP
+        cell_data['edge_right'] = [Path([(sides*width + dx, dy), (sides*width, 0)], style='e')]*rows
+
+        # rest of cell
+        single = [Path([(0, 0), (width + dx, dy)], 'v'), Path([(width + dx, dy), (width, 0)], 'm')]
+        pattern = [Path.list_add(single, (width*i, 0)) for i in range(sides)]
+        pattern = Path.list_simplify(pattern)
+        cell_data['interior'] = [pattern]*rows
+
+        return cell_data
 
 
 # Main function, creates an instance of the Class and calls self.draw() to draw the origami on inkscape

@@ -402,6 +402,12 @@ class Path:
 
         return Path(points_new, self.style, self.closed, radius=radius)
 
+    def shape(self):
+        points = self.points
+        x = [p[0] for p in points]
+        y = [p[1] for p in points]
+        return [min(x), max(x), min(y), max(y)]
+
     @classmethod
     def list_rotate(cls, paths, theta, translation=(0, 0)):
         """ Generate list of new Path instances, rotation each path by transform
@@ -556,3 +562,18 @@ class Path:
         elif type(paths) == list:
             for sub_path in paths:
                 Path.debug_points(sub_path)
+
+    @classmethod
+    def get_points(cls, paths):
+        """ Get points of path tree in drawing order.
+
+        """
+        points = []
+        if type(paths) == Path:
+            points = points + paths.points
+        elif type(paths) == list:
+            for sub_path in paths:
+                points = points + Path.get_points(sub_path)
+        return points
+
+

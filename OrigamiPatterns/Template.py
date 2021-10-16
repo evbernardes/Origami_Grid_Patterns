@@ -25,7 +25,7 @@ class Template(Pattern):
         # save all custom parameters defined on .inx file
         self.add_argument('--pattern', type=self.str, default='template1')
         self.add_argument('--length', type=self.float, default=10.0)
-        self.add_argument('--theta', type=self.int, default=0)
+        self.add_argument('--angle', type=self.int, default=0)
 
     def generate_path_tree(self):
         """ Specialized path generation for your origami pattern
@@ -37,7 +37,7 @@ class Template(Pattern):
         length = self.options.length * unit_factor
         vertex_radius = self.options.vertex_radius * unit_factor
         pattern = self.options.pattern
-        theta = self.options.theta * pi / 180
+        angle = self.options.angle * pi / 180
 
         # create all Path instances defining strokes
         # first define its points as a list of tuples...
@@ -64,9 +64,9 @@ class Template(Pattern):
                 vertices.append(Path(((i/2.) * length, (j/2.) * length), style='p', radius=vertex_radius))
 
         # multiplication is implemented as a rotation, and list_rotate implements rotation for list of Path instances
-        vertices = Path.list_rotate(vertices, theta, (1 * length, 1 * length))
-        mountains = Path.list_rotate(mountains, theta, (1 * length, 1 * length))
-        valleys = Path.list_rotate(valleys, theta, (1 * length, 1 * length))
+        vertices = Path.list_rotate(vertices, angle, (1 * length, 1 * length))
+        mountains = Path.list_rotate(mountains, angle, (1 * length, 1 * length))
+        valleys = Path.list_rotate(valleys, angle, (1 * length, 1 * length))
 
         # if Path constructor is called with more than two points, a single stroke connecting all of then will be
         # created. Using method generate_separated_paths, you can instead return a list of separated strokes
@@ -79,7 +79,7 @@ class Template(Pattern):
 
         # create path from points to be able to use the already built rotate method
         edges = Path(edge_points, 'e', closed=True)
-        edges = Path.list_rotate(edges, theta, (1 * length, 1 * length))
+        edges = Path.list_rotate(edges, angle, (1 * length, 1 * length))
 
         # division is implemented as a reflection, and list_reflect implements it for a list of Path instances
         # here's a commented example:
