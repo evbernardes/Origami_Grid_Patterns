@@ -96,7 +96,8 @@ class Bendy_Straw(Pattern):
         b2 = l2 * sin(beta2)
         height = (b1 + b2) * lines + distance * (lines - 1)
 
-        if self.options.add_attachment: n = n+1
+        if self.options.add_attachment:
+            n = n+1
 
         #
         # big horizontal mountains grid

@@ -94,6 +94,8 @@
 	<object-type>all</object-type>
 		<effects-menu>
 			<submenu _name="Origami Patterns">
+				<submenu _name="Deprecated">
+				</submenu>
 			</submenu>
 			
 		</effects-menu>
