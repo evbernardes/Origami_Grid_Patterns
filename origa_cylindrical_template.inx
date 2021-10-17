@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
     <!-- Name of effect -->
-	<_name>Cylindrical template effect</_name>
+	<_name>* Cylindrical template effect</_name>
     <!-- Name of id -->
 	<id>org.inkscape.Origami_patterns.cylindrical_template</id>
 	<dependency type="executable" location="extensions">OrigamiPatterns</dependency>

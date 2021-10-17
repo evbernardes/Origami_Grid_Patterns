@@ -66,10 +66,10 @@ waterbomb
 - Hypar (hyperbolic paraboloid approximate)
 - Kresling tower
 - Bendy Straw (as published in: [https://doi.org/10.1115/1.4052222](https://doi.org/10.1115/1.4052222))
-
-## Cylindrical Origami:
-Instead of fast cutting, these origami patterns are created with easy of implementation in mind:
-- defining only the edges and interiors of one row, the extension automatically creates support slots for easy prototyping
+- Cylindrical Class: Subclass of Pattern for automatic generation of slots for rigid support
+-- Cylindrical Kresling tower
+-- Bendy Straw Kresling tower
+-- Rigid support for Cylindrical patterns
 
 ## For creation of new patterns:
 - See `origami_patterns_template.inx` and `OrigamiPatterns/Template.py` for an example!

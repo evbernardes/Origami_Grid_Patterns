@@ -96,7 +96,7 @@
 	<object-type>all</object-type>
 		<effects-menu>
             <submenu _name="Origami Patterns">
-				<submenu _name="Template submenu" />
+				<submenu _name="* Template submenu" />
 			</submenu>
 		</effects-menu>
 	</effect>
