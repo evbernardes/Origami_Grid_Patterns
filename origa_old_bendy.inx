@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
     <!-- Name of effect -->
-	<_name>Bendy Straw</_name>
+	<_name>Bendy Straw (old, faster cutting)</_name>
     <!-- Name of id -->
-	<id>org.inkscape.Origami_patterns.bendy_straw</id>
+	<id>org.inkscape.Origami_patterns.old_bendy</id>
 	<dependency type="executable" location="extensions">OrigamiPatterns</dependency>
 	<dependency type="executable" location="extensions">simplestyle.py</dependency>
 
@@ -134,7 +134,7 @@
 	<object-type>all</object-type>
 		<effects-menu>
             <submenu _name="Origami Patterns">
-				<submenu _name="Deprecated">
+				<submenu _name="Cylindrical">
 				</submenu>
 			</submenu>
 		</effects-menu>
@@ -142,7 +142,7 @@
 	<!-- Python file for pattern -->
 
 	<script>
-		<command reldir="extensions" interpreter="python">OrigamiPatterns/Bendy_Straw.py</command>
+		<command reldir="extensions" interpreter="python">OrigamiPatterns/Bendy.py</command>
 	</script>
 
 </inkscape-extension>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
-	<_name>Kresling tower</_name>
-	<id>org.inkscape.Origami_patterns.kresling_full</id>
+	<_name>Kresling tower (old)</_name>
+	<id>org.inkscape.Origami_patterns.old_kresling</id>
 	<dependency type="executable" location="extensions">OrigamiPatterns</dependency>
 	<dependency type="executable" location="extensions">simplestyle.py</dependency>
 
@@ -94,7 +94,7 @@
 	<object-type>all</object-type>
 		<effects-menu>
 			<submenu _name="Origami Patterns">
-				<submenu _name="Deprecated">
+				<submenu _name="Cylindrical">
 				</submenu>
 			</submenu>
 			
