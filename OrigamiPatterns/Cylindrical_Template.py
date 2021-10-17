@@ -34,6 +34,7 @@ class Template(Cylindrical):
         # retrieve conversion factor for selected unit
         unit_factor = self.calc_unit_factor()
         sides = self.options.sides
+        cols = self.options.cols
         rows = self.options.rows
 
         length = self.options.length * unit_factor
@@ -54,17 +55,17 @@ class Template(Cylindrical):
         cell_data['height'] = dy
 
         # divider (supposed to be the same)
-        cell_data['divider'] = Path([(0,0), (width*sides, 0)], style='m')
+        cell_data['divider'] = Path([(0,0), (width*cols, 0)], style='m')
 
         # IMPORTANT: left edges from TOP to BOTTOM
         cell_data['edge_left'] = [Path([(0,0), (dx, dy)], style='e')]*rows
 
         # IMPORTANT: right edges from BOTTOM to TOP
-        cell_data['edge_right'] = [Path([(sides*width + dx, dy), (sides*width, 0)], style='e')]*rows
+        cell_data['edge_right'] = [Path([(cols*width + dx, dy), (cols*width, 0)], style='e')]*rows
 
         # rest of cell
         single = [Path([(0, 0), (width + dx, dy)], 'v'), Path([(width + dx, dy), (width, 0)], 'm')]
-        pattern = [Path.list_add(single, (width*i, 0)) for i in range(sides)]
+        pattern = [Path.list_add(single, (width*i, 0)) for i in range(cols)]
         pattern = Path.list_simplify(pattern)
         cell_data['interior'] = [pattern]*rows
 

@@ -56,8 +56,7 @@ class Cylindrical(Pattern):
         self.add_argument('--radius', type=self.float, default=10.0)
         self.add_argument('--sides', type=self.int, default=6)
         self.add_argument('--rows', type=self.int, default=3)
-
-        self.add_argument('--add_attachment', type=self.bool, default=False)
+        self.add_argument('--extra_column', type=self.bool, default=False)
 
         # slot options for support ring
         self.add_argument('--add_base_slot', type=self.bool, default=False)
@@ -71,6 +70,12 @@ class Cylindrical(Pattern):
         self.add_argument('--distance', type=self.float, default=3.0)
         self.add_argument('--middle_slot_height', type=self.float, default=3.0)
         self.add_argument('--middle_slot_width', type=self.float, default=3.0)
+
+    @abstractmethod
+    def parse_parameters(self):
+        """
+        """
+        pass
 
     @abstractmethod
     def generate_cell(self):
@@ -91,20 +96,17 @@ class Cylindrical(Pattern):
         if self.options.base_height == 0:
             self.options.add_base_slot = False
         if self.options.distance == 0:
-            self.options.add_middle_slot = True
+            self.options.add_middle_slot = False
+
+        self.parse_parameters()
 
         # retrieve conversion factor for selected unit
         unit_factor = self.calc_unit_factor()
 
         # pre-calculate width before adding one to sides, for easier attachment
         self.options.width = 2 * self.options.radius * sin(pi / self.options.sides)
-        if self.options.add_attachment:
-            self.options.sides = self.options.sides + 1
 
-        # retrieve saved parameters, and apply unit factor where needed
-        radius = self.options.radius * unit_factor
-        sides = self.options.sides
-        rows = self.options.rows
+        self.options.cols = self.options.sides + self.options.extra_column
 
         # get cell definitions
         cell_data = self.generate_cell()
@@ -140,7 +142,7 @@ class Cylindrical(Pattern):
         for i in range(rows):
             dx = cell_data['dx'][i]
             dy = base_height + i * (distance + cell_data['height'])
-            pattern = cell_data['interior'][0]
+            pattern = cell_data['interior'][i]
             interiors.append(Path.list_add(pattern, (dx, dy)))
 
         return interiors
@@ -184,7 +186,7 @@ class Cylindrical(Pattern):
 
         # retrieve saved parameters, and apply unit factor where needed
         radius = self.options.radius * unit_factor
-        sides = self.options.sides
+        cols = self.options.cols
         rows = self.options.rows
         width = self.options.width * unit_factor
 
@@ -201,8 +203,8 @@ class Cylindrical(Pattern):
             base_slot_width = self.options.base_slot_width * unit_factor
             base_slot_sizes = [base_slot_height, base_slot_width, base_height, width]
 
-            base_slot_top = generate_slot_line(sides, +int(self.options.base_slot_position), *base_slot_sizes)
-            base_slot_bot = generate_slot_line(sides, -int(self.options.base_slot_position), *base_slot_sizes)
+            base_slot_top = generate_slot_line(cols, +int(self.options.base_slot_position), *base_slot_sizes)
+            base_slot_bot = generate_slot_line(cols, -int(self.options.base_slot_position), *base_slot_sizes)
 
 
             base['slots'] = [base_slot_top, Path.list_add(base_slot_bot, (cell_dx[-1], height_bottom_slot))]
@@ -210,8 +212,8 @@ class Cylindrical(Pattern):
             base['left'] = [Path([(0, 0), (0, base_height)], style = 'e'),
                             Path([(cell_dx[-1], height_bottom_slot), (cell_dx[-1], height_bottom_slot + base_height)], style = 'e')]
 
-            base['right'] = [Path([(cell_dx[-1]+sides*width, height_bottom_slot + base_height), (cell_dx[-1]+sides*width, height_bottom_slot)], style = 'e'),
-                             Path([(sides*width, base_height), (sides*width, 0)], style = 'e')]
+            base['right'] = [Path([(cell_dx[-1]+cols*width, height_bottom_slot + base_height), (cell_dx[-1]+cols*width, height_bottom_slot)], style = 'e'),
+                             Path([(cols*width, base_height), (cols*width, 0)], style = 'e')]
 
         middle = {'left': [],
                   'right': [],
@@ -222,16 +224,17 @@ class Cylindrical(Pattern):
             middle_slot_width = self.options.middle_slot_width * unit_factor
             middle_slot_sizes = [middle_slot_height, middle_slot_width, distance, width]
 
-            middle_slot = generate_slot_line(sides, +int(self.options.middle_slot_position), *middle_slot_sizes)
+            middle_slot = generate_slot_line(cols, +int(self.options.middle_slot_position), *middle_slot_sizes)
             middle['slots'] = [Path.list_add(middle_slot,
-                                          (cell_dx[i], base_height + i * cell_height + (i - 1) * distance)) for i in range(1, rows)]
+                                          (cell_dx[i], base_height + i * cell_height + (i - 1) * distance))
+                                           for i in range(1, rows)]
 
             middle['left'] = [Path([(0, base_height + cell_height), (0, base_height + cell_height + distance)], style='e') +
                               (cell_dx[i+1], i * (cell_height + distance)) for i in range(rows-1)]
 
             middle['right'] = [
                 Path([(0, base_height + (rows - 1) * (cell_height + distance)), (0, base_height +  (rows - 1) * (cell_height + distance) - distance)], style='e') +
-                            (cell_dx[-(i+2)] + sides*width, -i * (cell_height + distance)) for i in range(rows - 1)]
+                            (cell_dx[-(i+2)] + cols*width, -i * (cell_height + distance)) for i in range(rows - 1)]
 
         return base, middle
 

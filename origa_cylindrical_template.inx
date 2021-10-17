@@ -12,12 +12,6 @@
 
 		<!-- Change this first page, fill with desired parameters and help texts-->
 		<page name="title" _gui-text="Options">
-<!--
-			<param name="pattern" type="optiongroup" _gui-text="Type of template" >
-				<_option value="template1">Template pattern 1</_option>
-				<_option value="template2">Template pattern 2</_option>
-			</param>
--->
 			<_param name="help"   type="description" xml:space="preserve">------------------------------------</_param>
 			<_param name="help"   type="description" xml:space="preserve">Minimum necessary parameters for Cylindrical origami types :</_param>
 			<param name="radius" type="float" max="10000" precision="3" _gui-text="Radius of cylinder">10.0</param>
@@ -37,7 +31,7 @@
 
 		</page>
         <page name="title" _gui-text="Slots">
-			<param name="add_attachment" type="boolean" _gui-text="Add attachments?">false</param>
+			<param name="extra_column" type="boolean" _gui-text="Extra column?">false</param>
 			<_param name="help"   type="description" xml:space="preserve">------------------------------------------------------------</_param>
 			<param name="add_base_slot" type="boolean" _gui-text="Add base slots?">false</param>
 			<param name="base_slot_position" type="optiongroup" _gui-text="Base slot position:" >
