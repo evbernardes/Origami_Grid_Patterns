@@ -66,21 +66,22 @@ waterbomb
 - Hypar (hyperbolic paraboloid approximate)
 - Kresling tower
 - Bendy Straw (as published in: [https://doi.org/10.1115/1.4052222](https://doi.org/10.1115/1.4052222))
-- Cylindrical Class: Subclass of Pattern for automatic generation of slots for rigid support
--- Cylindrical Kresling tower
--- Bendy Straw Kresling tower
--- Rigid support for Cylindrical patterns
+### Cylindrical Class: Subclass of Pattern for automatic generation of slots for rigid support
+-  Cylindrical Kresling tower
+- Bendy Straw Kresling tower
+### Misc
+- Rigid support for Cylindrical patterns
 
 ## For creation of new patterns:
-- See `origami_patterns_template.inx` and `OrigamiPatterns/Template.py` for an example!
+- See `origa_template.inx` and `OrigamiPatterns/Template.py` for an example!
+- See `origa_cylindrical_template.inx` and `OrigamiPatterns/Cylindrical_Template.py` for an example on cylindrical patterns!
 
 ## Todo:
-- Implement Bendy Straw and Kresling Tower as Cylindrical origami patterns
+- Implement Bendy Straw as Cylindrical origami patterns
 
 ## Deprecation and compatibility issues:
 Deprecated functions are being replaced for Inkscape 1.0 while making sure it still works with older versions of Inkscape.
-I fixed all the bugs that I know of for now, but compatibility issues might still happen with Inkscape 1.0. 
-
+I fixed all the bugs that I know of for now, but compatibility issues might still happen with Inkscape versions older than 1.0. 
 
 ## Simulation:
 To simulate the patterns, Amanda Ghassaei's [OrigamiSimulator](http://apps.amandaghassaei.com/OrigamiSimulator/) can be used:
