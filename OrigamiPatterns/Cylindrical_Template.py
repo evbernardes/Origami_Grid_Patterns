@@ -47,13 +47,6 @@ class Template(Cylindrical):
         # init dict that holds everything
         cell_data = {}
 
-        # displacement in x at the bottom of each cell
-        cell_data['dx'] = [dx*i for i in range(1, rows + 1)]
-
-        # height of cells
-        # TODO: make this variable for every cell
-        cell_data['height'] = dy
-
         # divider (supposed to be the same)
         cell_data['divider'] = Path([(0,0), (width*cols, 0)], style='m')
 
