@@ -1,7 +1,7 @@
 # Origami Patterns
 Inkscape extension that creates origami tesselation patterns.
 
-[![Logo](https://github.com/evbernardes/Origami_Patterns/raw/master/logo.svg)]
+[![Logo](https://raw.githubusercontent.com/evbernardes/Origami_Patterns/master/logo.svg)]
 
 ## Installation:
 To install a new extension, download and unpack the archive file. Copy the files into the directory listed at `Edit > Preferences > System: User extensions`
