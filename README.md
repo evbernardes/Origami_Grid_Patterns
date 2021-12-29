@@ -62,6 +62,7 @@ waterbomb
 ```
 
 ## Patterns implemented until now:
+- Simple Masu Box
 - Waterbomb tesselation (and Magic Ball)
 - Hypar (hyperbolic paraboloid approximate)
 - Kresling tower

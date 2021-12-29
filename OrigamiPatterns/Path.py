@@ -98,6 +98,9 @@ class Path:
 
     list_add(cls, paths, offsets)
         Generate list of new Path instances, adding a different tuple for each list
+
+    list_mul(cls, paths, transf)
+        Generate list of new Path instances, multiplying a different tuple for each list
         
     list_simplify(cls, paths)
         Gets complicated path-tree list and converts it into 
@@ -189,7 +192,6 @@ class Path:
                         if subpath.closed:
                             path = path + 'L{},{} Z'.format(*points[0])
 
-                        inkex.debug(str(subpath.fold_angle/180))
                         attribs = {'style': format_style(styles_dict[subpath.style]),
                                    'd': path,
                                    'opacity': str(subpath.fold_angle/180)}
@@ -200,6 +202,28 @@ class Path:
                                    'r': str(subpath.radius),
                                    'opacity': str(subpath.fold_angle/180)}
                         inkex.etree.SubElement(group, inkex.addNS('circle', 'svg'), attribs)
+
+    @classmethod
+    def generate_box(cls, width, height, style = 'e', fold_angle=180):
+        """ Generate a closed box at origin
+
+        Parameters
+        ---------
+        width: float
+        height: float
+        style: str
+        fold_angle: float
+
+        Returns
+        ---------
+        path: path instance
+        """
+        points = [
+            (0 * width, 0 * height),  # top left
+            (1 * width, 0 * height),  # top right
+            (1 * width, 1 * height),  # bottom right
+            (0 * width, 1 * height)]  # bottom left
+        return Path(points, style, fold_angle=fold_angle, closed=True)
 
     @classmethod
     def generate_hgrid(cls, xlims, ylims, nb_of_divisions, style, include_edge=False, fold_angle = 180):
@@ -353,6 +377,46 @@ class Path:
         paths_new = []
         for path, offset in zip(paths, offsets):
             paths_new.append(path+offset)
+
+        return paths_new
+
+    @classmethod
+    def list_mul(cls, paths, offsets):
+        """ Generate list of new Path instances, multiplying a different tuple for each list
+
+        Parameters
+        ---------
+        paths: Path or list
+            list of N Path instances
+        offsets: tuple or list
+            list of N tuples
+
+        Returns
+        ---------
+        paths_new: list
+            list of N Path instances
+        """
+        if type(paths) == Path and type(offsets) == tuple:
+            paths = [paths]
+            offsets = [offsets]
+        elif type(paths) == list and type(offsets) == tuple:
+            offsets = [offsets] * len(paths)
+        elif type(paths) == Path and type(offsets) == list:
+            paths = [paths] * len(offsets)
+        elif type(paths) == list and type(offsets) == list:
+            if len(paths) == 1:
+                paths = [paths[0]] * len(offsets)
+            elif len(offsets) == 1:
+                offsets = [offsets[0]] * len(paths)
+            elif len(offsets) != len(paths):
+                raise TypeError("List of paths and list of tuples must have same length. {} paths and {} offsets "
+                                " where given".format(len(paths), len(offsets)))
+            else:
+                pass
+
+        paths_new = []
+        for path, offset in zip(paths, offsets):
+            paths_new.append(path*offset)
 
         return paths_new
 
