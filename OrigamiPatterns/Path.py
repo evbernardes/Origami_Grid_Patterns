@@ -44,6 +44,9 @@ class Path:
         'u' for universal creases
         's' for semicreases
         'c' for kirigami cuts
+    angle: float
+        From 0 to 180 degrees, converted to an opacity level from 0 to 1. This is how OrigamiSimulator encodes maximum
+        fold angles
     closed: bool
         Tells if desired path should contain a last stroke from the last point to the first point, closing the path
     radius: float
@@ -107,7 +110,7 @@ class Path:
         Plots points of path tree in drawing order.
     """
 
-    def __init__(self, points, style, closed=False, invert=False, radius=0.1, separated=False):
+    def __init__(self, points, style, closed=False, invert=False, radius=0.1, separated=False, fold_angle = 180.0):
         """ Constructor
 
         Parameters
@@ -145,6 +148,7 @@ class Path:
         else:
             raise TypeError("Points must be tuple of length 2 (for a circle) or a list of tuples of length 2 each")
 
+        self.fold_angle = max(min(fold_angle, 180.), 0.)
         self.style = style
         self.closed = closed
 
@@ -185,17 +189,20 @@ class Path:
                         if subpath.closed:
                             path = path + 'L{},{} Z'.format(*points[0])
 
-                        
-                        attribs = {'style': format_style(styles_dict[subpath.style]), 'd': path}
+                        inkex.debug(str(subpath.fold_angle/180))
+                        attribs = {'style': format_style(styles_dict[subpath.style]),
+                                   'd': path,
+                                   'opacity': str(subpath.fold_angle/180)}
                         inkex.etree.SubElement(group, inkex.addNS('path', 'svg'), attribs)
                     else:
                         attribs = {'style': format_style(styles_dict[subpath.style]),
                                    'cx': str(subpath.points[0][0]), 'cy': str(subpath.points[0][1]),
-                                   'r': str(subpath.radius)}
+                                   'r': str(subpath.radius),
+                                   'opacity': str(subpath.fold_angle/180)}
                         inkex.etree.SubElement(group, inkex.addNS('circle', 'svg'), attribs)
 
     @classmethod
-    def generate_hgrid(cls, xlims, ylims, nb_of_divisions, style, include_edge=False):
+    def generate_hgrid(cls, xlims, ylims, nb_of_divisions, style, include_edge=False, fold_angle = 180):
         """ Generate list of Path instances, in which each Path is a stroke defining
         a horizontal grid dividing the space xlims * ylims nb_of_divisions times.
 
@@ -223,11 +230,11 @@ class Path:
         for i in range(1 - include_edge, nb_of_divisions + include_edge):
             hgrid.append(cls([(xlims[0], ylims[0]+i*rect_len),
                               (xlims[1], ylims[0]+i*rect_len)],
-                             style=style, invert=i % 2 == 0))
+                             style=style, invert=i % 2 == 0, fold_angle = fold_angle))
         return hgrid
 
     @classmethod
-    def generate_vgrid(cls, xlims, ylims, nb_of_divisions, style, include_edge=False):
+    def generate_vgrid(cls, xlims, ylims, nb_of_divisions, style, include_edge=False, fold_angle = 180):
         """ Generate list of Path instances, in which each Path is a stroke defining
         a vertical grid dividing the space xlims * ylims nb_of_divisions times.
 
@@ -246,19 +253,19 @@ class Path:
         for i in range(1 - include_edge, nb_of_divisions + include_edge):
             vgrid.append(cls([(xlims[0]+i*rect_len, ylims[0]),
                               (xlims[0]+i*rect_len, ylims[1])],
-                             style=style, invert=i % 2 == 0))
+                             style=style, invert=i % 2 == 0, fold_angle = fold_angle))
         return vgrid
 
     @classmethod
-    def generate_polygon(cls, sides, radius, style, center=(0, 0)):
+    def generate_polygon(cls, sides, radius, style, center=(0, 0), fold_angle = 180):
         points = []
         for i in range(sides):
             points.append((radius * cos((1 + i * 2) * pi / sides),
                            radius * sin((1 + i * 2) * pi / sides)))
-        return Path(points, style, closed=True)
+        return Path(points, style, closed=True, fold_angle = fold_angle)
 
     @classmethod
-    def generate_separated_paths(cls, points, styles, closed=False):
+    def generate_separated_paths(cls, points, styles, closed=False, fold_angle = 180):
         """ Generate list of Path instances, in which each Path is the stroke
         between each two point tuples, in case each stroke must be handled separately.
 
@@ -275,7 +282,7 @@ class Path:
         for i in range(len(points) - 1 + int(closed)):
             j = (i+1)%len(points)
             paths.append(cls([points[i], points[j]],
-                             styles[i]))
+                             styles[i], fold_angle = fold_angle))
         return paths
         
 
@@ -307,7 +314,7 @@ class Path:
 
          # if self.type == 'circular' else 0.1
 
-        return Path(points_new, self.style, self.closed, radius=radius)
+        return Path(points_new, self.style, self.closed, radius=radius, fold_angle=self.fold_angle)
 
     @classmethod
     def list_add(cls, paths, offsets):
@@ -400,7 +407,7 @@ class Path:
         else:
             radius = 0.2
 
-        return Path(points_new, self.style, self.closed, radius=radius)
+        return Path(points_new, self.style, self.closed, radius=radius, fold_angle=self.fold_angle)
 
     def shape(self):
         points = self.points
@@ -477,7 +484,7 @@ class Path:
             y_ = (t_y[0]*p[0] + t_y[1]*p[1] + t_y[2]) / t_y[3]
             points_new.append((x_, y_))
 
-        return Path(points_new, path.style, path.closed)
+        return Path(points_new, path.style, path.closed, fold_angle=path.fold_angle)
 
     # TODO:
     # Apparently it's not working properly, must be debugged and tested

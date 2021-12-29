@@ -108,6 +108,50 @@ class Cylindrical(Pattern):
 
         # get cell definitions
         cell_data = self.generate_cell()
+
+        # calculate divider if it doesn't exist
+        if 'divider' not in cell_data:
+            points = Path.get_points(cell_data['interior'])
+            x = [p[0] for p in points if p[1] == 0]
+            cell_data['divider'] = Path([(min(x), 0),
+                                         (max(x), 0)], style='m')
+
+        points = Path.get_points(cell_data['divider'])
+        x = [p[0] for p in points]
+        DX = max(x) - min(x)
+        # DX = 0
+
+        # if 'edge_right' not in cell_data and 'edge_left' not in cell_data:
+        #     cell_data['edge_left'] = []
+        #     for interior in cell_data['interior']:
+        #         points = Path.get_points(interior)
+        #         x = [p[0] for p in points]
+        #         y = [p[1] for p in points]
+        #         top = [p for p in points if p[1] == min(y)]
+        #         top_x = [p[0] for p in top]
+        #         # top_y = [p[1] for p in top]
+        #         bot = [p for p in points if p[1] == max(y)]
+        #         bot_x = [p[0] for p in bot]
+        #         # bot_y = [p[1] for p in bot]
+        #         top_left = [p for p in top if p[0] == min(top_x)][0]
+        #         bot_left = [p for p in bot if p[0] == min(bot_x)][0]
+        #         cell_data['edge_left'].append(Path([top_left, bot_left], 'e'))
+
+
+        if 'edge_right' not in cell_data and 'edge_left' in cell_data:
+            cell_data['edge_right'] = []
+            for edge_left in cell_data['edge_left']:
+                edge_right = edge_left + (DX, 0)
+                edge_right.invert()
+                cell_data['edge_right'].append(edge_right)
+
+        if 'edge_right' in cell_data and 'edge_left' not in cell_data:
+            cell_data['edge_left'] = []
+            for edge_right in cell_data['edge_right']:
+                edge_left = edge_right + (-DX, 0)
+                edge_left.invert()
+                cell_data['edge_left'].append(edge_left)
+
         cell_data['dx'], cell_data['dy'] = self.get_dxdy(cell_data)
 
         # get all slots and vertical dividers between slots

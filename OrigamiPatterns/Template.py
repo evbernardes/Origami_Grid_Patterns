@@ -26,6 +26,7 @@ class Template(Pattern):
         self.add_argument('--pattern', type=self.str, default='template1')
         self.add_argument('--length', type=self.float, default=10.0)
         self.add_argument('--angle', type=self.int, default=0)
+        self.add_argument('--fold_angle_valley', type=self.int, default=180)
 
     def generate_path_tree(self):
         """ Specialized path generation for your origami pattern
@@ -38,25 +39,35 @@ class Template(Pattern):
         vertex_radius = self.options.vertex_radius * unit_factor
         pattern = self.options.pattern
         angle = self.options.angle * pi / 180
+        fold_angle_valley = self.options.fold_angle_valley
 
         # create all Path instances defining strokes
         # first define its points as a list of tuples...
-        mountain_h_stroke_points = [(length / 2, 0),
-                                    (length / 2, length)]
-        mountain_v_stroke_points = [(0, length / 2),
+        left_right_stroke_points = [(length / 2, 0),
+                   (length / 2, length)]
+        up_down_stroke_points = [(0, length / 2),
                                     (length, length / 2)]
 
-        # ... and then create the Path instances, defining its type ('m' for mountain, etc...)
-        mountains = [Path(mountain_h_stroke_points, 'm' if pattern == 'template1' else 'v'),
-                     Path(mountain_v_stroke_points, 'm' if pattern == 'template1' else 'v')]
-
-        # doing the same for valleys
-        valley_1st_stroke_points = [(0, 0),
+        # doing the same for diagonals
+        diagonal_1_stroke_points = [(0, 0),
                                     (length, length)]
-        valley_2nd_stroke_points = [(0, length),
+        diagonal_2_stroke_points = [(0, length),
                                     (length, 0)]
-        valleys = [Path(valley_1st_stroke_points, 'v' if pattern == 'template1' else 'm'),
-                   Path(valley_2nd_stroke_points, 'v' if pattern == 'template1' else 'm')]
+
+        # ... and then create the Path instances, defining its type ('m' for mountain, etc...)
+        if pattern == 'template1':
+            up_down = [Path(left_right_stroke_points, 'm', fold_angle = 180.),
+                         Path(up_down_stroke_points, 'm', fold_angle = 180.)]
+
+            diagonals = [Path(diagonal_1_stroke_points, 'v', fold_angle = fold_angle_valley),
+                       Path(diagonal_2_stroke_points, 'v', fold_angle = fold_angle_valley)]
+
+        else:
+            up_down = [Path(left_right_stroke_points, 'v', fold_angle = fold_angle_valley),
+                         Path(up_down_stroke_points, 'v', fold_angle = fold_angle_valley)]
+
+            diagonals = [Path(diagonal_1_stroke_points, 'm', fold_angle = 180.),
+                       Path(diagonal_2_stroke_points, 'm', fold_angle = 180. )]
 
         vertices = []
         for i in range(3):
@@ -65,8 +76,8 @@ class Template(Pattern):
 
         # multiplication is implemented as a rotation, and list_rotate implements rotation for list of Path instances
         vertices = Path.list_rotate(vertices, angle, (1 * length, 1 * length))
-        mountains = Path.list_rotate(mountains, angle, (1 * length, 1 * length))
-        valleys = Path.list_rotate(valleys, angle, (1 * length, 1 * length))
+        up_down = Path.list_rotate(up_down, angle, (1 * length, 1 * length))
+        diagonals = Path.list_rotate(diagonals, angle, (1 * length, 1 * length))
 
         # if Path constructor is called with more than two points, a single stroke connecting all of then will be
         # created. Using method generate_separated_paths, you can instead return a list of separated strokes
@@ -93,7 +104,7 @@ class Template(Pattern):
         self.edge_points = edges.points
 
         # IMPORTANT: the attribute "path_tree" must be created at the end, saving all strokes
-        self.path_tree = [mountains, valleys, vertices]
+        self.path_tree = [up_down, diagonals, vertices]
         # if you decide not to declare "self.edge_points", then the edge must be explicitly created in the path_tree:
         # self.path_tree = [mountains, valleys, vertices, edges]
 

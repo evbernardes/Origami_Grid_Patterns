@@ -47,14 +47,15 @@ class Template(Cylindrical):
         # init dict that holds everything
         cell_data = {}
 
-        # divider (supposed to be the same)
-        cell_data['divider'] = Path([(0,0), (width*cols, 0)], style='m')
+        # divider can be set for performance, or it can be calculated automatically, supposing a mountain fold
+        # cell_data['divider'] = Path([(0,0), (width*cols, 0)], style='m')
 
+        # Only left or right edges can be implemented, or both for performance
         # IMPORTANT: left edges from TOP to BOTTOM
         cell_data['edge_left'] = [Path([(0,0), (dx, dy)], style='e')]*rows
 
-        # IMPORTANT: right edges from BOTTOM to TOP
-        cell_data['edge_right'] = [Path([(cols*width + dx, dy), (cols*width, 0)], style='e')]*rows
+        # # IMPORTANT: right edges from BOTTOM to TOP
+        # cell_data['edge_right'] = [Path([(cols*width + dx, dy), (cols*width, 0)], style='e')]*rows
 
         # rest of cell
         single = [Path([(0, 0), (width + dx, dy)], 'v'), Path([(width + dx, dy), (width, 0)], 'm')]
