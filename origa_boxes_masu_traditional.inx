@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
     <!-- Name of effect -->
-	<_name>Masu box (rectangular)</_name>
+	<_name>Masu box (traditional)</_name>
     <!-- Name of id -->
-	<id>org.inkscape.Origami_patterns.boxes_masu_rectangular</id>
+	<id>org.inkscape.Origami_patterns.boxes_masu_traditional</id>
 	<dependency type="executable" location="extensions">OrigamiPatterns</dependency>
 	<dependency type="executable" location="extensions">simplestyle.py</dependency>
 
@@ -12,8 +12,8 @@
 
 		<!-- Change this first page, fill with desired parameters and help texts-->
 		<page name="title" _gui-text="Options">
-			<param name="width" type="float" max="10000" precision="3" _gui-text="Width of box">10.0</param>
-			<param name="height" type="float" max="10000" precision="3" _gui-text="Height of box">10.0</param>
+			<param name="length" type="float" max="10000" precision="3" _gui-text="Length of square paper">10.0</param>
+			<_param name="help"   type="description" xml:space="preserve">Creates a box of width = length / (2 * ( sqrt(2)) and height = width / 2.</_param>
 			<param name="units" type="optiongroup" appearance="minimal" _gui-text="">
 				<option value="mm">mm</option>
 				<option value="cm">cm</option>
@@ -98,7 +98,7 @@
 	<!-- Python file for pattern -->
 
 	<script>
-		<command reldir="extensions" interpreter="python">OrigamiPatterns/Boxes_Masu_Rectangular.py</command>
+		<command reldir="extensions" interpreter="python">OrigamiPatterns/Boxes_Masu_Traditional.py</command>
 	</script>
 
 </inkscape-extension>
