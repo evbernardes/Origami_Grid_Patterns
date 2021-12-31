@@ -15,7 +15,7 @@ try:
 except:
     pass
 
-from math import sin, cos, pi
+from math import sin, cos, pi, sqrt
 
 # compatibility hack for formatStyle
 def format_style(style):
@@ -204,8 +204,43 @@ class Path:
                         inkex.etree.SubElement(group, inkex.addNS('circle', 'svg'), attribs)
 
     @classmethod
-    def generate_box(cls, width, height, style = 'e', fold_angle=180):
-        """ Generate a closed box at origin
+    def get_square_points(cls, width, height, center = None, rotation = 1):
+        """ Get points of a square at given center or origin
+
+        Parameters
+        ---------
+        width: float
+        height: float
+        center: list of floats
+        rotation: float
+            rotation in degrees
+
+        Returns
+        ---------
+        points: list of tuples
+        """
+        if center is None:
+            center = [width/2, height/2]
+
+        #TODO: Implement rotation
+        # c = cos(rotation * pi / 180)
+        # s = sin(rotation * pi / 180)
+
+        points = [
+            (center[0] - 0.5*width, center[1] + 0.5*height),  # top left
+            (center[0] + 0.5*width, center[1] + 0.5*height),  # top right
+            (center[0] + 0.5*width, center[1] - 0.5*height),  # bottom right
+            (center[0] - 0.5*width, center[1] - 0.5*height)]  # bottom left
+        # points = [
+            # (center[0] + (-0.5*width*c - 0.5*height*s), center[1] + (-0.5*width*s + 0.5*height*c)),  # top left
+            # (center[0] + (+0.5*width*c - 0.5*height*s), center[1] + (+0.5*width*s + 0.5*height*c)),  # top right
+            # (center[0] + (+0.5*width*c + 0.5*height*s), center[1] - (+0.5*width*s - 0.5*height*c)),  # bottom right
+            # (center[0] + (-0.5*width*c + 0.5*height*s), center[1] - (-0.5*width*s - 0.5*height*c))]  # bottom left
+        return points
+
+    @classmethod
+    def generate_square(cls, width, height, style ='e', fold_angle=180, center = None, rotation = 0):
+        """ Generate a closed square at given center or origin
 
         Parameters
         ---------
@@ -213,16 +248,15 @@ class Path:
         height: float
         style: str
         fold_angle: float
+        center: list of floats
+        rotation: float
+            rotation in degrees
 
         Returns
         ---------
         path: path instance
         """
-        points = [
-            (0 * width, 0 * height),  # top left
-            (1 * width, 0 * height),  # top right
-            (1 * width, 1 * height),  # bottom right
-            (0 * width, 1 * height)]  # bottom left
+        points = cls.get_square_points(width, height, center, rotation)
         return Path(points, style, fold_angle=fold_angle, closed=True)
 
     @classmethod
@@ -244,6 +278,7 @@ class Path:
             Single character defining style of stroke.
         include_edge: bool 
             Defines if edge should be drawn or not.
+        fold_angle: float
 
         Returns
         ---------
@@ -376,7 +411,12 @@ class Path:
 
         paths_new = []
         for path, offset in zip(paths, offsets):
-            paths_new.append(path+offset)
+            if type(path) == Path:
+                paths_new.append(path+offset)
+            elif type(path) == list:
+                paths_new.append(
+                    cls.list_add(path, offset)
+                )
 
         return paths_new
 
@@ -419,6 +459,32 @@ class Path:
             paths_new.append(path*offset)
 
         return paths_new
+
+    def break_path(self, lengths, styles = None):
+        if len(self.points) != 2:
+            raise ValueError('Path breaking only implemented for straight lines with 2 points')
+
+        if styles is None:
+            styles = [self.style]*len(lengths)
+        elif len(styles) != len(lengths):
+            raise ValueError('Different number of lenghts and styles')
+
+        p0 = self.points[0]
+        p1 = self.points[1]
+        d = (p1[0]-p0[0], p1[1]-p0[1])
+        L = sqrt(d[0]**2 + d[1]**2)
+        dx = d[0] / L
+        dy = d[1] / L
+        paths = []
+        start = 0
+        p0_ = p0
+        for l, s in zip(lengths, styles):
+            p1_ = (p0_[0] + dx*l, p0_[1] + dy*l)
+            paths.append(Path([p0_, p1_], style = s))
+            p0_ = p1_
+        return paths
+
+
 
     def __mul__(self, transform):
         """ " * " operator overload.
@@ -480,6 +546,63 @@ class Path:
         return [min(x), max(x), min(y), max(y)]
 
     @classmethod
+    def list_create_from_points(cls, points, styles, fold_angles = None):
+        """ Generate list of new Path instances, between each two points
+
+            Parameters
+            ---------
+            points: list of tuples
+                list of points
+            styles: str or list of str
+                styles
+            fold_angles: list of floats
+                list of maximum fold angle values
+
+            Returns
+            ---------
+            paths_new: list
+                list of N Path instances
+            """
+        if fold_angles is None:
+            fold_angles = [180]
+        elif type(fold_angles) != list:
+            fold_angles = [fold_angles]
+
+        return [Path([points[i], points[i+1]],
+                     styles[i % len(styles)],
+                     fold_angle=fold_angles[i % len(fold_angles)]) for i in range(len(points)-1)]
+
+    @classmethod
+    def list_rotate_symmetry(cls, paths, n, translation=(0,0)):
+        """ Generate list of new Path instances, rotation each path by transform
+
+        Parameters
+        ---------
+        paths: Path or list
+            list of N Path instances
+        n: int
+            number of rotations
+        translation: tuple or list 2
+            axis of rotation
+
+        Returns
+        ---------
+        paths_new: list
+            list of N Path instances
+        """
+
+        theta = 2*pi/n
+        paths_new = []
+        for i in range(n):
+            ith_rotation = cls.list_rotate(paths, theta, translation=translation)
+            if type(paths) == list:
+                paths_new += ith_rotation
+            else:
+                paths_new.append(ith_rotation)
+        return paths_new
+
+
+    @classmethod
     def list_rotate(cls, paths, theta, translation=(0, 0)):
         """ Generate list of new Path instances, rotation each path by transform
 
@@ -505,7 +628,10 @@ class Path:
 
         paths_new = []
         for path in paths:
-            paths_new.append(path*(1, theta, translation[0], translation[1]))
+            if type(path) == Path:
+                paths_new.append(path*(1, theta, translation[0], translation[1]))
+            elif type(path) == list:
+                paths_new.append(cls.list_rotate(path, theta, translation))
 
         if len(paths_new) == 1:
             paths_new = paths_new[0]

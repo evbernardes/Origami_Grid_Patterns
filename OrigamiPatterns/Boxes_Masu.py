@@ -78,7 +78,7 @@ class MasuBox(Pattern):
         mountains = Path.list_mul(mountains, [length / 4])
         mountains = Path.list_add(mountains, (length / 2, length / 2))
 
-        self.edge_points = Path.generate_box(length, length).points
+        self.edge_points = Path.generate_square(length, length).points
         self.path_tree = [valleys, mountains]
 
 # Main function, creates an instance of the Class and calls self.draw() to draw the origami on inkscape
