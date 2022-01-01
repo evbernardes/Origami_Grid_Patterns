@@ -82,32 +82,29 @@ class Template(Pattern):
         # if Path constructor is called with more than two points, a single stroke connecting all of then will be
         # created. Using method generate_separated_paths, you can instead return a list of separated strokes
         # linking each two points
-        # create a list for edge strokes
-        edge_points = [(0 * length, 0 * length),  # top left
-                       (1 * length, 0 * length),  # top right
-                       (1 * length, 1 * length),  # bottom right
-                       (0 * length, 1 * length)]  # bottom left
 
+        # create a list for edge strokes
         # create path from points to be able to use the already built rotate method
-        edges = Path(edge_points, 'e', closed=True)
+        edges = Path.generate_square(length, length, 'e', rotation = angle)
         edges = Path.list_rotate(edges, angle, (1 * length, 1 * length))
 
+        # IMPORTANT: the attribute "path_tree" must be created at the end, saving all strokes
+        self.path_tree = [up_down, diagonals, vertices]
+
+        # IMPORTANT: at the end, save edge points as "self.edge_points", to simplify selection of single or multiple
+        # strokes for the edge
+        self.edge_points = edges.points
+
+        # if you decide not to declare "self.edge_points", then the edge must be explicitly created in the path_tree:
+        # self.path_tree = [mountains, valleys, vertices, edges]
+
+        # FINAL REMARKS:
         # division is implemented as a reflection, and list_reflect implements it for a list of Path instances
         # here's a commented example:
         # line_reflect = (0 * length, 2 * length, 1 * length, 1 * length)
         # mountains = Path.list_reflect(mountains, line_reflect)
         # valleys = Path.list_reflect(valleys, line_reflect)
         # edges = Path.list_reflect(edges, line_reflect)
-
-        # IMPORTANT: at the end, save edge points as "self.edge_points", to simplify selection of single or multiple
-        # strokes for the edge
-        self.edge_points = edges.points
-
-        # IMPORTANT: the attribute "path_tree" must be created at the end, saving all strokes
-        self.path_tree = [up_down, diagonals, vertices]
-        # if you decide not to declare "self.edge_points", then the edge must be explicitly created in the path_tree:
-        # self.path_tree = [mountains, valleys, vertices, edges]
-
 
 # Main function, creates an instance of the Class and calls self.draw() to draw the origami on inkscape
 # self.draw() is either a call to inkex.affect() or to svg.run(), depending on python version
