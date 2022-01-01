@@ -50,6 +50,8 @@
 				<option value="px">px</option></param>
 
             <_param name="help"   type="description" xml:space="preserve">As published in: https://doi.org/10.1115/1.4052222</_param>
+
+			<param name="simulation_mode" type="boolean" _gui-text="Simulation mode">true</param>
 		</page>
 		<page name="title" _gui-text="Extra">
 			<param name="add_attachment" type="boolean" _gui-text="Add attachments?">false</param>
@@ -134,7 +136,7 @@
 	<object-type>all</object-type>
 		<effects-menu>
             <submenu _name="Origami Patterns">
-				<submenu _name="Cylindrical">
+				<submenu _name="Deprecated">
 				</submenu>
 			</submenu>
 		</effects-menu>

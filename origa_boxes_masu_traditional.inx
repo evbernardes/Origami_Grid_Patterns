@@ -20,7 +20,7 @@
 				<option value="in">in</option>
 				<option value="pt">pt</option>
 				<option value="px">px</option></param>
-			<param name="sim" type="boolean" _gui-text="Simulation mode">true</param>
+			<param name="simulation_mode" type="boolean" _gui-text="Simulation mode">true</param>
 		</page>
 		<!-- Leave next pages alone, they define common options for every Pattern -->
 		<page name="mountains" _gui-text="Mountain creases">

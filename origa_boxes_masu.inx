@@ -15,6 +15,9 @@
 			<param name="width" type="float" max="10000" precision="3" _gui-text="Width of box">10.0</param>
 			<param name="height" type="float" max="10000" precision="3" _gui-text="Height of box">10.0</param>
 			<_param name="help"   type="description" xml:space="preserve">Needs a square paper of size: sqrt(2) * (width + 2*height).</_param>
+			<param name="width_delta" type="float" max="10000" precision="3" _gui-text="Width increase*:">0.0</param>
+			<param name="width_delta_bool" type="boolean" _gui-text="Add width increase*">false</param>
+			<_param name="help"   type="description" xml:space="preserve">* this width increase slightly modifies the pattern for having a slightly bigger width and slightly smaller height, while keeping the same paper size. This is useful for creating companion box covers.</_param>
 
 			<param name="units" type="optiongroup" appearance="minimal" _gui-text="">
 				<option value="mm">mm</option>
@@ -22,7 +25,7 @@
 				<option value="in">in</option>
 				<option value="pt">pt</option>
 				<option value="px">px</option></param>
-			<param name="sim" type="boolean" _gui-text="Simulation mode">true</param>
+			<param name="simulation_mode" type="boolean" _gui-text="Simulation mode">true</param>
 		</page>
 		<!-- Leave next pages alone, they define common options for every Pattern -->
 		<page name="mountains" _gui-text="Mountain creases">

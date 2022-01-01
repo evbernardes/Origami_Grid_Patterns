@@ -29,6 +29,7 @@
 			<param name="simplify_center" type="boolean" _gui-text="Simplify center (probably not suited for odd number of sides)">false</param>
 			<_param name="help"   type="description" xml:space="preserve">Implements Hypar (classical hyperbolic paraboloid approximate).&#xA;&#xA;Classic Hypar is the easiest one to fold. However, it's not rigid foldable. More information in:&#xA;Demaine, E. D., Demaine, M. L., Hart, V., Price, G. N., & Tachi, T. (2011). (Non)Existence of Pleated Folds: How Paper Folds Between Creases. Graphs and Combinatorics, 27(3), 377–397. https://doi.org/10.1007/s00373-011-1025-2</_param>
 
+			<param name="simulation_mode" type="boolean" _gui-text="Simulation mode">true</param>
 		</page>
 		<!-- Leave next pages alone, they define common options for every Pattern -->
 		<page name="mountains" _gui-text="Mountain creases">

@@ -42,6 +42,8 @@ class MasuBoxSquare(MasuBox):
         # retrieve saved parameters, and apply unit factor where needed
         self.options.width = self.options.length / (2 * math.sqrt(2))
         self.options.height = self.options.width/2
+        self.options.width_delta = 0.0
+        self.options.width_delta_bool = False
         MasuBox.generate_path_tree(self)
 
 

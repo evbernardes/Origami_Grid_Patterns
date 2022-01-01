@@ -98,6 +98,9 @@ class Pattern(inkex.Effect):
 
         self.add_argument('-u', '--units', type=self.str, default='mm')
 
+        # bypass most style options for OrigamiSimulator
+        self.add_argument('--simulation_mode', type=self.bool, default=False)
+
         # mountain options
         self.add_argument('--mountain_stroke_color', type=self.str,  default=4278190335)  # Red
         self.add_argument('--mountain_stroke_width', type=self.float, default=0.1)
@@ -172,6 +175,9 @@ class Pattern(inkex.Effect):
     def effect(self):
         """ Main function, called when the extension is run.
         """
+        # bypass most style options if simulation mode is choosen
+        self.check_simulation_mode()
+
         # check if any selected to print only some of the crease types:
         bool_only_list = [self.options.mountain_bool_only,
                           self.options.valley_bool_only,
@@ -249,6 +255,43 @@ class Pattern(inkex.Effect):
             return self.svg.get_current_layer() # new
         except:
             return self.current_layer # old
+
+    def check_simulation_mode(self):
+        if not self.options.simulation_mode:
+            pass
+        else:
+            self.options.mountain_stroke_color = 4278190335
+            self.options.mountain_dashes_len = 0
+            self.options.mountain_dashes_bool = False
+            self.options.mountain_bool_only = False
+            self.options.mountain_bool = True
+
+            self.options.valley_stroke_color = 65535
+            self.options.valley_dashes_len = 0
+            self.options.valley_dashes_bool = False
+            self.options.valley_bool_only = False
+            self.options.valley_bool = True
+
+            self.options.edge_stroke_color = 255
+            self.options.edge_dashes_len = 0
+            self.options.edge_dashes_bool = False
+            self.options.edge_bool_only = False
+            self.options.edge_bool = True
+
+            self.options.universal_stroke_color = 4278255615
+            self.options.universal_dashes_len = 0
+            self.options.universal_dashes_bool = False
+            self.options.universal_bool_only = False
+            self.options.universal_bool = True
+
+            self.options.cut_stroke_color = 16711935
+            self.options.cut_dashes_len = 0
+            self.options.cut_dashes_bool = False
+            self.options.cut_bool_only = False
+            self.options.cut_bool = True
+
+            self.options.vertex_bool = False
+
 
     def create_styles_dict(self):
         """ Get stroke style parameters and use them to create the styles dictionary, used for the Path generation

@@ -41,7 +41,8 @@ class MasuBox(Pattern):
         self.add_argument('--pattern', type=self.str, default='boxes_masu')
         self.add_argument('--width', type=self.float, default=10.0)
         self.add_argument('--height', type=self.float, default=10.0)
-        self.add_argument('--sim', type=self.bool, default=True)
+        self.add_argument('--width_delta', type=self.float, default=0.0)
+        self.add_argument('--width_delta_bool', type=self.bool, default=False)
 
     def generate_path_tree(self):
         """ Specialized path generation for your origami pattern
@@ -50,11 +51,14 @@ class MasuBox(Pattern):
         unit_factor = self.calc_unit_factor()
 
         # retrieve saved parameters, and apply unit factor where needed
-        # length = self.options.length * unit_factor
         width = self.options.width * unit_factor
         height = self.options.height * unit_factor
+        if self.options.width_delta_bool:
+            width_delta = self.options.width_delta * unit_factor
+            width += width_delta
+            height -= width_delta/2
         length = math.sqrt(2)*(width + 2*height)
-        half_fold = 90 if self.options.sim else 180
+        half_fold = 90 if self.options.simulation_mode else 180
 
         # bottom of box
         ring_inner = Path.generate_square(width, width, center = [0,0], style = 'm', fold_angle=half_fold)
@@ -84,9 +88,8 @@ class MasuBox(Pattern):
 
         self.edge_points = Path.get_square_points(length, length)
 
-        self.path_tree = recenter(
-            [ring_inner, ring_middle, arms, corner_diagonals],
-            length/2)
+        self.path_tree = [ring_inner, ring_middle, arms, corner_diagonals]
+        self.path_tree = recenter(self.path_tree, length/2)
 
 # Main function, creates an instance of the Class and calls self.draw() to draw the origami on inkscape
 # self.draw() is either a call to inkex.affect() or to svg.run(), depending on python version

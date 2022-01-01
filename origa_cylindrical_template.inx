@@ -28,7 +28,7 @@
 				<option value="pt">pt</option>
 				<option value="px">px</option></param>
 			<_param name="help"   type="description" xml:space="preserve">The .inx file defines the bridge between Inkscape's interface and the python script.</_param>
-
+			<param name="simulation_mode" type="boolean" _gui-text="Simulation mode">true</param>
 		</page>
         <page name="title" _gui-text="Slots">
 			<param name="extra_column" type="boolean" _gui-text="Extra column?">false</param>

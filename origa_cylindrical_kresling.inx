@@ -39,6 +39,7 @@
 				<option value="in">in</option>
 				<option value="pt">pt</option>
 				<option value="px">px</option></param>
+			<param name="simulation_mode" type="boolean" _gui-text="Simulation mode">true</param>
 			<_param name="help"   type="description" xml:space="preserve">------------------------------------------------------------</_param>
             <param name="parameter_type" type="optiongroup" appearance="full" _gui-text="Parameter type:">
 				<option value="angle_ratio">Angle ratio (lambda)</option>

@@ -32,7 +32,7 @@
 				<option value="pt">pt</option>
 				<option value="px">px</option></param>
 			<_param name="help"   type="description" xml:space="preserve">"Waterbomb tessellation" creates a simple tessellation pattern repeating the Waterbomb base, with a half-step phase shift between each line.&#xA;The Magic ball is a different design that inverts both the upper half of the first line and the bottom half of the last line.</_param>
-
+			<param name="simulation_mode" type="boolean" _gui-text="Simulation mode">true</param>
 		</page>
 		<!-- next tab -->
 		<page name="mountains" _gui-text="Mountain creases">

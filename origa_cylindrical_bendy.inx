@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
     <!-- Name of effect -->
-	<_name>Bendy Straw (TODO)</_name>
+	<_name>Bendy Straw</_name>
     <!-- Name of id -->
 	<id>org.inkscape.Origami_patterns.cylindrical_bendy</id>
 	<dependency type="executable" location="extensions">OrigamiPatterns</dependency>
@@ -50,6 +50,8 @@
 				<option value="px">px</option></param>
 
             <_param name="help"   type="description" xml:space="preserve">As published in: https://doi.org/10.1115/1.4052222</_param>
+
+			<param name="simulation_mode" type="boolean" _gui-text="Simulation mode">true</param>
 		</page>
 		<page name="title" _gui-text="Extra">
 			<param name="add_attachment" type="boolean" _gui-text="Add attachments?">false</param>
