@@ -73,6 +73,9 @@ waterbomb
 ### Misc
 - Rigid support for Cylindrical patterns
 
+An OpenSCAD implementation of a belt that can be used with the support is found in: `Origami_Patterns/Support_Ring_Belt/`.
+
+
 ## For creation of new patterns:
 - See `origa_template.inx` and `OrigamiPatterns/Template.py` for an example!
 - See `origa_cylindrical_template.inx` and `OrigamiPatterns/Cylindrical_Template.py` for an example on cylindrical patterns!
