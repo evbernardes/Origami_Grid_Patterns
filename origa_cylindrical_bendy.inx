@@ -72,6 +72,7 @@
 		<!-- Leave next pages alone, they define common options for every Pattern -->
 		<page name="mountains" _gui-text="Mountains">
 			<param name="mountain_bool" type="boolean" _gui-text="Draw mountains?">true</param>
+			<param name="mountain_bool_only" type="boolean" _gui-text="Draw ONLY mountains?">false</param>
 			<param name="mountain_dashes_bool" type="boolean" _gui-text="Dashed strokes?">true</param>
 			<param name="mountain_dashes_len" type="float"  min="0.1" max="10" appearance="full" precision="2" _gui-text="Mountain dash + gap length">1</param>
 			<param name="mountain_dashes_duty" type="float"  min="0.1" max="1" appearance="full" precision="2" _gui-text="Mountain dash duty cycle">0.5</param>
@@ -80,6 +81,7 @@
 		</page>
 		<page name="valleys" _gui-text="Valleys">
 			<param name="valley_bool" type="boolean" _gui-text="Draw valley?">true</param>
+			<param name="valley_bool_only" type="boolean" _gui-text="Draw ONLY valleys?">false</param>
 			<param name="valley_dashes_bool" type="boolean" _gui-text="Dashed strokes?">true</param>
 			<param name="valley_dashes_len" type="float"  min="0.1" max="10" appearance="full" precision="2" _gui-text="Valley dash + gap length">1</param>
 			<param name="valley_dashes_duty" type="float"  min="0.1" max="1" appearance="full" precision="2" _gui-text="Valley dash duty cycle">0.25</param>
@@ -96,6 +98,7 @@
 		</page>
 		<page name="edge" _gui-text="Edge">
 			<param name="edge_bool" type="boolean" _gui-text="Draw edges?">true</param>
+			<param name="edge_bool_only" type="boolean" _gui-text="Draw ONLY edges?">false</param>
 			<param name="edge_single_path" type="boolean" _gui-text="Edges as single path?">true</param>
 			<param name="edge_dashes_bool" type="boolean" _gui-text="Dashed strokes?">false</param>
 			<param name="edge_dashes_len" type="float"  min="0.1" max="10" appearance="full" precision="2" _gui-text="Edge dash + gap length">1</param>
@@ -105,6 +108,7 @@
 		</page>
 		<page name="vertices" _gui-text="Vertices">
 			<param name="vertex_bool" type="boolean" _gui-text="Draw vertices?">true</param>
+			<param name="vertex_bool_only" type="boolean" _gui-text="Draw ONLY vertices?">false</param>
 			<param name="vertex_base_outer_bool" type="boolean" _gui-text="Outer base vertices?">true</param>
 			<param name="vertex_base_inner_bool" type="boolean" _gui-text="Other base vertices?">true</param>
 			<param name="vertex_radius_outer_bool" type="boolean" _gui-text="Outer radius vertices?">true</param>
@@ -116,6 +120,7 @@
 <!--		UNCOMMENT UNIVERSAL CREASES, CUTS AND/OR SEMICREASES IF NEEDED-->
 <!--		<page name="universal" _gui-text="Universal creases">-->
 <!--			<param name="universal_bool" type="boolean" _gui-text="Draw universal creases?">true</param>-->
+<!--			<param name="universal_bool_only" type="boolean" _gui-text="Draw ONLY universal creases?">false</param>-->
 <!--			<param name="universal_dashes_bool" type="boolean" _gui-text="Dashed strokes?">false</param>-->
 <!--			<param name="universal_dashes_len" type="float"  min="0.1" max="10" appearance="full" precision="2" _gui-text="Universal dash + gap length">1</param>-->
 <!--			<param name="universal_dashes_duty" type="float"  min="0.1" max="1" appearance="full" precision="2" _gui-text="Universal dash duty cycle">0.25</param>-->
@@ -124,6 +129,7 @@
 <!--		</page>-->
 <!--		<page name="semicrease" _gui-text="Semicreases">-->
 <!--			<param name="semicrease_bool" type="boolean" _gui-text="Draw semicreases?">true</param>-->
+<!--			<param name="semicrease_bool_only" type="boolean" _gui-text="Draw ONLY semicreases?">false</param>-->
 <!--			<param name="semicrease_dashes_bool" type="boolean" _gui-text="Dashed strokes?">false</param>-->
 <!--			<param name="semicrease_dashes_len" type="float"  min="0.1" max="10" appearance="full" precision="2" _gui-text="Semicrease dash + gap length">1</param>-->
 <!--			<param name="semicrease_dashes_duty" type="float"  min="0.1" max="1" appearance="full" precision="2" _gui-text="Semicrease dash duty cycle">0.25</param>-->

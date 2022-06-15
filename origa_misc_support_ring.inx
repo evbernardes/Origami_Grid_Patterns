@@ -26,6 +26,11 @@
 				<option value="polygonal">Polygonal</option>
                 <option value="circular">Circular</option>
             </param>
+      <_param name="help"   type="description" xml:space="preserve">------------------------------------------------------------</_param>
+      <_param name="help"   type="description" xml:space="preserve">Length must be at least the thickness of the origami material + the thickness of the belt.</_param>
+      <_param name="help"   type="description" xml:space="preserve">For an OpenSCAD simple implementation of the belt, see Origami_Patterns/Support_Ring_Belt.</_param>
+
+      
 			<param name="units" type="optiongroup" appearance="minimal" _gui-text="">
 				<option value="mm">mm</option>
 				<option value="cm">cm</option>
