@@ -204,6 +204,17 @@ class Path:
                         inkex.etree.SubElement(group, inkex.addNS('circle', 'svg'), attribs)
 
     @classmethod
+    def get_average_point(cls, paths):
+        points = cls.get_points(paths)
+        n = len(points)
+        x, y = 0, 0
+        for p in points:
+            x += p[0]
+            y += p[1]
+        return (x/n, y/n)
+
+
+    @classmethod
     def get_square_points(cls, width, height, center = None, rotation = 1):
         """ Get points of a square at given center or origin
 
