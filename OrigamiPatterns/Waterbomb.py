@@ -48,7 +48,7 @@ class Waterbomb(Pattern):
         for i in range(2*lines + 1):
             if i % 2 == 0 or (pattern_first_line == 'magic_ball' and i == 1) or (pattern_last_line == 'magic_ball' and i == 2*lines - 1):
                 type = 0
-            elif(i/2 + phase_shift) % 2 == 0:
+            elif(int(i/2 + phase_shift)) % 2 == 0:
                 type = 1
             else:
                 type = 2
