@@ -65,7 +65,8 @@ waterbomb
 - Simple Masu Box
 - Waterbomb tesselation (and Magic Ball)
 - Hypar (hyperbolic paraboloid approximate)
-- Kresling tower
+- Circular pleat (with special simulation mode)
+- Kresling tower (using parameters as defined in: [https://doi.org/10.1115/SMASIS2016-9071](https://doi.org/10.1115/SMASIS2016-9071))
 - Bendy Straw (as published in: [https://doi.org/10.1115/1.4052222](https://doi.org/10.1115/1.4052222))
 ### Cylindrical Class: Subclass of Pattern for automatic generation of slots for rigid support
 -  Cylindrical Kresling tower
