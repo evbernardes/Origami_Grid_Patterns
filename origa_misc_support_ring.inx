@@ -3,7 +3,7 @@
     <name>* Support ring</name>
     <id>org.inkscape.Origami_patterns.support_ring</id>
     <param name="active-tab" type="notebook">
-        <page name="title" gui-text="Options">
+        <page name="options" gui-text="Options">
             <param name="sides" type="int" min="3" max="100" gui-text="Number of polygon sides">6</param>
             <param name="radius_external" type="float" max="10000" precision="3" gui-text="Pattern radius:">10.0</param>
             <param name="inverted" type="bool" gui-text="Invert hook direction?">false</param>
@@ -23,7 +23,7 @@
             <label>------------------------------------------------------------</label>
             <label>Length must be at least the thickness of the origami material + the thickness of the belt.</label>
             <label>For an OpenSCAD simple implementation of the belt, see Origami_Patterns/Support_Ring_Belt.</label>
-            <param name="units" type="optiongroup" appearance="combo" gui-text="">
+            <param name="units" type="optiongroup" appearance="combo" gui-text="Units">
                 <option value="mm">mm</option>
                 <option value="cm">cm</option>
                 <option value="in">in</option>

@@ -3,14 +3,14 @@
     <name>N-sided Hypar</name>
     <id>org.inkscape.Origami_patterns.pleat_hypar</id>
     <param name="active-tab" type="notebook">
-        <page name="title" gui-text="Options">
+        <page name="options" gui-text="Options">
             <param name="pattern" type="optiongroup" appearance="combo" gui-text="Type of Hypar">
                 <option value="classic">Classic Hypar</option>
                 <option value="asymmetric">Asymmetric triangulation</option>
                 <option value="alternate_asymmetric">Alternating asymmetric triangulation</option>
             </param>
             <param name="radius" type="float" max="10000" precision="3" gui-text="Radius of polygon">100.0</param>
-            <param name="units" type="optiongroup" appearance="combo" gui-text="">
+            <param name="units" type="optiongroup" appearance="combo" gui-text="Units">
                 <option value="mm">mm</option>
                 <option value="cm">cm</option>
                 <option value="in">in</option>

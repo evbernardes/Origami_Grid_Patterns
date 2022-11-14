@@ -3,7 +3,7 @@
     <name>Bendy Straw</name>
     <id>org.inkscape.Origami_patterns.cylindrical_bendy</id>
     <param name="active-tab" type="notebook">
-        <page name="title" gui-text="Options">
+        <page name="options" gui-text="Options">
             <param name="pattern_type" type="optiongroup" appearance="combo" gui-text="Type of pattern:">
                 <option value="origami">Origami regular</option>
                 <option value="origami_bent">Origami bent</option>
@@ -25,7 +25,7 @@
             <param name="alpha2" type="int" min="5" max="90" gui-text="Angle of inferior cone (alpha2)">35</param>
             <param name="h1" type="float" min="0" max="200.0" precision="3" gui-text="Height of superior cone (h1)">1</param>
             <param name="h2" type="float" min="0" max="200.0" precision="3" gui-text="Height of inferior cone (h2)">2</param>
-            <param name="units" type="optiongroup" appearance="combo" gui-text="">
+            <param name="units" type="optiongroup" appearance="combo" gui-text="Units">
                 <option value="mm">mm</option>
                 <option value="cm">cm</option>
                 <option value="in">in</option>
@@ -35,7 +35,7 @@
             <label>As published in: https://doi.org/10.1115/1.4052222</label>
             <param name="simulation_mode" type="bool" gui-text="Simulation mode">true</param>
         </page>
-        <page name="title" gui-text="Extra">
+        <page name="extra" gui-text="Extra">
             <param name="add_attachment" type="bool" gui-text="Add attachments?">false</param>
             <label>------------------------------------------------------------</label>
             <param name="base_height" type="float" max="10000" precision="3" gui-text="Height of base">5.0</param>

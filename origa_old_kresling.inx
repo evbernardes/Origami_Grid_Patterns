@@ -3,7 +3,7 @@
     <name>Kresling tower (old)</name>
     <id>org.inkscape.Origami_patterns.old_kresling</id>
     <param name="active-tab" type="notebook">
-        <page name="title" gui-text="Options">
+        <page name="options" gui-text="Options">
             <param name="pattern" type="optiongroup" appearance="combo" gui-text="Type of Kresling tower">
                 <option value="regular">Regular</option>
                 <option value="mirrowed">Mirror odd cells</option>
@@ -22,7 +22,7 @@
                 <option value="diameter_external">External diameter</option>
                 <option value="diameter_internal">Internal diameter (totally closed)</option>
             </param>
-            <param name="units" type="optiongroup" appearance="combo" gui-text="">
+            <param name="units" type="optiongroup" appearance="combo" gui-text="Units">
                 <option value="mm">mm</option>
                 <option value="cm">cm</option>
                 <option value="in">in</option>
