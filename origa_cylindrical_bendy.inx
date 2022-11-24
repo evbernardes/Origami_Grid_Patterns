@@ -14,13 +14,13 @@
                 <_option value="kirigami1">Kirigami mode 1</_option>
                 <_option value="kirigami2">Kirigami mode 2</_option>
             </param>
-            <_param name="help"   type="description" xml:space="preserve">------------------------------------------------------------</_param>
+            <param name="help"   type="description" xml:space="preserve">------------------------------------------------------------</param>
             <param name="n" type="int" min="3" max="25" gui-text="Number of sides of polygon">6</param>
             <param name="lines" type="int"  min="1" max="100" gui-text="Number of cells">3</param>
-            <_param name="help"   type="description" xml:space="preserve">------------------------------------------------------------</_param>
+            <param name="help"   type="description" xml:space="preserve">------------------------------------------------------------</param>
             <param name="radius" type="float" max="10000" precision="3" gui-text="Radius of bigger polygon">25.0</param>
             <param name="radial_ratio" type="float" max="1.0" min="0.0001" precision="3" gui-text="Ratio small radius/big radius">0.75</param>
-            <_param name="help"   type="description" xml:space="preserve">------------------------------------------------------------</_param>
+            <param name="help"   type="description" xml:space="preserve">------------------------------------------------------------</param>
             <param name="parameter_type" type="optiongroup" gui-text="Parameter:">
                 <option value="angles">Angles (alpha1, alpha2)</option>
                 <option value="heights">Heights (h1, h2)</option>
@@ -35,19 +35,19 @@
                 <option value="in">in</option>
                 <option value="pt">pt</option>
                 <option value="px">px</option></param>
-            <_param name="help" type="description" xml:space="preserve">As published in: https://doi.org/10.1115/1.4052222</_param>
+            <param name="help" type="description" xml:space="preserve">As published in: https://doi.org/10.1115/1.4052222</param>
             <param name="simulation_mode" type="boolean" gui-text="Simulation mode">true</param>
         </page>
 
         <page name="slots" gui-text="Slots">
             <param name="add_attachment" type="boolean" gui-text="Add attachments?">false</param>
-            <_param name="help"   type="description" xml:space="preserve">------------------------------------------------------------</_param>
+            <param name="help"   type="description" xml:space="preserve">------------------------------------------------------------</param>
             <param name="base_height" type="float" max="10000" precision="3" gui-text="Height of base">5.0</param>
             <param name="add_base_slot" type="boolean" gui-text="Add base slots?">false</param>
             <param name="center_base_slot" type="boolean" gui-text="Center base slots?">false</param>
             <param name="base_slot_height" type="float" max="10000" precision="3" gui-text="Height of base slot">3.0</param>
             <param name="base_slot_width" type="float" max="10000" precision="3" gui-text="Width of base slow">3.0</param>
-            <_param name="help"   type="description" xml:space="preserve">------------------------------------------------------------</_param>
+            <param name="help"   type="description" xml:space="preserve">------------------------------------------------------------</param>
             <param name="distance" type="float" max="10000" precision="3" gui-text="Distance between cells">3.0</param>
             <param name="add_distance_slot" type="boolean" gui-text="Add slots between cells?">false</param>
             <param name="distance_slot_height" type="float" max="10000" precision="3" gui-text="Height of slots between cells">3.0</param>

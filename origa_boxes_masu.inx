@@ -10,10 +10,10 @@
         <page name="options" gui-text="Options">
             <param name="width" type="float" max="10000" precision="3" gui-text="Width of box">10.0</param>
             <param name="height" type="float" max="10000" precision="3" gui-text="Height of box">10.0</param>
-            <_param name="help"   type="description" xml:space="preserve">Needs a square paper of size: sqrt(2) * (width + 2*height).</_param>
+            <param name="help"   type="description" xml:space="preserve">Needs a square paper of size: sqrt(2) * (width + 2*height).</param>
             <param name="width_delta" type="float" max="10000" precision="3" gui-text="Width increase*:">0.0</param>
             <param name="width_delta_bool" type="boolean" gui-text="Add width increase*">false</param>
-            <_param name="help"   type="description" xml:space="preserve">* this "width increase" slightly modifies the pattern for having a slightly bigger width and slightly smaller height, while keeping the same paper size. This is useful for creating companion box lids.</_param>
+            <param name="help"   type="description" xml:space="preserve">* this "width increase" slightly modifies the pattern for having a slightly bigger width and slightly smaller height, while keeping the same paper size. This is useful for creating companion box lids.</param>
             <param name="units" type="optiongroup" appearance="minimal" gui-text="">
                 <option value="mm">mm</option>
                 <option value="cm">cm</option>

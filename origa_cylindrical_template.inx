@@ -12,12 +12,12 @@
 
         <!-- Change this first page, fill with desired parameters and help texts-->
         <page name="options" gui-text="Options">
-            <_param name="help"   type="description" xml:space="preserve">------------------------------------</_param>
-            <_param name="help"   type="description" xml:space="preserve">Minimum necessary parameters for Cylindrical origami types :</_param>
+            <param name="help"   type="description" xml:space="preserve">------------------------------------</param>
+            <param name="help"   type="description" xml:space="preserve">Minimum necessary parameters for Cylindrical origami types :</param>
             <param name="radius" type="float" max="10000" precision="3" gui-text="Radius of cylinder">10.0</param>
             <param name="sides" type="int" min="3" max="25" gui-text="Number of sides of polygon">6</param>
             <param name="rows" type="int"  min="1" max="100" gui-text="Number of cells">3</param>
-            <_param name="help"   type="description" xml:space="preserve">-------------------------------------</_param>
+            <param name="help"   type="description" xml:space="preserve">-------------------------------------</param>
             <param name="length" type="float" max="10000" precision="3" gui-text="Length">10.0</param>
             <param name="angle" type="int" min="0" max="45" gui-text="Rotation angle (degree)">0</param>
             <param name="units" type="optiongroup" appearance="minimal" gui-text="">
@@ -26,14 +26,14 @@
                 <option value="in">in</option>
                 <option value="pt">pt</option>
                 <option value="px">px</option></param>
-            <_param name="help"   type="description" xml:space="preserve">The .inx file defines the bridge between Inkscape's interface and the python script.</_param>
+            <param name="help"   type="description" xml:space="preserve">The .inx file defines the bridge between Inkscape's interface and the python script.</param>
             <param name="simulation_mode" type="boolean" gui-text="Simulation mode">true</param>
         </page>
 
         <!-- Next page define common options for every Cylindrical Pattern -->
         <page name="slots" gui-text="Slots">
             <param name="extra_column" type="boolean" gui-text="Extra column?">false</param>
-            <_param name="help"   type="description" xml:space="preserve">------------------------------------------------------------</_param>
+            <param name="help"   type="description" xml:space="preserve">------------------------------------------------------------</param>
             <param name="add_base_slot" type="boolean" gui-text="Add base slots?">false</param>
             <param name="base_slot_position" type="optiongroup" gui-text="Base slot position:" >
                 <_option value="-1">Top</_option>
@@ -43,7 +43,7 @@
             <param name="base_height" type="float" max="10000" precision="3" gui-text="Height of base">5.0</param>
             <param name="base_slot_height" type="float" max="10000" precision="3" gui-text="Height of base slot">3.0</param>
             <param name="base_slot_width" type="float" max="10000" precision="3" gui-text="Width of base slow">3.0</param>
-            <_param name="help"   type="description" xml:space="preserve">------------------------------------------------------------</_param>
+            <param name="help"   type="description" xml:space="preserve">------------------------------------------------------------</param>
             <param name="add_middle_slot" type="boolean" gui-text="Add slots between cells?">false</param>
             <param name="middle_slot_position" type="optiongroup" gui-text="Middle slot position:" >
                 <_option value="-1">Top</_option>

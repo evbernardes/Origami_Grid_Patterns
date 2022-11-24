@@ -25,9 +25,9 @@
                 <option value="px">px</option></param>
             <param name="angle" type="int" min="0" max="360" gui-text="Rotation angle (degree)">0</param>
             <param name="fold_angle_valley" type="int" min="0" max="180" gui-text="Max fold angle of valleys (degree)">180</param>
-            <_param name="help"   type="description" xml:space="preserve">The .inx file defines the bridge between Inkscape's interface and the python script.</_param>
+            <param name="help"   type="description" xml:space="preserve">The .inx file defines the bridge between Inkscape's interface and the python script.</param>
             <param name="simulation_mode" type="boolean" gui-text="Simulation* mode">true</param>
-            <_param name="help"   type="description" xml:space="preserve">* Simulation mode bypasses most style preferences to quickly switch between OrigamiSimulator standard and your own chosen style (for laser cutting, for example).</_param>
+            <param name="help"   type="description" xml:space="preserve">* Simulation mode bypasses most style preferences to quickly switch between OrigamiSimulator standard and your own chosen style (for laser cutting, for example).</param>
         </page>
 
         <!-- Leave next pages alone, they define common options for every Pattern -->
