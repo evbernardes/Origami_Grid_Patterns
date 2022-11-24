@@ -26,7 +26,6 @@ class PleatCircular(Pattern):
         self.add_argument('--radius', type=self.float, default=55.0)
         self.add_argument('--ratio', type=self.float, default=0.4)
         self.add_argument('--rings', type=self.int, default=15)
-        self.add_argument('--simulation_mode', type=self.bool, default=True)
         self.add_argument('--sides', type=self.int, default=20)
 
     def generate_path_tree(self):
