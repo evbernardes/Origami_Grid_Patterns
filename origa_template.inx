@@ -13,8 +13,8 @@
         <!-- Change this first page, fill with desired parameters and help texts-->
         <page name="options" gui-text="Options">
             <param name="pattern" type="optiongroup" gui-text="Type of template" >
-                <_option value="template1">Template pattern 1</_option>
-                <_option value="template2">Template pattern 2</_option>
+                <option value="template1">Template pattern 1</option>
+                <option value="template2">Template pattern 2</option>
             </param>
             <param name="length" type="float" max="10000" precision="3" gui-text="Length of grid square">10.0</param>
             <param name="units" type="optiongroup" appearance="minimal" gui-text="">

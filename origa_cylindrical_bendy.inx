@@ -9,10 +9,10 @@
 
         <page name="options" gui-text="Options">
             <param name="pattern_type" type="optiongroup" gui-text="Type of pattern:" >
-                <_option value="origami">Origami regular</_option>
-                <_option value="origami_bent">Origami bent</_option>
-                <_option value="kirigami1">Kirigami mode 1</_option>
-                <_option value="kirigami2">Kirigami mode 2</_option>
+                <option value="origami">Origami regular</option>
+                <option value="origami_bent">Origami bent</option>
+                <option value="kirigami1">Kirigami mode 1</option>
+                <option value="kirigami2">Kirigami mode 2</option>
             </param>
             <param name="help"   type="description" xml:space="preserve">------------------------------------------------------------</param>
             <param name="n" type="int" min="3" max="25" gui-text="Number of sides of polygon">6</param>

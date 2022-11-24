@@ -9,9 +9,9 @@
 
         <page name="options" gui-text="Options">
             <param name="pattern" type="optiongroup" gui-text="Type of Hypar" >
-                <_option value="classic">Classic Hypar</_option>
-                <_option value="asymmetric">Asymmetric triangulation</_option>
-                <_option value="alternate_asymmetric">Alternating asymmetric triangulation</_option>
+                <option value="classic">Classic Hypar</option>
+                <option value="asymmetric">Asymmetric triangulation</option>
+                <option value="alternate_asymmetric">Alternating asymmetric triangulation</option>
             </param>
             <param name="radius" type="float" max="10000" precision="3" gui-text="Radius of polygon">100.0</param>
             <param name="units" type="optiongroup" appearance="minimal" gui-text="">

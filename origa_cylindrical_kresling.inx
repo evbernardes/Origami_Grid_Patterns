@@ -9,8 +9,8 @@
 
         <page name="options" gui-text="Options">
             <param name="pattern" type="optiongroup" gui-text="Type of Kresling tower" >
-                <_option value="regular">Regular</_option>
-                <_option value="mirrowed">Mirror odd cells</_option>
+                <option value="regular">Regular</option>
+                <option value="mirrowed">Mirror odd cells</option>
             </param>
             <param name="help"   type="description" xml:space="preserve">------------------------------------------------------------</param>
             <param name="rows" type="int"  min="1" max="100" gui-text="Number of cells">3</param>
@@ -48,9 +48,9 @@
             <param name="help"   type="description" xml:space="preserve">------------------------------------------------------------</param>
             <param name="add_base_slot" type="boolean" gui-text="Add base slots?">false</param>
             <param name="base_slot_position" type="optiongroup" gui-text="Base slot position:" >
-                <_option value="-1">Top</_option>
-                <_option value="0">Center</_option>
-                <_option value="1">Bottom</_option>
+                <option value="-1">Top</option>
+                <option value="0">Center</option>
+                <option value="1">Bottom</option>
             </param>
             <param name="base_height" type="float" max="10000" precision="3" gui-text="Height of base">5.0</param>
             <param name="base_slot_height" type="float" max="10000" precision="3" gui-text="Height of base slot">3.0</param>
@@ -58,9 +58,9 @@
             <param name="help"   type="description" xml:space="preserve">------------------------------------------------------------</param>
             <param name="add_middle_slot" type="boolean" gui-text="Add slots between cells?">false</param>
             <param name="middle_slot_position" type="optiongroup" gui-text="Middle slot position:" >
-                <_option value="-1">Top</_option>
-                <_option value="0">Center</_option>
-                <_option value="1">Bottom</_option>
+                <option value="-1">Top</option>
+                <option value="0">Center</option>
+                <option value="1">Bottom</option>
             </param>
             <param name="distance" type="float" max="10000" precision="3" gui-text="Distance between cells">3.0</param>
             <param name="middle_slot_height" type="float" max="10000" precision="3" gui-text="Height of slots between cells">3.0</param>

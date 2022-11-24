@@ -8,8 +8,8 @@
     <param name='active-tab' type="notebook">
         <page name="options" gui-text="Options">
             <param name="pattern" type="optiongroup" gui-text="Type of Kresling tower" >
-                <_option value="regular">Regular</_option>
-                <_option value="mirrowed">Mirror odd cells</_option>
+                <option value="regular">Regular</option>
+                <option value="mirrowed">Mirror odd cells</option>
             </param>
             <param name="help"   type="description" xml:space="preserve">------------------------------------------------------------</param>
             <param name="lines" type="int"  min="1" max="100" gui-text="Number of cells">3</param>

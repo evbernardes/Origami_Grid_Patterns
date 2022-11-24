@@ -11,13 +11,13 @@
         <page name="options" gui-text="Options">
             <param name="pattern_first_line" type="optiongroup" gui-text="First line:" >
                 <!-- underscores indicate translatability -->
-                <_option value="waterbomb">Regular waterbomb</_option>
-                <_option value="magic_ball">Magic ball</_option>
+                <option value="waterbomb">Regular waterbomb</option>
+                <option value="magic_ball">Magic ball</option>
             </param>
             <param name="pattern_last_line" type="optiongroup" gui-text="Last line:" >
                 <!-- underscores indicate translatability -->
-                <_option value="waterbomb">Regular waterbomb</_option>
-                <_option value="magic_ball">Magic ball</_option>
+                <option value="waterbomb">Regular waterbomb</option>
+                <option value="magic_ball">Magic ball</option>
             </param>
             <param name="phase_shift" type="boolean" gui-text="Shift phase?">false</param>
             <param name="help"   type="description" xml:space="preserve">------------------------------</param>
