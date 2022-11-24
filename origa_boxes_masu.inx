@@ -14,7 +14,7 @@
             <param name="width_delta" type="float" max="10000" precision="3" gui-text="Width increase*:">0.0</param>
             <param name="width_delta_bool" type="boolean" gui-text="Add width increase*">false</param>
             <label>* this "width increase" slightly modifies the pattern for having a slightly bigger width and slightly smaller height, while keeping the same paper size. This is useful for creating companion box lids.</label>
-            <param name="units" type="optiongroup" appearance="minimal" gui-text="">
+            <param name="units" type="optiongroup" appearance="combo" gui-text="">
                 <option value="mm">mm</option>
                 <option value="cm">cm</option>
                 <option value="in">in</option>

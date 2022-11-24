@@ -20,7 +20,7 @@
             <label>------------------------------------------------------------</label>
             <param name="length" type="float" max="10000" precision="3" gui-text="Length">10.0</param>
             <param name="angle" type="int" min="0" max="45" gui-text="Rotation angle (degree)">0</param>
-            <param name="units" type="optiongroup" appearance="minimal" gui-text="">
+            <param name="units" type="optiongroup" appearance="combo" gui-text="">
                 <option value="mm">mm</option>
                 <option value="cm">cm</option>
                 <option value="in">in</option>

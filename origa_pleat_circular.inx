@@ -9,7 +9,7 @@
 
         <page name="options" gui-text="Options">
             <param name="radius" type="float" max="10000" precision="3" gui-text="Radius of circle">55.0</param>
-            <param name="units" type="optiongroup" appearance="minimal" gui-text="">
+            <param name="units" type="optiongroup" appearance="combo" gui-text="">
                 <option value="mm">mm</option>
                 <option value="cm">cm</option>
                 <option value="in">in</option>

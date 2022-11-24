@@ -10,7 +10,7 @@
         <page name="options" gui-text="Options">
             <param name="length" type="float" max="10000" precision="3" gui-text="Length of square paper">10.0</param>
             <label>Creates a box of width = length / (2 * ( sqrt(2)) and height = width / 2.</label>
-            <param name="units" type="optiongroup" appearance="minimal" gui-text="">
+            <param name="units" type="optiongroup" appearance="combo" gui-text="">
                 <option value="mm">mm</option>
                 <option value="cm">cm</option>
                 <option value="in">in</option>

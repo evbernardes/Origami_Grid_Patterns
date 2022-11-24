@@ -20,14 +20,14 @@
             <label>------------------------------------------------------------</label>
             <param name="radius_draw" type="boolean" gui-text="Draw internal radius? (or external, if inverted)">true</param>
             <param name="radius_ratio" type="float" min="0" max="0.9"  precision="3" gui-text="Radial ratio:">0.5</param>
-            <param name="radius_type" type="optiongroup" appearance="minimal" gui-text="Internal radius type:">
+            <param name="radius_type" type="optiongroup" appearance="combo" gui-text="Internal radius type:">
                 <option value="polygonal">Polygonal</option>
                 <option value="circular">Circular</option>
             </param>
             <label>------------------------------------------------------------</label>
             <label>Length must be at least the thickness of the origami material + the thickness of the belt.</label>
             <label>For an OpenSCAD simple implementation of the belt, see Origami_Patterns/Support_Ring_Belt.</label>
-            <param name="units" type="optiongroup" appearance="minimal" gui-text="">
+            <param name="units" type="optiongroup" appearance="combo" gui-text="">
                 <option value="mm">mm</option>
                 <option value="cm">cm</option>
                 <option value="in">in</option>

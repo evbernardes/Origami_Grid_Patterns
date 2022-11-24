@@ -29,7 +29,7 @@
             <param name="alpha2" type="int" min="5" max="90" gui-text="Angle of inferior cone (alpha2)">35</param>
             <param name="h1" type="float" min="0" max="200.0" precision="3" gui-text="Height of superior cone (h1)">1</param>
             <param name="h2" type="float" min="0" max="200.0" precision="3" gui-text="Height of inferior cone (h2)">2</param>
-            <param name="units" type="optiongroup" appearance="minimal" gui-text="">
+            <param name="units" type="optiongroup" appearance="combo" gui-text="">
                 <option value="mm">mm</option>
                 <option value="cm">cm</option>
                 <option value="in">in</option>

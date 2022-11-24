@@ -16,7 +16,7 @@
             <param name="sides" type="int" min="3" max="100" gui-text="Number of polygon sides">6</param>
             <label>------------------------------------------------------------</label>
             <param name="measure_value" type="float" max="10000"  precision="3" gui-text="Measure value:">10.0</param>
-            <param name="measure_type" type="optiongroup" appearance="minimal" gui-text="Measure type:">
+            <param name="measure_type" type="optiongroup" appearance="combo" gui-text="Measure type:">
                 <option value="a">Polygon side (a)</option>
                 <option value="b">Vertical mountain crease (b)</option>
                 <option value="l">Diagonal valley crease (l)</option>
@@ -25,7 +25,7 @@
                 <option value="diameter_external">External diameter</option>
                 <option value="diameter_internal">Internal diameter (totally closed)</option>
                 </param>
-            <param name="units" type="optiongroup" appearance="minimal" gui-text="">
+            <param name="units" type="optiongroup" appearance="combo" gui-text="">
                 <option value="mm">mm</option>
                 <option value="cm">cm</option>
                 <option value="in">in</option>
