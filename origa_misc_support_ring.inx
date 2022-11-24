@@ -12,21 +12,21 @@
             <param name="radius_external" type="float" max="10000"  precision="3" gui-text="Pattern radius:">10.0</param>
             <param name="inverted" type="boolean" gui-text="Invert hook direction?">false</param>
             <param name="single_stroke" type="boolean" gui-text="Single stroke?">true</param>
-            <param name="help"   type="description" xml:space="preserve">------------------------------------------------------------</param>
+            <label>------------------------------------------------------------</label>
             <param name="connector_length" type="float" max="10000"  precision="3" gui-text="Connector length:">3.0</param>
             <param name="connector_thickness" type="float" max="10000"  precision="3" gui-text="Connector thickness:">3.0</param>
             <param name="head_length" type="float" max="10000"  precision="3" gui-text="Head extra length:">1.0</param>
             <param name="head_thickness" type="float" max="10000"  precision="3" gui-text="Head extra thickness:">1.0</param>
-            <param name="help"   type="description" xml:space="preserve">------------------------------------------------------------</param>
+            <label>------------------------------------------------------------</label>
             <param name="radius_draw" type="boolean" gui-text="Draw internal radius? (or external, if inverted)">true</param>
             <param name="radius_ratio" type="float" min="0" max="0.9"  precision="3" gui-text="Radial ratio:">0.5</param>
             <param name="radius_type" type="optiongroup" appearance="minimal" gui-text="Internal radius type:">
                 <option value="polygonal">Polygonal</option>
                 <option value="circular">Circular</option>
             </param>
-            <param name="help"   type="description" xml:space="preserve">------------------------------------------------------------</param>
-            <param name="help"   type="description" xml:space="preserve">Length must be at least the thickness of the origami material + the thickness of the belt.</param>
-            <param name="help"   type="description" xml:space="preserve">For an OpenSCAD simple implementation of the belt, see Origami_Patterns/Support_Ring_Belt.</param>
+            <label>------------------------------------------------------------</label>
+            <label>Length must be at least the thickness of the origami material + the thickness of the belt.</label>
+            <label>For an OpenSCAD simple implementation of the belt, see Origami_Patterns/Support_Ring_Belt.</label>
             <param name="units" type="optiongroup" appearance="minimal" gui-text="">
                 <option value="mm">mm</option>
                 <option value="cm">cm</option>
