@@ -114,7 +114,7 @@
     </effect>
 
     <script>
-        <command reldir="extensions" interpreter="python">OrigamiPatterns/Bendy.py</command>
+        <command location="inx" interpreter="python">OrigamiPatterns/Bendy.py</command>
     </script>
 
 </inkscape-extension>

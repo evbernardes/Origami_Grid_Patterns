@@ -100,7 +100,7 @@
     </effect>
     
     <script>
-        <command reldir="extensions" interpreter="python">OrigamiPatterns/Kresling_full.py</command>
+        <command location="inx" interpreter="python">OrigamiPatterns/Kresling_full.py</command>
     </script>
 </inkscape-extension>
 

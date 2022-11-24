@@ -83,7 +83,7 @@
     </effect>
 
     <script>
-        <command reldir="extensions" interpreter="python">OrigamiPatterns/Pleat_Circular.py</command>
+        <command location="inx" interpreter="python">OrigamiPatterns/Pleat_Circular.py</command>
     </script>
 
 </inkscape-extension>

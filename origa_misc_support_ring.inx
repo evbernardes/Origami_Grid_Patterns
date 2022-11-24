@@ -54,7 +54,7 @@
     </effect>
 
     <script>
-        <command reldir="extensions" interpreter="python">OrigamiPatterns/SupportRing.py</command>
+        <command location="inx" interpreter="python">OrigamiPatterns/SupportRing.py</command>
     </script>
 
 </inkscape-extension>

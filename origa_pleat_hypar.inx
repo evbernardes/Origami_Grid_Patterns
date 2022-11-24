@@ -89,7 +89,7 @@
     </effect>
 
     <script>
-        <command reldir="extensions" interpreter="python">OrigamiPatterns/Hypar.py</command>
+        <command location="inx" interpreter="python">OrigamiPatterns/Hypar.py</command>
     </script>
 
 </inkscape-extension>

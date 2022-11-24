@@ -81,6 +81,6 @@
     </effect>
     <!-- py file again -->
     <script>
-        <command reldir="extensions" interpreter="python">OrigamiPatterns/Waterbomb.py</command>
+        <command location="inx" interpreter="python">OrigamiPatterns/Waterbomb.py</command>
     </script>
 </inkscape-extension>

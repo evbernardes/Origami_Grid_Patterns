@@ -73,7 +73,7 @@
     </effect>
 
     <script>
-        <command reldir="extensions" interpreter="python">OrigamiPatterns/Boxes_Masu.py</command>
+        <command location="inx" interpreter="python">OrigamiPatterns/Boxes_Masu.py</command>
     </script>
 
 </inkscape-extension>

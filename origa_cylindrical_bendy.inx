@@ -118,7 +118,7 @@
     </effect>
 
     <script>
-        <command reldir="extensions" interpreter="python">OrigamiPatterns/Cylindrical_Bendy.py</command>
+        <command location="inx" interpreter="python">OrigamiPatterns/Cylindrical_Bendy.py</command>
     </script>
 
 </inkscape-extension>
