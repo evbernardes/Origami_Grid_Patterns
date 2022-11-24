@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
-    <_name>N-sided Hypar</_name>
+    <name>N-sided Hypar</name>
     <id>org.inkscape.Origami_patterns.pleat_hypar</id>
     <dependency type="executable" location="extensions">OrigamiPatterns</dependency>
     <dependency type="executable" location="extensions">simplestyle.py</dependency>
@@ -82,8 +82,8 @@
     <effect>
     <object-type>all</object-type>
         <effects-menu>
-            <submenu _name="Origami Patterns">
-                <submenu _name="Pleat folds" />
+            <submenu name="Origami Patterns">
+                <submenu name="Pleat folds" />
             </submenu>
         </effects-menu>
     </effect>

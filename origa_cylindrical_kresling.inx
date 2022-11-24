@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
-    <_name>Kresling tower</_name>
+    <name>Kresling tower</name>
     <id>org.inkscape.Origami_patterns.cylindrical_kresling</id>
     <dependency type="executable" location="extensions">OrigamiPatterns</dependency>
     <dependency type="executable" location="extensions">simplestyle.py</dependency>
@@ -120,8 +120,8 @@
     <effect>
     <object-type>all</object-type>
         <effects-menu>
-            <submenu _name="Origami Patterns">
-                <submenu _name="Cylindrical" />
+            <submenu name="Origami Patterns">
+                <submenu name="Cylindrical" />
                 </submenu>
         </effects-menu>
     </effect>

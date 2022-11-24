@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
     <!-- Name of effect -->
-    <_name>Template effect</_name>
+    <name>Template effect</name>
     <!-- Name of id -->
     <id>org.inkscape.Origami_patterns.template</id>
     <dependency type="executable" location="extensions">OrigamiPatterns</dependency>
@@ -102,8 +102,8 @@
     <effect>
     <object-type>all</object-type>
         <effects-menu>
-            <submenu _name="Origami Patterns">
-                <submenu _name="* Template submenu" />
+            <submenu name="Origami Patterns">
+                <submenu name="* Template submenu" />
             </submenu>
         </effects-menu>
     </effect>

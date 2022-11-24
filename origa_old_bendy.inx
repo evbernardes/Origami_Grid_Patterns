@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
-    <_name>Bendy Straw (old, faster cutting)</_name>
+    <name>Bendy Straw (old, faster cutting)</name>
     <id>org.inkscape.Origami_patterns.old_bendy</id>
     <dependency type="executable" location="extensions">OrigamiPatterns</dependency>
     <dependency type="executable" location="extensions">simplestyle.py</dependency>
@@ -106,8 +106,8 @@
     <effect>
     <object-type>all</object-type>
         <effects-menu>
-            <submenu _name="Origami Patterns">
-                <submenu _name="Deprecated">
+            <submenu name="Origami Patterns">
+                <submenu name="Deprecated">
                 </submenu>
             </submenu>
         </effects-menu>
