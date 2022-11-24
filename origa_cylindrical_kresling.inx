@@ -26,13 +26,6 @@
                 <option value="diameter_external">External diameter</option>
                 <option value="diameter_internal">Internal diameter (totally closed)</option>
                 </param>
-            <param name="units" type="optiongroup" appearance="combo" gui-text="">
-                <option value="mm">mm</option>
-                <option value="cm">cm</option>
-                <option value="in">in</option>
-                <option value="pt">pt</option>
-                <option value="px">px</option></param>
-            <param name="simulation_mode" type="boolean" gui-text="Simulation mode">true</param>
             <separator/>
             <param name="parameter_type" type="optiongroup" appearance="full" gui-text="Parameter type:">
                 <option value="angle_ratio">Angle ratio (lambda)</option>
@@ -41,6 +34,20 @@
             <param name="radial_ratio" type="float" min="0" max="0.7"  precision="3" gui-text="Radial ratio:">0.5</param>
             <param name="angle_ratio" type="float" min="0.5" max="1"  precision="3" gui-text="Angle ratio:">0.5</param>
             <param name="lambdatheta" type="float" min="15" max="90"  precision="2" gui-text="Angle between a and l">60.0</param>
+            <separator/>
+            <hbox>
+                <param name="simulation_mode" type="boolean" gui-text="Simulation mode (?)"
+                gui-description="'Simulation mode' bypasses most style preferences to quickly switch between an OrigamiSimulator-compatible standard and your own chosen style (for laser cutting, for example).">
+                true</param>
+                <spacer size="expand"/>
+                <param name="units" type="optiongroup" appearance="combo" gui-text="">
+                    <option value="mm">mm</option>
+                    <option value="cm">cm</option>
+                    <option value="in">in</option>
+                    <option value="pt">pt</option>
+                    <option value="px">px</option></param>
+            </hbox>
+            <separator/>
         </page>
 
         <page name="slots" gui-text="Slots">

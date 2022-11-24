@@ -8,24 +8,33 @@
     <param name='active-tab' type="notebook">
 
         <page name="options" gui-text="Options">
-            <param name="pattern" type="optiongroup" gui-text="Type of Hypar" >
+            <param name="pattern" type="optiongroup" gui-text="Type of Hypar (?)" gui-description="Classic Hypar is the easiest one to fold. However, it's not rigid foldable.">
                 <option value="classic">Classic Hypar</option>
                 <option value="asymmetric">Asymmetric triangulation</option>
                 <option value="alternate_asymmetric">Alternating asymmetric triangulation</option>
             </param>
             <param name="radius" type="float" max="10000" precision="3" gui-text="Radius of polygon">100.0</param>
-            <param name="units" type="optiongroup" appearance="combo" gui-text="">
-                <option value="mm">mm</option>
-                <option value="cm">cm</option>
-                <option value="in">in</option>
-                <option value="pt">pt</option>
-                <option value="px">px</option></param>
             <param name="sides" type="int" min="3" max="100" gui-text="Number of polygon sides">4</param>
             <param name="rings" type="int" min="1" max="100" gui-text="Number of rings">7</param>
             <param name="simplify_center" type="boolean" gui-text="Simplify center (probably not suited for odd number of sides)">false</param>
-            <label>Implements Hypar (classical hyperbolic paraboloid approximate).&#xA;&#xA;Classic Hypar is the easiest one to fold. However, it's not rigid foldable. More information in:&#xA;Demaine, E. D., Demaine, M. L., Hart, V., Price, G. N., & Tachi, T. (2011). (Non)Existence of Pleated Folds: How Paper Folds Between Creases. Graphs and Combinatorics, 27(3), 377–397. https://doi.org/10.1007/s00373-011-1025-2</label>
-
-            <param name="simulation_mode" type="boolean" gui-text="Simulation mode">true</param>
+            <separator/>
+            <hbox>
+                <param name="simulation_mode" type="boolean" gui-text="Simulation mode (?)"
+                gui-description="'Simulation mode' bypasses most style preferences to quickly switch between an OrigamiSimulator-compatible standard and your own chosen style (for laser cutting, for example).">
+                true</param>
+                <spacer size="expand"/>
+                <param name="units" type="optiongroup" appearance="combo" gui-text="">
+                    <option value="mm">mm</option>
+                    <option value="cm">cm</option>
+                    <option value="in">in</option>
+                    <option value="pt">pt</option>
+                    <option value="px">px</option></param>
+            </hbox>
+            <separator/>
+            <hbox>
+                <label appearance="header">As published in:</label>
+                <label appearance="url">https://doi.org/10.1007/s00373-011-1025-2</label>
+            </hbox>
         </page>
         
         <page name="mountains" gui-text="Mountain creases">

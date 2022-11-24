@@ -17,17 +17,23 @@
                 <option value="template2">Template pattern 2</option>
             </param>
             <param name="length" type="float" max="10000" precision="3" gui-text="Length of grid square">10.0</param>
-            <param name="units" type="optiongroup" appearance="combo" gui-text="">
-                <option value="mm">mm</option>
-                <option value="cm">cm</option>
-                <option value="in">in</option>
-                <option value="pt">pt</option>
-                <option value="px">px</option></param>
             <param name="angle" type="int" min="0" max="360" gui-text="Rotation angle (degree)">0</param>
             <param name="fold_angle_valley" type="int" min="0" max="180" gui-text="Max fold angle of valleys (degree)">180</param>
             <label>The .inx file defines the bridge between Inkscape's interface and the python script.</label>
-            <param name="simulation_mode" type="boolean" gui-text="Simulation* mode">true</param>
-            <label>* Simulation mode bypasses most style preferences to quickly switch between OrigamiSimulator standard and your own chosen style (for laser cutting, for example).</label>
+            <separator/>
+            <hbox>
+                <param name="simulation_mode" type="boolean" gui-text="Simulation mode (?)"
+                gui-description="'Simulation mode' bypasses most style preferences to quickly switch between an OrigamiSimulator-compatible standard and your own chosen style (for laser cutting, for example).">
+                true</param>
+                <spacer size="expand"/>
+                <param name="units" type="optiongroup" appearance="combo" gui-text="">
+                    <option value="mm">mm</option>
+                    <option value="cm">cm</option>
+                    <option value="in">in</option>
+                    <option value="pt">pt</option>
+                    <option value="px">px</option></param>
+            </hbox>
+            <separator/>
         </page>
 
         <!-- Leave next pages alone, they define common options for every Pattern -->
