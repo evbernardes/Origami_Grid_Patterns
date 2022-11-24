@@ -8,97 +8,97 @@
     <param name='active-tab' type="notebook">
 
         <page name="options" gui-text="Options">
-            <param name="pattern_type" type="optiongroup" _gui-text="Type of pattern:" >
+            <param name="pattern_type" type="optiongroup" gui-text="Type of pattern:" >
                 <_option value="origami">Origami regular</_option>
                 <_option value="origami_bent">Origami bent</_option>
                 <_option value="kirigami1">Kirigami mode 1</_option>
                 <_option value="kirigami2">Kirigami mode 2</_option>
             </param>
             <_param name="help"   type="description" xml:space="preserve">------------------------------------------------------------</_param>
-            <param name="n" type="int" min="3" max="25" _gui-text="Number of sides of polygon">6</param>
-            <param name="lines" type="int"  min="1" max="100" _gui-text="Number of cells">3</param>
+            <param name="n" type="int" min="3" max="25" gui-text="Number of sides of polygon">6</param>
+            <param name="lines" type="int"  min="1" max="100" gui-text="Number of cells">3</param>
             <_param name="help"   type="description" xml:space="preserve">------------------------------------------------------------</_param>
-            <param name="radius" type="float" max="10000" precision="3" _gui-text="Radius of bigger polygon">25.0</param>
-            <param name="radial_ratio" type="float" max="1.0" min="0.0001" precision="3" _gui-text="Ratio small radius/big radius">0.75</param>
+            <param name="radius" type="float" max="10000" precision="3" gui-text="Radius of bigger polygon">25.0</param>
+            <param name="radial_ratio" type="float" max="1.0" min="0.0001" precision="3" gui-text="Ratio small radius/big radius">0.75</param>
             <_param name="help"   type="description" xml:space="preserve">------------------------------------------------------------</_param>
-            <param name="parameter_type" type="optiongroup" _gui-text="Parameter:">
+            <param name="parameter_type" type="optiongroup" gui-text="Parameter:">
                 <option value="angles">Angles (alpha1, alpha2)</option>
                 <option value="heights">Heights (h1, h2)</option>
             </param>
-            <param name="alpha1" type="int" min="5" max="90" _gui-text="Angle of superior cone (alpha1)">45</param>
-            <param name="alpha2" type="int" min="5" max="90" _gui-text="Angle of inferior cone (alpha2)">35</param>
-            <param name="h1" type="float" min="0" max="200.0" precision="3" _gui-text="Height of superior cone (h1)">1</param>
-            <param name="h2" type="float" min="0" max="200.0" precision="3" _gui-text="Height of inferior cone (h2)">2</param>
-            <param name="units" type="optiongroup" appearance="minimal" _gui-text="">
+            <param name="alpha1" type="int" min="5" max="90" gui-text="Angle of superior cone (alpha1)">45</param>
+            <param name="alpha2" type="int" min="5" max="90" gui-text="Angle of inferior cone (alpha2)">35</param>
+            <param name="h1" type="float" min="0" max="200.0" precision="3" gui-text="Height of superior cone (h1)">1</param>
+            <param name="h2" type="float" min="0" max="200.0" precision="3" gui-text="Height of inferior cone (h2)">2</param>
+            <param name="units" type="optiongroup" appearance="minimal" gui-text="">
                 <option value="mm">mm</option>
                 <option value="cm">cm</option>
                 <option value="in">in</option>
                 <option value="pt">pt</option>
                 <option value="px">px</option></param>
             <_param name="help"   type="description" xml:space="preserve">As published in: https://doi.org/10.1115/1.4052222</_param>
-            <param name="simulation_mode" type="boolean" _gui-text="Simulation mode">true</param>
+            <param name="simulation_mode" type="boolean" gui-text="Simulation mode">true</param>
         </page>
 
-        <page name="title" _gui-text="Extra">
-            <param name="add_attachment" type="boolean" _gui-text="Add attachments?">false</param>
+        <page name="title" gui-text="Extra">
+            <param name="add_attachment" type="boolean" gui-text="Add attachments?">false</param>
             <_param name="help"   type="description" xml:space="preserve">------------------------------------------------------------</_param>
-            <param name="base_height" type="float" max="10000" precision="3" _gui-text="Height of base">5.0</param>
-            <param name="add_base_slot" type="boolean" _gui-text="Add base slots?">false</param>
-            <param name="center_base_slot" type="boolean" _gui-text="Center base slots?">false</param>
-            <param name="base_slot_height" type="float" max="10000" precision="3" _gui-text="Height of base slot">3.0</param>
-            <param name="base_slot_width" type="float" max="10000" precision="3" _gui-text="Width of base slow">3.0</param>
+            <param name="base_height" type="float" max="10000" precision="3" gui-text="Height of base">5.0</param>
+            <param name="add_base_slot" type="boolean" gui-text="Add base slots?">false</param>
+            <param name="center_base_slot" type="boolean" gui-text="Center base slots?">false</param>
+            <param name="base_slot_height" type="float" max="10000" precision="3" gui-text="Height of base slot">3.0</param>
+            <param name="base_slot_width" type="float" max="10000" precision="3" gui-text="Width of base slow">3.0</param>
             <_param name="help"   type="description" xml:space="preserve">------------------------------------------------------------</_param>
-            <param name="distance" type="float" max="10000" precision="3" _gui-text="Distance between cells">3.0</param>
-            <param name="add_distance_slot" type="boolean" _gui-text="Add slots between cells?">false</param>
-            <param name="distance_slot_height" type="float" max="10000" precision="3" _gui-text="Height of slots between cells">3.0</param>
-            <param name="distance_slot_width" type="float" max="10000" precision="3" _gui-text="Width of slots between cells">3.0</param>
+            <param name="distance" type="float" max="10000" precision="3" gui-text="Distance between cells">3.0</param>
+            <param name="add_distance_slot" type="boolean" gui-text="Add slots between cells?">false</param>
+            <param name="distance_slot_height" type="float" max="10000" precision="3" gui-text="Height of slots between cells">3.0</param>
+            <param name="distance_slot_width" type="float" max="10000" precision="3" gui-text="Width of slots between cells">3.0</param>
         </page>
 
-        <page name="mountains" _gui-text="Mountains">
-            <param name="mountain_bool" type="boolean" _gui-text="Draw mountains?">true</param>
-            <param name="mountain_dashes_bool" type="boolean" _gui-text="Dashed strokes?">true</param>
-            <param name="mountain_dashes_len" type="float"  min="0.1" max="10" appearance="full" precision="2" _gui-text="Mountain dash + gap length">1</param>
-            <param name="mountain_dashes_duty" type="float"  min="0.1" max="1" appearance="full" precision="2" _gui-text="Mountain dash duty cycle">0.5</param>
-            <param name="mountain_stroke_width" type="float" min="0.01" max="3" appearance="full" _gui-text="Width of mountain strokes">0.1</param>
+        <page name="mountains" gui-text="Mountains">
+            <param name="mountain_bool" type="boolean" gui-text="Draw mountains?">true</param>
+            <param name="mountain_dashes_bool" type="boolean" gui-text="Dashed strokes?">true</param>
+            <param name="mountain_dashes_len" type="float"  min="0.1" max="10" appearance="full" precision="2" gui-text="Mountain dash + gap length">1</param>
+            <param name="mountain_dashes_duty" type="float"  min="0.1" max="1" appearance="full" precision="2" gui-text="Mountain dash duty cycle">0.5</param>
+            <param name="mountain_stroke_width" type="float" min="0.01" max="3" appearance="full" gui-text="Width of mountain strokes">0.1</param>
             <param name="mountain_stroke_color" type="color" gui-text="Mountain creases color: ">4278190335</param>
         </page>
 
-        <page name="valleys" _gui-text="Valleys">
-            <param name="valley_bool" type="boolean" _gui-text="Draw valley?">true</param>
-            <param name="valley_dashes_bool" type="boolean" _gui-text="Dashed strokes?">true</param>
-            <param name="valley_dashes_len" type="float"  min="0.1" max="10" appearance="full" precision="2" _gui-text="Valley dash + gap length">1</param>
-            <param name="valley_dashes_duty" type="float"  min="0.1" max="1" appearance="full" precision="2" _gui-text="Valley dash duty cycle">0.25</param>
-            <param name="valley_stroke_width" type="float" min="0.01" max="3" appearance="full" _gui-text="Width of valley strokes">0.1</param>
+        <page name="valleys" gui-text="Valleys">
+            <param name="valley_bool" type="boolean" gui-text="Draw valley?">true</param>
+            <param name="valley_dashes_bool" type="boolean" gui-text="Dashed strokes?">true</param>
+            <param name="valley_dashes_len" type="float"  min="0.1" max="10" appearance="full" precision="2" gui-text="Valley dash + gap length">1</param>
+            <param name="valley_dashes_duty" type="float"  min="0.1" max="1" appearance="full" precision="2" gui-text="Valley dash duty cycle">0.25</param>
+            <param name="valley_stroke_width" type="float" min="0.01" max="3" appearance="full" gui-text="Width of valley strokes">0.1</param>
             <param name="valley_stroke_color" type="color" gui-text="Valley creases color: ">65535</param>
         </page>
 
-        <page name="cuts" _gui-text="Cuts">
-            <param name="cut_bool" type="boolean" _gui-text="Draw cuts?">true</param>
-            <param name="cut_dashes_bool" type="boolean" _gui-text="Dashed strokes?">false</param>
-            <param name="cut_dashes_len" type="float"  min="0.1" max="10" appearance="full" precision="2" _gui-text="Cut dash + gap length">1</param>
-            <param name="cut_dashes_duty" type="float"  min="0.1" max="1" appearance="full" precision="2" _gui-text="Cut dash duty cycle">0.25</param>
-            <param name="cut_stroke_width" type="float" min="0.01" max="3" appearance="full" _gui-text="Width of cut strokes">0.1</param>
+        <page name="cuts" gui-text="Cuts">
+            <param name="cut_bool" type="boolean" gui-text="Draw cuts?">true</param>
+            <param name="cut_dashes_bool" type="boolean" gui-text="Dashed strokes?">false</param>
+            <param name="cut_dashes_len" type="float"  min="0.1" max="10" appearance="full" precision="2" gui-text="Cut dash + gap length">1</param>
+            <param name="cut_dashes_duty" type="float"  min="0.1" max="1" appearance="full" precision="2" gui-text="Cut dash duty cycle">0.25</param>
+            <param name="cut_stroke_width" type="float" min="0.01" max="3" appearance="full" gui-text="Width of cut strokes">0.1</param>
             <param name="cut_stroke_color" type="color" gui-text="Cut creases color: ">16711935</param>
         </page>
 
-        <page name="edge" _gui-text="Edge">
-            <param name="edge_bool" type="boolean" _gui-text="Draw edges?">true</param>
-            <param name="edge_single_path" type="boolean" _gui-text="Edges as single path?">true</param>
-            <param name="edge_dashes_bool" type="boolean" _gui-text="Dashed strokes?">false</param>
-            <param name="edge_dashes_len" type="float"  min="0.1" max="10" appearance="full" precision="2" _gui-text="Edge dash + gap length">1</param>
-            <param name="edge_dashes_duty" type="float"  min="0.1" max="1" appearance="full" precision="2" _gui-text="Edge dash duty cycle">0.25</param>
-            <param name="edge_stroke_width" type="float" min="0.01" max="3" appearance="full"  _gui-text="Width of edge strokes">0.1</param>
+        <page name="edge" gui-text="Edge">
+            <param name="edge_bool" type="boolean" gui-text="Draw edges?">true</param>
+            <param name="edge_single_path" type="boolean" gui-text="Edges as single path?">true</param>
+            <param name="edge_dashes_bool" type="boolean" gui-text="Dashed strokes?">false</param>
+            <param name="edge_dashes_len" type="float"  min="0.1" max="10" appearance="full" precision="2" gui-text="Edge dash + gap length">1</param>
+            <param name="edge_dashes_duty" type="float"  min="0.1" max="1" appearance="full" precision="2" gui-text="Edge dash duty cycle">0.25</param>
+            <param name="edge_stroke_width" type="float" min="0.01" max="3" appearance="full"  gui-text="Width of edge strokes">0.1</param>
             <param name="edge_stroke_color" type="color" gui-text="Edge color: ">255</param>
         </page>
 
-        <page name="vertices" _gui-text="Vertices">
-            <param name="vertex_bool" type="boolean" _gui-text="Draw vertices?">true</param>
-            <param name="vertex_base_outer_bool" type="boolean" _gui-text="Outer base vertices?">true</param>
-            <param name="vertex_base_inner_bool" type="boolean" _gui-text="Other base vertices?">true</param>
-            <param name="vertex_radius_outer_bool" type="boolean" _gui-text="Outer radius vertices?">true</param>
-            <param name="vertex_radius_inner_bool" type="boolean" _gui-text="Inner radius vertices?">true</param>
-            <param name="vertex_radius" type="float" min="0.01" max="50" appearance="full"  _gui-text="Radius of vertices">0.1</param>
-            <param name="vertex_stroke_width" type="float" min="0.01" max="3" appearance="full"  _gui-text="Width of vertex strokes">0.1</param>
+        <page name="vertices" gui-text="Vertices">
+            <param name="vertex_bool" type="boolean" gui-text="Draw vertices?">true</param>
+            <param name="vertex_base_outer_bool" type="boolean" gui-text="Outer base vertices?">true</param>
+            <param name="vertex_base_inner_bool" type="boolean" gui-text="Other base vertices?">true</param>
+            <param name="vertex_radius_outer_bool" type="boolean" gui-text="Outer radius vertices?">true</param>
+            <param name="vertex_radius_inner_bool" type="boolean" gui-text="Inner radius vertices?">true</param>
+            <param name="vertex_radius" type="float" min="0.01" max="50" appearance="full"  gui-text="Radius of vertices">0.1</param>
+            <param name="vertex_stroke_width" type="float" min="0.01" max="3" appearance="full"  gui-text="Width of vertex strokes">0.1</param>
             <param name="vertex_stroke_color" type="color" gui-text="Vertices\' color: ">255</param>
         </page>
     </param>
