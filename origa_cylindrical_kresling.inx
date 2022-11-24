@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
-    <!-- Name of effect -->
     <_name>Kresling tower</_name>
-    <!-- Name of id -->
     <id>org.inkscape.Origami_patterns.cylindrical_kresling</id>
     <dependency type="executable" location="extensions">OrigamiPatterns</dependency>
     <dependency type="executable" location="extensions">simplestyle.py</dependency>
 
-    <!-- start notebook -->
     <param name='active-tab' type="notebook">
-        <!-- Change this first page, fill with desired parameters and help texts-->
-        <page name="title" _gui-text="Options">
+
+        <page name="options" gui-text="Options">
             <param name="pattern" type="optiongroup" _gui-text="Type of Kresling tower" >
-                <!-- underscores indicate translatability -->
                 <_option value="regular">Regular</_option>
                 <_option value="mirrowed">Mirror odd cells</_option>
             </param>
@@ -29,9 +25,6 @@
                 <option value="radius_internal">Internal radius (totally closed)</option>
                 <option value="diameter_external">External diameter</option>
                 <option value="diameter_internal">Internal diameter (totally closed)</option>
-<!--
-                <option value="a_l_angle">Angle between valley crease and horizontal polygon side</option>
--->
                 </param>
             <param name="units" type="optiongroup" appearance="minimal" _gui-text="">
                 <option value="mm">mm</option>
@@ -48,9 +41,9 @@
             <param name="radial_ratio" type="float" min="0" max="0.7"  precision="3" _gui-text="Radial ratio:">0.5</param>
             <param name="angle_ratio" type="float" min="0.5" max="1"  precision="3" _gui-text="Angle ratio:">0.5</param>
             <param name="lambdatheta" type="float" min="15" max="90"  precision="2" _gui-text="Angle between a and l">60.0</param>
-<!--				<option value="angle">Angle between l and a</option>-->
         </page>
-        <page name="title" _gui-text="Slots">
+
+        <page name="slots" _gui-text="Slots">
             <param name="extra_column" type="boolean" _gui-text="Extra column?">false</param>
             <_param name="help"   type="description" xml:space="preserve">------------------------------------------------------------</_param>
             <param name="add_base_slot" type="boolean" _gui-text="Add base slots?">false</param>
@@ -72,21 +65,8 @@
             <param name="distance" type="float" max="10000" precision="3" _gui-text="Distance between cells">3.0</param>
             <param name="middle_slot_height" type="float" max="10000" precision="3" _gui-text="Height of slots between cells">3.0</param>
             <param name="middle_slot_width" type="float" max="10000" precision="3" _gui-text="Width of slots between cells">3.0</param>
-            <!-- <param name="attachment_length" type="float" max="10000" precision="3" _gui-text="Length of attachments">3.0</param> -->
-<!--			<param name="attachment_length" type="int"  appearance="full" min="0" max="100" _gui-text="Length of attachments (percent)">20</param>-->
         </page>
 
-<page name="cuts" _gui-text="Cuts">
-            <param name="cut_bool" type="boolean" _gui-text="Draw cuts?">true</param>
-            <param name="cut_bool_only" type="boolean" _gui-text="Draw ONLY cuts?">true</param>
-            <param name="cut_dashes_bool" type="boolean" _gui-text="Dashed strokes?">false</param>
-            <param name="cut_dashes_len" type="float"  min="0.1" max="10" appearance="full" precision="2" _gui-text="Cut dash + gap length">1</param>
-            <param name="cut_dashes_duty" type="float"  min="0.1" max="1" appearance="full" precision="2" _gui-text="Cut dash duty cycle">0.25</param>
-            <param name="cut_stroke_width" type="float" min="0.01" max="3" appearance="full" _gui-text="Width of cut strokes">0.1</param>
-            <param name="cut_stroke_color" type="color" gui-text="Cut creases color: ">16711935</param>
-</page>
-
-        <!-- Leave next pages alone, they define common options for every Pattern -->
         <page name="mountains" _gui-text="Mountain creases">
             <param name="mountain_bool" type="boolean" _gui-text="Draw mountains?">true</param>
             <param name="mountain_bool_only" type="boolean" _gui-text="Draw ONLY mountains?">false</param>
@@ -96,6 +76,7 @@
             <param name="mountain_stroke_width" type="float" min="0.01" max="3" appearance="full" _gui-text="Width of mountain strokes">0.1</param>
             <param name="mountain_stroke_color" type="color" gui-text="Mountain creases color: ">4278190335</param>
         </page>
+
         <page name="valleys" _gui-text="Valley creases">
             <param name="valley_bool" type="boolean" _gui-text="Draw valley?">true</param>
             <param name="valley_bool_only" type="boolean" _gui-text="Draw ONLY valleys?">false</param>
@@ -105,6 +86,17 @@
             <param name="valley_stroke_width" type="float" min="0.01" max="3" appearance="full" _gui-text="Width of valley strokes">0.1</param>
             <param name="valley_stroke_color" type="color" gui-text="Valley creases color: ">65535</param>
         </page>
+
+        <page name="cuts" _gui-text="Cuts">
+            <param name="cut_bool" type="boolean" _gui-text="Draw cuts?">true</param>
+            <param name="cut_bool_only" type="boolean" _gui-text="Draw ONLY cuts?">true</param>
+            <param name="cut_dashes_bool" type="boolean" _gui-text="Dashed strokes?">false</param>
+            <param name="cut_dashes_len" type="float"  min="0.1" max="10" appearance="full" precision="2" _gui-text="Cut dash + gap length">1</param>
+            <param name="cut_dashes_duty" type="float"  min="0.1" max="1" appearance="full" precision="2" _gui-text="Cut dash duty cycle">0.25</param>
+            <param name="cut_stroke_width" type="float" min="0.01" max="3" appearance="full" _gui-text="Width of cut strokes">0.1</param>
+            <param name="cut_stroke_color" type="color" gui-text="Cut creases color: ">16711935</param>
+        </page>
+
         <page name="edge" _gui-text="Edge">
             <param name="edge_bool" type="boolean" _gui-text="Draw edges?">true</param>
             <param name="edge_bool_only" type="boolean" _gui-text="Draw ONLY edges?">false</param>
@@ -115,6 +107,7 @@
             <param name="edge_stroke_width" type="float" min="0.01" max="3" appearance="full"  _gui-text="Width of edge strokes">0.1</param>
             <param name="edge_stroke_color" type="color" gui-text="Edge color: ">255</param>
         </page>
+        
         <page name="vertices" _gui-text="Vertices">
             <param name="vertex_bool" type="boolean" _gui-text="Draw vertices?">true</param>
             <param name="vertex_bool_only" type="boolean" _gui-text="Draw ONLY vertices?">false</param>
@@ -123,7 +116,7 @@
             <param name="vertex_stroke_color" type="color" gui-text="Vertices\' color: ">255</param>
         </page>
     </param>
-    <!-- classify which menu it appears under - can be new name -->
+    
     <effect>
     <object-type>all</object-type>
         <effects-menu>
@@ -132,7 +125,6 @@
                 </submenu>
         </effects-menu>
     </effect>
-    <!-- Python file for pattern -->
 
     <script>
         <command reldir="extensions" interpreter="python">OrigamiPatterns/Cylindrical_Kresling.py</command>

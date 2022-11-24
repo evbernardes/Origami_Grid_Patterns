@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
-    <!-- Name of effect -->
     <_name>N-sided Hypar</_name>
-    <!-- Name of id -->
     <id>org.inkscape.Origami_patterns.pleat_hypar</id>
     <dependency type="executable" location="extensions">OrigamiPatterns</dependency>
     <dependency type="executable" location="extensions">simplestyle.py</dependency>
 
-    <!-- start notebook -->
     <param name='active-tab' type="notebook">
 
-        <!-- Change this first page, fill with desired parameters and help texts-->
-        <page name="title" _gui-text="Options">
+        <page name="options" gui-text="Options">
             <param name="pattern" type="optiongroup" _gui-text="Type of Hypar" >
                 <_option value="classic">Classic Hypar</_option>
                 <_option value="asymmetric">Asymmetric triangulation</_option>
@@ -31,7 +27,7 @@
 
             <param name="simulation_mode" type="boolean" _gui-text="Simulation mode">true</param>
         </page>
-        <!-- Leave next pages alone, they define common options for every Pattern -->
+        
         <page name="mountains" _gui-text="Mountain creases">
             <param name="mountain_bool" type="boolean" _gui-text="Draw mountains?">true</param>
             <param name="mountain_bool_only" type="boolean" _gui-text="Draw ONLY mountains?">false</param>
@@ -41,6 +37,7 @@
             <param name="mountain_stroke_width" type="float" min="0.01" max="3" appearance="full" _gui-text="Width of mountain strokes">0.1</param>
             <param name="mountain_stroke_color" type="color" gui-text="Mountain creases color: ">4278190335</param>
         </page>
+
         <page name="valleys" _gui-text="Valley creases">
             <param name="valley_bool" type="boolean" _gui-text="Draw valley?">true</param>
             <param name="valley_bool_only" type="boolean" _gui-text="Draw ONLY valleys?">false</param>
@@ -50,6 +47,7 @@
             <param name="valley_stroke_width" type="float" min="0.01" max="3" appearance="full" _gui-text="Width of valley strokes">0.1</param>
             <param name="valley_stroke_color" type="color" gui-text="Valley creases color: ">65535</param>
         </page>
+
         <page name="universal" _gui-text="Universal creases">
             <param name="universal_bool" type="boolean" _gui-text="Draw universal creases?">true</param>
             <param name="universal_bool_only" type="boolean" _gui-text="Draw ONLY universal creases?">false</param>
@@ -59,6 +57,7 @@
              <param name="universal_stroke_width" type="float" min="0.01" max="3" appearance="full"  _gui-text="Width of universal strokes">0.1</param>
             <param name="universal_stroke_color" type="color" gui-text="Universal creases color: ">4278255615</param>
         </page>
+
         <page name="edge" _gui-text="Edge">
             <param name="edge_bool" type="boolean" _gui-text="Draw edges?">true</param>
             <param name="edge_bool_only" type="boolean" _gui-text="Draw ONLY edges?">false</param>
@@ -69,6 +68,7 @@
             <param name="edge_stroke_width" type="float" min="0.01" max="3" appearance="full"  _gui-text="Width of edge strokes">0.1</param>
             <param name="edge_stroke_color" type="color" gui-text="Edge color: ">255</param>
         </page>
+
         <page name="vertices" _gui-text="Vertices">
             <param name="vertex_bool" type="boolean" _gui-text="Draw vertices?">true</param>
             <param name="vertex_bool_only" type="boolean" _gui-text="Draw ONLY vertices?">false</param>
@@ -79,7 +79,6 @@
 
     </param>
 
-    <!-- classify which menu it appears under - can be new name -->
     <effect>
     <object-type>all</object-type>
         <effects-menu>
@@ -88,7 +87,6 @@
             </submenu>
         </effects-menu>
     </effect>
-    <!-- Python file for pattern -->
 
     <script>
         <command reldir="extensions" interpreter="python">OrigamiPatterns/Hypar.py</command>

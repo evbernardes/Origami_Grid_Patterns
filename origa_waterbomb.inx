@@ -8,7 +8,7 @@
     <!-- start notebook -->
     <param name='active-tab' type="notebook">
         <!-- one per page(tab) - unique names. Can discover which page in program-->
-        <page name="title" _gui-text="Options">
+        <page name="options" gui-text="Options">
             <param name="pattern_first_line" type="optiongroup" _gui-text="First line:" >
                 <!-- underscores indicate translatability -->
                 <_option value="waterbomb">Regular waterbomb</_option>

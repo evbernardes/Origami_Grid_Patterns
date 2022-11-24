@@ -11,7 +11,7 @@
     <param name='active-tab' type="notebook">
 
         <!-- Change this first page, fill with desired parameters and help texts-->
-        <page name="title" _gui-text="Options">
+        <page name="options" gui-text="Options">
             <_param name="help"   type="description" xml:space="preserve">------------------------------------</_param>
             <_param name="help"   type="description" xml:space="preserve">Minimum necessary parameters for Cylindrical origami types :</_param>
             <param name="radius" type="float" max="10000" precision="3" _gui-text="Radius of cylinder">10.0</param>
@@ -20,7 +20,6 @@
             <_param name="help"   type="description" xml:space="preserve">-------------------------------------</_param>
             <param name="length" type="float" max="10000" precision="3" _gui-text="Length">10.0</param>
             <param name="angle" type="int" min="0" max="45" _gui-text="Rotation angle (degree)">0</param>
-
             <param name="units" type="optiongroup" appearance="minimal" _gui-text="">
                 <option value="mm">mm</option>
                 <option value="cm">cm</option>
@@ -30,7 +29,9 @@
             <_param name="help"   type="description" xml:space="preserve">The .inx file defines the bridge between Inkscape's interface and the python script.</_param>
             <param name="simulation_mode" type="boolean" _gui-text="Simulation mode">true</param>
         </page>
-        <page name="title" _gui-text="Slots">
+
+        <!-- Next page define common options for every Cylindrical Pattern -->
+        <page name="slots" _gui-text="Slots">
             <param name="extra_column" type="boolean" _gui-text="Extra column?">false</param>
             <_param name="help"   type="description" xml:space="preserve">------------------------------------------------------------</_param>
             <param name="add_base_slot" type="boolean" _gui-text="Add base slots?">false</param>
@@ -52,9 +53,8 @@
             <param name="distance" type="float" max="10000" precision="3" _gui-text="Distance between cells">3.0</param>
             <param name="middle_slot_height" type="float" max="10000" precision="3" _gui-text="Height of slots between cells">3.0</param>
             <param name="middle_slot_width" type="float" max="10000" precision="3" _gui-text="Width of slots between cells">3.0</param>
-            <!-- <param name="attachment_length" type="float" max="10000" precision="3" _gui-text="Length of attachments">3.0</param> -->
-<!--			<param name="attachment_length" type="int"  appearance="full" min="0" max="100" _gui-text="Length of attachments (percent)">20</param>-->
         </page>
+
         <!-- Leave next pages alone, they define common options for every Pattern -->
         <page name="mountains" _gui-text="Mountain creases">
             <param name="mountain_bool" type="boolean" _gui-text="Draw mountains?">true</param>
@@ -65,6 +65,7 @@
             <param name="mountain_stroke_width" type="float" min="0.01" max="3" appearance="full" _gui-text="Width of mountain strokes">0.1</param>
             <param name="mountain_stroke_color" type="color" gui-text="Mountain creases color: ">4278190335</param>
         </page>
+
         <page name="valleys" _gui-text="Valley creases">
             <param name="valley_bool" type="boolean" _gui-text="Draw valley?">true</param>
             <param name="valley_bool_only" type="boolean" _gui-text="Draw ONLY valleys?">false</param>
@@ -74,6 +75,7 @@
             <param name="valley_stroke_width" type="float" min="0.01" max="3" appearance="full" _gui-text="Width of valley strokes">0.1</param>
             <param name="valley_stroke_color" type="color" gui-text="Valley creases color: ">65535</param>
         </page>
+
         <page name="edge" _gui-text="Edge">
             <param name="edge_bool" type="boolean" _gui-text="Draw edges?">true</param>
             <param name="edge_bool_only" type="boolean" _gui-text="Draw ONLY edges?">false</param>
@@ -120,7 +122,7 @@
 <!--			<param name="cut_stroke_color" type="color" gui-text="Cut creases color: ">16711935</param>-->
 <!--		</page>-->
     </param>
-    <!-- classify which menu it appears under - can be new name -->
+    
     <effect>
     <object-type>all</object-type>
         <effects-menu>
@@ -129,7 +131,6 @@
             </submenu>
         </effects-menu>
     </effect>
-    <!-- Python file for pattern -->
 
     <script>
         <command reldir="extensions" interpreter="python">OrigamiPatterns/Cylindrical_Template.py</command>

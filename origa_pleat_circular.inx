@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
-    <!-- Name of effect -->
     <_name>Circular</_name>
-    <!-- Name of id -->
     <id>org.inkscape.Origami_patterns.pleat_circular</id>
     <dependency type="executable" location="extensions">OrigamiPatterns</dependency>
     <dependency type="executable" location="extensions">simplestyle.py</dependency>
 
-    <!-- start notebook -->
     <param name='active-tab' type="notebook">
 
-        <!-- Change this first page, fill with desired parameters and help texts-->
-        <page name="title" _gui-text="Options">
+        <page name="options" gui-text="Options">
             <param name="radius" type="float" max="10000" precision="3" _gui-text="Radius of circle">55.0</param>
             <param name="units" type="optiongroup" appearance="minimal" _gui-text="">
                 <option value="mm">mm</option>
@@ -25,10 +21,8 @@
             <param name="simulation_mode" type="boolean" _gui-text="Simulation mode">true</param>
             <_param name="help"   type="description" xml:space="preserve">To simulate with OrigamiSimulator, semicreases (or facet creases) must be added to properly simulate paper, and the circles must be approximated as polygons.</_param>
             <param name="sides" type="int" min="10" max="100" _gui-text="Number of sides for polygon approximating half circle">20</param>
-
-
         </page>
-        <!-- Leave next pages alone, they define common options for every Pattern -->
+        
         <page name="mountains" _gui-text="Mountain creases">
             <param name="mountain_bool" type="boolean" _gui-text="Draw mountains?">true</param>
             <param name="mountain_bool_only" type="boolean" _gui-text="Draw ONLY mountains?">false</param>
@@ -38,6 +32,7 @@
             <param name="mountain_stroke_width" type="float" min="0.01" max="3" appearance="full" _gui-text="Width of mountain strokes">0.1</param>
             <param name="mountain_stroke_color" type="color" gui-text="Mountain creases color: ">4278190335</param>
         </page>
+
         <page name="valleys" _gui-text="Valley creases">
             <param name="valley_bool" type="boolean" _gui-text="Draw valley?">true</param>
             <param name="valley_bool_only" type="boolean" _gui-text="Draw ONLY valleys?">false</param>
@@ -47,6 +42,7 @@
             <param name="valley_stroke_width" type="float" min="0.01" max="3" appearance="full" _gui-text="Width of valley strokes">0.1</param>
             <param name="valley_stroke_color" type="color" gui-text="Valley creases color: ">65535</param>
         </page>
+
         <page name="edge" _gui-text="Edge">
             <param name="edge_bool" type="boolean" _gui-text="Draw edges?">true</param>
             <param name="edge_bool_only" type="boolean" _gui-text="Draw ONLY edges?">false</param>
@@ -57,6 +53,7 @@
             <param name="edge_stroke_width" type="float" min="0.01" max="3" appearance="full"  _gui-text="Width of edge strokes">0.1</param>
             <param name="edge_stroke_color" type="color" gui-text="Edge color: ">255</param>
         </page>
+
         <page name="vertices" _gui-text="Vertices">
             <param name="vertex_bool" type="boolean" _gui-text="Draw vertices?">true</param>
             <param name="vertex_bool_only" type="boolean" _gui-text="Draw ONLY vertices?">false</param>
@@ -64,6 +61,7 @@
             <param name="vertex_stroke_width" type="float" min="0.01" max="3" appearance="full"  _gui-text="Width of vertex strokes">0.1</param>
             <param name="vertex_stroke_color" type="color" gui-text="Vertices\' color: ">255</param>
         </page>
+
         <page name="semicrease" _gui-text="Semicreases">
             <param name="semicrease_bool" type="boolean" _gui-text="Draw semicreases?">true</param>
             <param name="semicrease_bool_only" type="boolean" _gui-text="Draw ONLY semicreases?">false</param>
@@ -73,10 +71,8 @@
             <param name="semicrease_stroke_width" type="float" min="0.01" max="3" appearance="full"  _gui-text="Width of semicrease strokes">0.1</param>
             <param name="semicrease_stroke_color" type="color" gui-text="Semicreases color: ">4294902015</param>
         </page>
-
     </param>
 
-    <!-- classify which menu it appears under - can be new name -->
     <effect>
     <object-type>all</object-type>
         <effects-menu>
@@ -85,7 +81,6 @@
             </submenu>
         </effects-menu>
     </effect>
-    <!-- Python file for pattern -->
 
     <script>
         <command reldir="extensions" interpreter="python">OrigamiPatterns/Pleat_Circular.py</command>
