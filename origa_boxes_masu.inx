@@ -10,7 +10,8 @@
         <page name="options" gui-text="Options">
             <param name="width" type="float" max="10000" precision="3" gui-text="Width of box">10.0</param>
             <param name="height" type="float" max="10000" precision="3" gui-text="Height of box">10.0</param>
-            <label>Needs a square paper of size: sqrt(2) * (width + 2*height).</label>
+            <label>Needs a square paper of size:</label>
+            <image gui-description="length = sqrt(2) * (width + 2*height)">images/boxes_masu.svg</image>
             <separator/>
             <param name="width_delta_bool" type="boolean" gui-text="Add width increase (?)"
                 gui-description="Slightly modifies the pattern for having a slightly bigger width and slightly smaller height, while keeping the same paper size. This is useful for creating companion box lids.">

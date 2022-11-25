@@ -81,12 +81,8 @@ An OpenSCAD implementation of a belt that can be used with the support is found 
 - See `origa_template.inx` and `OrigamiPatterns/Template.py` for an example!
 - See `origa_cylindrical_template.inx` and `OrigamiPatterns/Cylindrical_Template.py` for an example on cylindrical patterns!
 
-## Todo:
-- Implement Bendy Straw as Cylindrical origami patterns
-
 ## Deprecation and compatibility issues:
-Deprecated functions are being replaced for Inkscape 1.0 while making sure it still works with older versions of Inkscape.
-I fixed all the bugs that I know of for now, but compatibility issues might still happen with Inkscape versions older than 1.0. 
+This extension is no longer compatible for Inkscape versions below `1.0`.
 
 ## Simulation:
 To simulate the patterns, Amanda Ghassaei's [OrigamiSimulator](http://apps.amandaghassaei.com/OrigamiSimulator/) can be used:

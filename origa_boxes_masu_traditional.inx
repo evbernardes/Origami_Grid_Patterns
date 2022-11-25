@@ -9,7 +9,8 @@
 
         <page name="options" gui-text="Options">
             <param name="length" type="float" max="10000" precision="3" gui-text="Length of square paper">10.0</param>
-            <label>Creates a box of width = length / (2 * ( sqrt(2)) and height = width / 2.</label>
+            <label>Creates a box of dimensions:</label>
+            <image>images/boxes_masu_traditional.svg</image>
             <separator/>
             <hbox>
                 <param name="simulation_mode" type="boolean" gui-text="Simulation mode (?)"
