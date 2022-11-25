@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
     <name>Waterbomb</name>
-    <id>org.inkscape.Origami_patterns.magic_ball</id>
+    <id>org.inkscape.Origami_patterns.waterbomb</id>
     <dependency type="executable" location="extensions">OrigamiPatterns</dependency>
     <dependency type="executable" location="extensions">simplestyle.py</dependency>
 
