@@ -36,7 +36,7 @@
             <param name="lambdatheta" type="float" min="15" max="90"  precision="2" gui-text="Angle between a and l">60.0</param>
             <separator/>
             <hbox>
-                <param name="simulation_mode" type="boolean" gui-text="Simulation mode (?)"
+                <param name="simulation_mode" type="bool" gui-text="Simulation mode (?)"
                 gui-description="'Simulation mode' bypasses most style preferences to quickly switch between an OrigamiSimulator-compatible standard and your own chosen style (for laser cutting, for example).">
                 true</param>
                 <spacer size="expand"/>
@@ -51,9 +51,9 @@
         </page>
 
         <page name="slots" gui-text="Slots">
-            <param name="extra_column" type="boolean" gui-text="Extra column?">false</param>
+            <param name="extra_column" type="bool" gui-text="Extra column?">false</param>
             <separator/>
-            <param name="add_base_slot" type="boolean" gui-text="Add base slots?">false</param>
+            <param name="add_base_slot" type="bool" gui-text="Add base slots?">false</param>
             <param name="base_slot_position" type="optiongroup" gui-text="Base slot position:" >
                 <option value="-1">Top</option>
                 <option value="0">Center</option>
@@ -63,7 +63,7 @@
             <param name="base_slot_height" type="float" max="10000" precision="3" gui-text="Height of base slot">3.0</param>
             <param name="base_slot_width" type="float" max="10000" precision="3" gui-text="Width of base slow">3.0</param>
             <separator/>
-            <param name="add_middle_slot" type="boolean" gui-text="Add slots between cells?">false</param>
+            <param name="add_middle_slot" type="bool" gui-text="Add slots between cells?">false</param>
             <param name="middle_slot_position" type="optiongroup" gui-text="Middle slot position:" >
                 <option value="-1">Top</option>
                 <option value="0">Center</option>
@@ -75,9 +75,9 @@
         </page>
 
         <page name="mountains" gui-text="Mountain creases">
-            <param name="mountain_bool" type="boolean" gui-text="Draw mountains?">true</param>
-            <param name="mountain_bool_only" type="boolean" gui-text="Draw ONLY mountains?">false</param>
-            <param name="mountain_dashes_bool" type="boolean" gui-text="Dashed strokes?">true</param>
+            <param name="mountain_bool" type="bool" gui-text="Draw mountains?">true</param>
+            <param name="mountain_bool_only" type="bool" gui-text="Draw ONLY mountains?">false</param>
+            <param name="mountain_dashes_bool" type="bool" gui-text="Dashed strokes?">true</param>
             <param name="mountain_dashes_len" type="float"  min="0.1" max="10" appearance="full" precision="2" gui-text="Mountain dash + gap length">1</param>
             <param name="mountain_dashes_duty" type="float"  min="0.1" max="1" appearance="full" precision="2" gui-text="Mountain dash duty cycle">0.5</param>
             <param name="mountain_stroke_width" type="float" min="0.01" max="3" appearance="full" gui-text="Width of mountain strokes">0.1</param>
@@ -85,9 +85,9 @@
         </page>
 
         <page name="valleys" gui-text="Valley creases">
-            <param name="valley_bool" type="boolean" gui-text="Draw valley?">true</param>
-            <param name="valley_bool_only" type="boolean" gui-text="Draw ONLY valleys?">false</param>
-            <param name="valley_dashes_bool" type="boolean" gui-text="Dashed strokes?">true</param>
+            <param name="valley_bool" type="bool" gui-text="Draw valley?">true</param>
+            <param name="valley_bool_only" type="bool" gui-text="Draw ONLY valleys?">false</param>
+            <param name="valley_dashes_bool" type="bool" gui-text="Dashed strokes?">true</param>
             <param name="valley_dashes_len" type="float"  min="0.1" max="10" appearance="full" precision="2" gui-text="Valley dash + gap length">1</param>
             <param name="valley_dashes_duty" type="float"  min="0.1" max="1" appearance="full" precision="2" gui-text="Valley dash duty cycle">0.25</param>
             <param name="valley_stroke_width" type="float" min="0.01" max="3" appearance="full" gui-text="Width of valley strokes">0.1</param>
@@ -95,9 +95,9 @@
         </page>
 
         <page name="cuts" gui-text="Cuts">
-            <param name="cut_bool" type="boolean" gui-text="Draw cuts?">true</param>
-            <param name="cut_bool_only" type="boolean" gui-text="Draw ONLY cuts?">true</param>
-            <param name="cut_dashes_bool" type="boolean" gui-text="Dashed strokes?">false</param>
+            <param name="cut_bool" type="bool" gui-text="Draw cuts?">true</param>
+            <param name="cut_bool_only" type="bool" gui-text="Draw ONLY cuts?">true</param>
+            <param name="cut_dashes_bool" type="bool" gui-text="Dashed strokes?">false</param>
             <param name="cut_dashes_len" type="float"  min="0.1" max="10" appearance="full" precision="2" gui-text="Cut dash + gap length">1</param>
             <param name="cut_dashes_duty" type="float"  min="0.1" max="1" appearance="full" precision="2" gui-text="Cut dash duty cycle">0.25</param>
             <param name="cut_stroke_width" type="float" min="0.01" max="3" appearance="full" gui-text="Width of cut strokes">0.1</param>
@@ -105,10 +105,10 @@
         </page>
 
         <page name="edge" gui-text="Edge">
-            <param name="edge_bool" type="boolean" gui-text="Draw edges?">true</param>
-            <param name="edge_bool_only" type="boolean" gui-text="Draw ONLY edges?">false</param>
-            <param name="edge_single_path" type="boolean" gui-text="Edges as single path?">true</param>
-            <param name="edge_dashes_bool" type="boolean" gui-text="Dashed strokes?">false</param>
+            <param name="edge_bool" type="bool" gui-text="Draw edges?">true</param>
+            <param name="edge_bool_only" type="bool" gui-text="Draw ONLY edges?">false</param>
+            <param name="edge_single_path" type="bool" gui-text="Edges as single path?">true</param>
+            <param name="edge_dashes_bool" type="bool" gui-text="Dashed strokes?">false</param>
             <param name="edge_dashes_len" type="float"  min="0.1" max="10" appearance="full" precision="2" gui-text="Edge dash + gap length">1</param>
             <param name="edge_dashes_duty" type="float"  min="0.1" max="1" appearance="full" precision="2" gui-text="Edge dash duty cycle">0.25</param>
             <param name="edge_stroke_width" type="float" min="0.01" max="3" appearance="full"  gui-text="Width of edge strokes">0.1</param>
@@ -116,8 +116,8 @@
         </page>
         
         <page name="vertices" gui-text="Vertices">
-            <param name="vertex_bool" type="boolean" gui-text="Draw vertices?">true</param>
-            <param name="vertex_bool_only" type="boolean" gui-text="Draw ONLY vertices?">false</param>
+            <param name="vertex_bool" type="bool" gui-text="Draw vertices?">true</param>
+            <param name="vertex_bool_only" type="bool" gui-text="Draw ONLY vertices?">false</param>
             <param name="vertex_radius" type="float" min="0.01" max="50" appearance="full"  gui-text="Radius of vertices">0.1</param>
             <param name="vertex_stroke_width" type="float" min="0.01" max="3" appearance="full"  gui-text="Width of vertex strokes">0.1</param>
             <param name="vertex_stroke_color" type="color" gui-text="Vertices\' color: ">255</param>

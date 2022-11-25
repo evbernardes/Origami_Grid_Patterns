@@ -16,10 +16,10 @@
             <param name="radius" type="float" max="10000" precision="3" gui-text="Radius of polygon">100.0</param>
             <param name="sides" type="int" min="3" max="100" gui-text="Number of polygon sides">4</param>
             <param name="rings" type="int" min="1" max="100" gui-text="Number of rings">7</param>
-            <param name="simplify_center" type="boolean" gui-text="Simplify center (probably not suited for odd number of sides)">false</param>
+            <param name="simplify_center" type="bool" gui-text="Simplify center (probably not suited for odd number of sides)">false</param>
             <separator/>
             <hbox>
-                <param name="simulation_mode" type="boolean" gui-text="Simulation mode (?)"
+                <param name="simulation_mode" type="bool" gui-text="Simulation mode (?)"
                 gui-description="'Simulation mode' bypasses most style preferences to quickly switch between an OrigamiSimulator-compatible standard and your own chosen style (for laser cutting, for example).">
                 true</param>
                 <spacer size="expand"/>
@@ -38,9 +38,9 @@
         </page>
         
         <page name="mountains" gui-text="Mountain creases">
-            <param name="mountain_bool" type="boolean" gui-text="Draw mountains?">true</param>
-            <param name="mountain_bool_only" type="boolean" gui-text="Draw ONLY mountains?">false</param>
-            <param name="mountain_dashes_bool" type="boolean" gui-text="Dashed strokes?">true</param>
+            <param name="mountain_bool" type="bool" gui-text="Draw mountains?">true</param>
+            <param name="mountain_bool_only" type="bool" gui-text="Draw ONLY mountains?">false</param>
+            <param name="mountain_dashes_bool" type="bool" gui-text="Dashed strokes?">true</param>
             <param name="mountain_dashes_len" type="float"  min="0.1" max="10" appearance="full" precision="2" gui-text="Mountain dash + gap length">1</param>
             <param name="mountain_dashes_duty" type="float"  min="0.1" max="1" appearance="full" precision="2" gui-text="Mountain dash duty cycle">0.5</param>
             <param name="mountain_stroke_width" type="float" min="0.01" max="3" appearance="full" gui-text="Width of mountain strokes">0.1</param>
@@ -48,9 +48,9 @@
         </page>
 
         <page name="valleys" gui-text="Valley creases">
-            <param name="valley_bool" type="boolean" gui-text="Draw valley?">true</param>
-            <param name="valley_bool_only" type="boolean" gui-text="Draw ONLY valleys?">false</param>
-            <param name="valley_dashes_bool" type="boolean" gui-text="Dashed strokes?">true</param>
+            <param name="valley_bool" type="bool" gui-text="Draw valley?">true</param>
+            <param name="valley_bool_only" type="bool" gui-text="Draw ONLY valleys?">false</param>
+            <param name="valley_dashes_bool" type="bool" gui-text="Dashed strokes?">true</param>
             <param name="valley_dashes_len" type="float"  min="0.1" max="10" appearance="full" precision="2" gui-text="Valley dash + gap length">1</param>
             <param name="valley_dashes_duty" type="float"  min="0.1" max="1" appearance="full" precision="2" gui-text="Valley dash duty cycle">0.25</param>
             <param name="valley_stroke_width" type="float" min="0.01" max="3" appearance="full" gui-text="Width of valley strokes">0.1</param>
@@ -58,9 +58,9 @@
         </page>
 
         <page name="universal" gui-text="Universal creases">
-            <param name="universal_bool" type="boolean" gui-text="Draw universal creases?">true</param>
-            <param name="universal_bool_only" type="boolean" gui-text="Draw ONLY universal creases?">false</param>
-            <param name="universal_dashes_bool" type="boolean" gui-text="Dashed strokes?">false</param>
+            <param name="universal_bool" type="bool" gui-text="Draw universal creases?">true</param>
+            <param name="universal_bool_only" type="bool" gui-text="Draw ONLY universal creases?">false</param>
+            <param name="universal_dashes_bool" type="bool" gui-text="Dashed strokes?">false</param>
             <param name="universal_dashes_len" type="float"  min="0.1" max="10" appearance="full" precision="2" gui-text="Universal dash + gap length">1</param>
             <param name="universal_dashes_duty" type="float"  min="0.1" max="1" appearance="full" precision="2" gui-text="Universal dash duty cycle">0.25</param>
              <param name="universal_stroke_width" type="float" min="0.01" max="3" appearance="full"  gui-text="Width of universal strokes">0.1</param>
@@ -68,10 +68,10 @@
         </page>
 
         <page name="edge" gui-text="Edge">
-            <param name="edge_bool" type="boolean" gui-text="Draw edges?">true</param>
-            <param name="edge_bool_only" type="boolean" gui-text="Draw ONLY edges?">false</param>
-            <param name="edge_single_path" type="boolean" gui-text="Edges as single path?">true</param>
-            <param name="edge_dashes_bool" type="boolean" gui-text="Dashed strokes?">false</param>
+            <param name="edge_bool" type="bool" gui-text="Draw edges?">true</param>
+            <param name="edge_bool_only" type="bool" gui-text="Draw ONLY edges?">false</param>
+            <param name="edge_single_path" type="bool" gui-text="Edges as single path?">true</param>
+            <param name="edge_dashes_bool" type="bool" gui-text="Dashed strokes?">false</param>
             <param name="edge_dashes_len" type="float"  min="0.1" max="10" appearance="full" precision="2" gui-text="Edge dash + gap length">1</param>
             <param name="edge_dashes_duty" type="float"  min="0.1" max="1" appearance="full" precision="2" gui-text="Edge dash duty cycle">0.25</param>
             <param name="edge_stroke_width" type="float" min="0.01" max="3" appearance="full"  gui-text="Width of edge strokes">0.1</param>
@@ -79,8 +79,8 @@
         </page>
 
         <page name="vertices" gui-text="Vertices">
-            <param name="vertex_bool" type="boolean" gui-text="Draw vertices?">true</param>
-            <param name="vertex_bool_only" type="boolean" gui-text="Draw ONLY vertices?">false</param>
+            <param name="vertex_bool" type="bool" gui-text="Draw vertices?">true</param>
+            <param name="vertex_bool_only" type="bool" gui-text="Draw ONLY vertices?">false</param>
             <param name="vertex_radius" type="float" min="0.01" max="50" appearance="full"  gui-text="Radius of vertices">0.1</param>
             <param name="vertex_stroke_width" type="float" min="0.01" max="3" appearance="full"  gui-text="Width of vertex strokes">0.1</param>
             <param name="vertex_stroke_color" type="color" gui-text="Vertices\' color: ">255</param>
