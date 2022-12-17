@@ -37,7 +37,46 @@
         </page>
 
         <!-- Leave next pages alone, they define common options for every Pattern -->
-        <page name="mountains" gui-text="Mountain creases">
+        <page name="drawing_options" gui-text="Drawing options">
+        <hbox>
+            <vbox> <label></label>
+                <label>Mountain</label>
+                <label>Valley</label>
+                <label>Edge</label>
+                <!-- <label>Vertices</label> -->
+            </vbox>
+            <separator/>
+            <vbox> <label>Dash length:</label>
+                <param name="mountain_dashes_len" type="float"  min="0.1" max="10" precision="2" gui-text="">1</param>
+                <param name="valley_dashes_len" type="float"  min="0.1" max="10" precision="2" gui-text="">1</param>
+                <param name="edge_dashes_len" type="float"  min="0.1" max="10" precision="2" gui-text="">1</param>
+                <!-- <param name="vertex_dashes_len" type="float"  min="0.1" max="10" precision="2" gui-text="">1</param> -->
+            </vbox>
+            <separator/>
+            <vbox> <label>Dash duty cycle:</label>
+                <param name="mountain_dashes_duty" type="float"  min="0.1" max="1" precision="2" gui-text="">0.5</param>
+                <param name="valley_dashes_duty" type="float"  min="0.1" max="1" precision="2" gui-text="">0.5</param>
+                <param name="edge_dashes_duty" type="float"  min="0.1" max="1" precision="2" gui-text="">0.5</param>
+                <!-- <param name="vertex_dashes_duty" type="float"  min="0.1" max="1" precision="2" gui-text="">0.5</param> -->
+            </vbox>
+            <separator/>
+            <vbox> <label>Width:</label>
+                <param name="mountain_stroke_width" type="float" min="0.01" max="3" gui-text="">0.1</param>
+                <param name="valley_stroke_width" type="float" min="0.01" max="3" gui-text="">0.1</param>
+                <param name="edge_stroke_width" type="float" min="0.01" max="3" gui-text="">0.1</param>
+                <!-- <param name="vertex_stroke_width" type="float" min="0.01" max="3" gui-text="">0.1</param> -->
+            </vbox>
+            <separator/>
+            <vbox> <label>Color:</label>
+                <param name="mountain_stroke_color" type="color" appearance="colorbutton" gui-text="">4278190335</param>
+                <param name="valley_stroke_color" type="color" appearance="colorbutton" gui-text="">65535</param>
+                <param name="edge_stroke_color" type="color" appearance="colorbutton" gui-text="">255</param>
+                <!-- <param name="vertex_stroke_color" type="color" appearance="colorbutton" gui-text="">255</param> -->
+            </vbox>
+        </hbox>
+        </page>
+
+        <!-- <page name="mountains" gui-text="Mountain creases">
             <param name="mountain_bool" type="bool" gui-text="Draw mountains?">true</param>
             <param name="mountain_bool_only" type="bool" gui-text="Draw ONLY mountains?">false</param>
             <param name="mountain_dashes_bool" type="bool" gui-text="Dashed strokes?">true</param>
@@ -45,7 +84,7 @@
             <param name="mountain_dashes_duty" type="float"  min="0.1" max="1" appearance="full" precision="2" gui-text="Mountain dash duty cycle">0.5</param>
             <param name="mountain_stroke_width" type="float" min="0.01" max="3" appearance="full" gui-text="Width of mountain strokes">0.1</param>
             <param name="mountain_stroke_color" type="color" appearance="colorbutton" gui-text="Mountain creases color: ">4278190335</param>
-        </page>
+        </page> -->
 
         <page name="valleys" gui-text="Valley creases">
             <param name="valley_bool" type="bool" gui-text="Draw valley?">true</param>
