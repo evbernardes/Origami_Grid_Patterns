@@ -42,7 +42,7 @@
             <param name="mountain_dashes_len" type="float"  min="0.1" max="10" appearance="full" precision="2" gui-text="Dash + gap length">1</param>
             <param name="mountain_dashes_duty" type="float"  min="0.1" max="1" appearance="full" precision="2" gui-text="Dash duty cycle">0.5</param>
             <param name="mountain_stroke_width" type="float" min="0.01" max="3" appearance="full" gui-text="Width of strokes">0.1</param>
-            <param name="mountain_stroke_color" type="color" gui-text="Strokes color: ">4278190335</param>
+            <param name="mountain_stroke_color" type="color" appearance="colorbutton" gui-text="Strokes color: ">4278190335</param>
         </page>
     </param>
 
