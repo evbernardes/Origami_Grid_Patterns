@@ -9,7 +9,7 @@ from Kresling import Kresling
 
 
 class Kresling_Full(Kresling):
-    
+
     def __init__(self):
         """ Constructor
         """
@@ -26,7 +26,7 @@ class Kresling_Full(Kresling):
         """ Convert radial to angular ratio, then call regular Kresling constructor
         """
         n = self.options.sides
-        theta = pi*(n-2)/(2*n)   
+        theta = pi*(n-2)/(2*n)
         # define ratio parameter
         parameter = self.options.parameter_type
         if parameter == 'radial_ratio':

@@ -24,7 +24,7 @@ class Pattern(inkex.Effect):
     topgroup: inkex.etree.SubElement
             Top Inkscape group element
 
-    path_tree: nested list 
+    path_tree: nested list
         Contains "tree" of Path instances, defining new groups for each
         sublist
 
@@ -58,23 +58,23 @@ class Pattern(inkex.Effect):
 
 
     """
-    
+
     @abstractmethod
     def generate_path_tree(self):
-        """ Generate nested list of Path instances 
+        """ Generate nested list of Path instances
         Abstract method, must be defined in all child classes
         """
         pass
 
     @abstractmethod
     def __init__(self):
-        """ Parse all common options 
-        
+        """ Parse all common options
+
         Must be reimplemented in child classes to parse specialized options
         """
 
         inkex.Effect.__init__(self)  # initialize the super class
-        
+
         # backwards compatibility
         try:
             self.add_argument = self.arg_parser.add_argument
@@ -338,7 +338,7 @@ class Pattern(inkex.Effect):
         if verbose: inkex.debug("longColor = {}, hex = {}".format(longColor,hexColor))
 
         return hexColor
-    
+
     def add_text(self, node, text, position, text_height=12):
         """ Create and insert a single line of text into the svg under node.
         """
@@ -353,7 +353,7 @@ class Pattern(inkex.Effect):
         line = inkex.etree.SubElement(node, inkex.addNS('text','svg'), line_attribs)
         line.text = text
 
-           
+
     def calc_unit_factor(self):
         """ Return the scale factor for all dimension conversions.
 

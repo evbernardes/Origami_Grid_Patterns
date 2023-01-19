@@ -24,7 +24,7 @@ def reflections_rect(path):
     new_paths = [path]
     new_paths = new_paths + Path.list_reflect(new_paths, (0, 0), (0, 1))
     return new_paths + Path.list_reflect(new_paths, (0, 0), (1, 0))
-    
+
 
 class MasuBoxSquare(MasuBox):
 

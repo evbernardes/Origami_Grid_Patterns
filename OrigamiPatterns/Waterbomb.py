@@ -13,7 +13,7 @@ from Pattern import Pattern
 
 
 class Waterbomb(Pattern):
-    
+
     def __init__(self):
         """ Constructor
         """
@@ -26,7 +26,7 @@ class Waterbomb(Pattern):
         self.add_argument('--columns', type=self.int, default=16)
         self.add_argument('--length', type=self.float, default=10.0)
         self.add_argument('--phase_shift', type=self.bool, default=True)
-    
+
     def generate_path_tree(self):
         """ Specialized path generation for Waterbomb tesselation pattern
         """
@@ -102,7 +102,7 @@ class Waterbomb(Pattern):
                        (1*length*cols, 0*length*lines),   # top right
                        (1*length*cols, 1*length*lines),   # bottom right
                        (0*length*cols, 1*length*lines)]  # bottom left
-        
+
         self.path_tree = [grid, valleys, vertices]
 
 

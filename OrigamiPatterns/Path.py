@@ -101,9 +101,9 @@ class Path:
 
     list_mul(cls, paths, transf)
         Generate list of new Path instances, multiplying a different tuple for each list
-        
+
     list_simplify(cls, paths)
-        Gets complicated path-tree list and converts it into 
+        Gets complicated path-tree list and converts it into
         a simple list.
 
     list_invert(cls, paths)
@@ -126,7 +126,7 @@ class Path:
             'm' for mountain creases
             'v' for valley creases
             'e' for edge borders
-        closed: bool 
+        closed: bool
             if true, last point will be connected to first point at the end
         invert: bool
             if true, stroke will start at the last point and go all the way to the first one
@@ -160,7 +160,7 @@ class Path:
         """
         self.points = self.points[::-1]
 
-    """ 
+    """
         Draw path recursively
         - Static method
         - Draws strokes defined on "path_tree" to "group"
@@ -287,7 +287,7 @@ class Path:
             Defines how many times it should be divided.
         style: str
             Single character defining style of stroke.
-        include_edge: bool 
+        include_edge: bool
             Defines if edge should be drawn or not.
         fold_angle: float
 
@@ -354,7 +354,7 @@ class Path:
             paths.append(cls([points[i], points[j]],
                              styles[i], fold_angle = fold_angle))
         return paths
-        
+
 
     def __add__(self, offsets):
         """ " + " operator overload.
@@ -518,7 +518,7 @@ class Path:
             long_ = long
         except:
             long_ = int
-            
+
         if isinstance(transform, (int, long_, float)):
             for p in self.points:
                 points_new.append((transform * p[0],
@@ -714,10 +714,10 @@ class Path:
             paths_new.append(Path.reflect(path, p1, p2))
 
         return paths_new
-        
+
     @classmethod
     def list_simplify(cls, paths):
-        """ Gets complicated path-tree list and converts it into 
+        """ Gets complicated path-tree list and converts it into
         a simple list.
 
         Returns
