@@ -74,15 +74,14 @@ class Cylindrical(Pattern):
 
     @abstractmethod
     def parse_parameters(self):
+        """ Parse custom parameters of Cylindrical pattern
         """
-        """
-        pass
-
+        raise NotImplementedError("Function parse_parameters must be implemented")
     @abstractmethod
     def generate_cell(self):
         """ Generate the the origami cell
         """
-        pass
+        raise NotImplementedError("Function generate_cell must be implemented")
 
     def generate_path_tree(self):
         """ Specialized path generation for your origami pattern

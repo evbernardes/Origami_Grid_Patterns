@@ -56,7 +56,6 @@ class Pattern(inkex.Effect):
     generate_path_tree(self)
         Generate nested list of Path
 
-
     """
 
     @abstractmethod
@@ -64,7 +63,7 @@ class Pattern(inkex.Effect):
         """ Generate nested list of Path instances
         Abstract method, must be defined in all child classes
         """
-        pass
+        raise NotImplementedError("Function generate_path_tree must be implemented")
 
     @abstractmethod
     def __init__(self):
