@@ -34,7 +34,7 @@ For example, ungrouping the Waterbomb tesselation, you get three distinct groups
 - the valley creases
 - the edges
 
-These groups can also be divided into smaller groups:
+These groups can usually also be divided into smaller groups:
 
 ```
 waterbomb
@@ -60,8 +60,8 @@ waterbomb
     ├── line N_a
     └── line N_b
 ```
-
-## Patterns implemented until now:
+## Features:
+### Patterns implemented:
 - Simple Masu Box
 - Waterbomb tesselation (and Magic Ball)
 - Hypar (hyperbolic paraboloid approximate)
@@ -69,7 +69,7 @@ waterbomb
 - Kresling tower (using parameters as defined in: [https://doi.org/10.1115/SMASIS2016-9071](https://doi.org/10.1115/SMASIS2016-9071))
 - Bendy Straw (as published in: [https://doi.org/10.1115/1.4052222](https://doi.org/10.1115/1.4052222))
 
-## Patterns planned to be implemented
+### Patterns planned to be implemented:
 - Miura Ori tesselation.
 
 ### Cylindrical Class: Subclass of Pattern for automatic generation of slots for rigid support
@@ -81,11 +81,11 @@ waterbomb
 An OpenSCAD implementation of a belt that can be used with the support is found in: `Origami_Patterns/Support_Ring_Belt/`.
 
 
-## For creation of new patterns:
+## To create new patterns:
 - See `origa_template.inx` and `OrigamiPatterns/Template.py` for an example!
 - See `origa_cylindrical_template.inx` and `OrigamiPatterns/Cylindrical_Template.py` for an example on cylindrical patterns!
 
-## Deprecation and compatibility issues:
+## Compatibility issues:
 This extension is no longer compatible for Inkscape versions below `1.0`.
 
 ## Simulation:
