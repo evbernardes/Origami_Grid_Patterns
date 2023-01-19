@@ -68,6 +68,10 @@ waterbomb
 - Circular pleat (with special simulation mode)
 - Kresling tower (using parameters as defined in: [https://doi.org/10.1115/SMASIS2016-9071](https://doi.org/10.1115/SMASIS2016-9071))
 - Bendy Straw (as published in: [https://doi.org/10.1115/1.4052222](https://doi.org/10.1115/1.4052222))
+
+## Patterns planned to be implemented
+- Miura Ori tesselation.
+
 ### Cylindrical Class: Subclass of Pattern for automatic generation of slots for rigid support
 -  Cylindrical Kresling tower
 - Bendy Straw Kresling tower
@@ -99,5 +103,4 @@ If pattern does not import correctly, you can try to create a bigger version of 
 ## TODO:
 - I was unaware of many Python style guidelines when I started this project, which must be fixed.
 - `Kresling` should be re-implemented as an instance of `Cylindrical`.
-- Implement the `Miura Ori` pattern.
 
