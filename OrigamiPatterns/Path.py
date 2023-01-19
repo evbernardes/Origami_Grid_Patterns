@@ -1,12 +1,8 @@
-"""
-Path Class
-
-Defines a path and what it is supposed to be (mountain, valley, edge)
-
-"""
-
+#! /usr/bin/env python
+# -*- coding: utf-8 -*-
 import inkex        # Required
 import simplestyle  # will be needed here for styles support
+from math import sin, cos, pi, sqrt
 
 # compatibility hack
 try:
@@ -15,18 +11,12 @@ try:
 except:
     pass
 
-from math import sin, cos, pi, sqrt
-
-# compatibility hack for formatStyle
 def format_style(style):
+    """ Compatibility hack for formatStyle """
     try:
         return str(inkex.Style(style)) # new
     except:
         return simplestyle.formatStyle(style) # old
-# def format_style(style):
-    # return simplestyle.formatStyle(style)
-
-
 
 class Path:
     """ Class that defines an svg stroke to be drawn in Inkscape
@@ -52,14 +42,15 @@ class Path:
     radius: float
         If only one point is given, it's assumed to be a circle and radius sets the radius
 
-
     Methods
-    ---------
+    -------
+
     invert(self)
         Inverts path
 
     Overloaded Operators
-    ---------
+    --------------------
+
     __add__(self, offsets)
         Adding a tuple to a Path returns a new path with all points having an offset defined by the tuple
 
@@ -68,12 +59,12 @@ class Path:
 
 
     Static Methods
-    ---------
+    --------------
+
     draw_paths_recursively(path_tree, group, styles_dict)
         Draws strokes defined on "path_tree" to "group". Styles dict maps style of path_tree element to the definition
         of the style. Ex.:
         if path_tree[i].style = 'm', styles_dict must have an element 'm'.
-
 
     generate_hgrid(cls, xlims, ylims, nb_of_divisions, style, include_edge=False)
         Generate list of Path instances, in which each Path is a stroke defining a horizontal grid dividing the space
@@ -117,7 +108,8 @@ class Path:
         """ Constructor
 
         Parameters
-        ---------
+        ----------
+
         points: list of 2D tuples
             stroke will connect all points
         style: str
@@ -131,19 +123,19 @@ class Path:
         invert: bool
             if true, stroke will start at the last point and go all the way to the first one
         """
-        if type(points) == list and len(points) != 1:
+        if isinstance(points, list) and len(points) != 1:
             self.type = 'linear'
             if invert:
                 self.points = points[::-1]
             else:
                 self.points = points
 
-        elif (type(points) == list and len(points) == 1):
+        elif (isinstance(points, list) and len(points) == 1):
             self.type = 'circular'
             self.points = points
             self.radius = radius
 
-        elif (type(points) == tuple and len(points) == 2):
+        elif (isinstance(points, tuple) and len(points) == 2):
             self.type = 'circular'
             self.points = [points]
             self.radius = radius
@@ -156,32 +148,30 @@ class Path:
         self.closed = closed
 
     def invert(self):
-        """ Inverts path
-        """
+        """ Inverts path """
         self.points = self.points[::-1]
 
-    """
-        Draw path recursively
-        - Static method
-        - Draws strokes defined on "path_tree" to "group"
-        - Inputs:
-        -- path_tree [nested list] of Path instances
-        -- group [inkex.etree.SubElement]
-        -- styles_dict [dict] containing all styles for path_tree
-        """
+
     @staticmethod
     def draw_paths_recursively(path_tree, group, styles_dict):
-        """ Static method, draw list of Path instances recursively
+        """ Draw list of Path instances recursively
+
+        Parameters
+        ----------
+        path_tree: [nested list]
+            List of Path instances
+        group [inkex.etree.SubElement]
+        styles_dict [dict] containing all styles for path_tree
         """
         for subpath in path_tree:
-            if type(subpath) == list:
+            if isinstance(subpath, list):
                 if len(subpath) == 1:
                     subgroup = group
                 else:
                     subgroup = inkex.etree.SubElement(group, 'g')
                 Path.draw_paths_recursively(subpath, subgroup, styles_dict)
+
             else:
-                # ~ if subpath.style != 'n':
                 if subpath.style != 'n' and styles_dict[subpath.style]['draw']:
                     if subpath.type == 'linear':
 
@@ -205,6 +195,7 @@ class Path:
 
     @classmethod
     def get_average_point(cls, paths):
+        """ Get average position of points in paths """
         points = cls.get_points(paths)
         n = len(points)
         x, y = 0, 0
@@ -213,22 +204,21 @@ class Path:
             y += p[1]
         return (x/n, y/n)
 
-
     @classmethod
     def get_square_points(cls, width, height, center = None, rotation = 1):
         """ Get points of a square at given center or origin
 
         Parameters
-        ---------
-        width: float
-        height: float
-        center: list of floats
-        rotation: float
-            rotation in degrees
+        ----------
+            width: float
+            height: float
+            center: list of floats
+            rotation: float
+                rotation in degrees
 
         Returns
-        ---------
-        points: list of tuples
+        -------
+            points: list of tuples
         """
         if center is None:
             center = [width/2, height/2]
@@ -250,11 +240,12 @@ class Path:
         return points
 
     @classmethod
-    def generate_square(cls, width, height, style ='e', fold_angle=180, center = None, rotation = 0):
+    def generate_square(cls, width, height,
+        style ='e', fold_angle=180, center = None, rotation = 0):
         """ Generate a closed square at given center or origin
 
         Parameters
-        ---------
+        ----------
         width: float
         height: float
         style: str
@@ -264,21 +255,22 @@ class Path:
             rotation in degrees
 
         Returns
-        ---------
-        path: path instance
+        -------
+        path: Path instance
         """
         points = cls.get_square_points(width, height, center, rotation)
         return Path(points, style, fold_angle=fold_angle, closed=True)
 
     @classmethod
-    def generate_hgrid(cls, xlims, ylims, nb_of_divisions, style, include_edge=False, fold_angle = 180):
+    def generate_hgrid(cls, xlims, ylims,
+        nb_of_divisions, style, include_edge=False, fold_angle = 180):
         """ Generate list of Path instances, in which each Path is a stroke defining
         a horizontal grid dividing the space xlims * ylims nb_of_divisions times.
 
         All lines are alternated, to minimize Laser Cutter unnecessary movements
 
         Parameters
-        ---------
+        ----------
         xlims: tuple
             Defines x_min and x_max for space that must be divided.
         ylims: tuple
@@ -292,7 +284,7 @@ class Path:
         fold_angle: float
 
         Returns
-        ---------
+        -------
         paths: list of Path instances
         """
         rect_len = (ylims[1] - ylims[0])/nb_of_divisions
@@ -304,18 +296,29 @@ class Path:
         return hgrid
 
     @classmethod
-    def generate_vgrid(cls, xlims, ylims, nb_of_divisions, style, include_edge=False, fold_angle = 180):
+    def generate_vgrid(cls, xlims, ylims,
+        nb_of_divisions, style, include_edge=False, fold_angle = 180):
         """ Generate list of Path instances, in which each Path is a stroke defining
         a vertical grid dividing the space xlims * ylims nb_of_divisions times.
 
         All lines are alternated, to minimize Laser Cutter unnecessary movements
 
         Parameters
-        ---------
-        -> refer to generate_hgrid
+        ----------
+        xlims: tuple
+            Defines x_min and x_max for space that must be divided.
+        ylims: tuple
+            Defines y_min and y_max for space that must be divided.
+        nb_of_divisions: int
+            Defines how many times it should be divided.
+        style: str
+            Single character defining style of stroke.
+        include_edge: bool
+            Defines if edge should be drawn or not.
+        fold_angle: float
 
         Returns
-        ---------
+        -------
         paths: list of Path instances
         """
         rect_len = (xlims[1] - xlims[0])/nb_of_divisions
@@ -328,6 +331,7 @@ class Path:
 
     @classmethod
     def generate_polygon(cls, sides, radius, style, center=(0, 0), fold_angle = 180):
+        """ Return path generation polygon """
         points = []
         for i in range(sides):
             points.append((radius * cos((1 + i * 2) * pi / sides),
@@ -340,12 +344,12 @@ class Path:
         between each two point tuples, in case each stroke must be handled separately.
 
         Returns
-        ---------
+        -------
         paths: list
             list of Path instances
         """
         paths = []
-        if type(styles) == str:
+        if isinstance(styles, str):
             styles = [styles] * (len(points) - 1 + int(closed))
         elif len(styles) != len(points) - 1 + int(closed):
             raise TypeError("Number of paths and styles don't match")
@@ -357,21 +361,21 @@ class Path:
 
 
     def __add__(self, offsets):
-        """ " + " operator overload.
+        """ Addition operator overload.
         Adding a tuple to a Path returns a new path with all points having an offset
         defined by the tuple
         """
-        if type(offsets) == list:
+        if isinstance(offsets, list):
             if len(offsets) != 1 or len(offsets) != len(self.points):
                 raise TypeError("Paths can only be added by a tuple of a list of N tuples, "
                                 "where N is the same number of points")
 
-        elif type(offsets) != tuple:
+        elif not isinstance(offsets, tuple):
             raise TypeError("Paths can only be added by tuples")
         else:
             offsets = [offsets] * len(self.points)
 
-        # if type(self.points) == list:
+        # if isinstance(self.points, list):
         points_new = []
         for point, offset in zip(self.points, offsets):
             points_new.append((point[0]+offset[0],
@@ -382,8 +386,6 @@ class Path:
         else:
             radius = 0.2
 
-         # if self.type == 'circular' else 0.1
-
         return Path(points_new, self.style, self.closed, radius=radius, fold_angle=self.fold_angle)
 
     @classmethod
@@ -391,25 +393,28 @@ class Path:
         """ Generate list of new Path instances, adding a different tuple for each list
 
         Parameters
-        ---------
+        ----------
         paths: Path or list
             list of N Path instances
         offsets: tuple or list
             list of N tuples
 
         Returns
-        ---------
+        -------
         paths_new: list
             list of N Path instances
         """
-        if type(paths) == Path and type(offsets) == tuple:
+        if isinstance(paths, Path) and isinstance(offsets, tuple):
             paths = [paths]
             offsets = [offsets]
-        elif type(paths) == list and type(offsets) == tuple:
+
+        elif isinstance(paths, list) and isinstance(offsets, tuple):
             offsets = [offsets] * len(paths)
-        elif type(paths) == Path and type(offsets) == list:
+
+        elif isinstance(paths, Path) and isinstance(offsets, list):
             paths = [paths] * len(offsets)
-        elif type(paths) == list and type(offsets) == list:
+
+        elif isinstance(paths, list) and isinstance(offsets, list):
             if len(paths) == 1:
                 paths = [paths[0]] * len(offsets)
             elif len(offsets) == 1:
@@ -422,12 +427,10 @@ class Path:
 
         paths_new = []
         for path, offset in zip(paths, offsets):
-            if type(path) == Path:
-                paths_new.append(path+offset)
-            elif type(path) == list:
-                paths_new.append(
-                    cls.list_add(path, offset)
-                )
+            if isinstance(path, Path):
+                paths_new.append(path + offset)
+            elif isinstance(path, list):
+                paths_new.append(cls.list_add(path, offset))
 
         return paths_new
 
@@ -436,25 +439,25 @@ class Path:
         """ Generate list of new Path instances, multiplying a different tuple for each list
 
         Parameters
-        ---------
+        ----------
         paths: Path or list
             list of N Path instances
         offsets: tuple or list
             list of N tuples
 
         Returns
-        ---------
+        -------
         paths_new: list
             list of N Path instances
         """
-        if type(paths) == Path and type(offsets) == tuple:
+        if isinstance(paths, Path) and isinstance(offsets, tuple):
             paths = [paths]
             offsets = [offsets]
-        elif type(paths) == list and type(offsets) == tuple:
+        elif isinstance(paths, list) and isinstance(offsets, tuple):
             offsets = [offsets] * len(paths)
-        elif type(paths) == Path and type(offsets) == list:
+        elif isinstance(paths, Path) and isinstance(offsets, list):
             paths = [paths] * len(offsets)
-        elif type(paths) == list and type(offsets) == list:
+        elif isinstance(paths, list) and isinstance(offsets, list):
             if len(paths) == 1:
                 paths = [paths[0]] * len(offsets)
             elif len(offsets) == 1:
@@ -476,33 +479,31 @@ class Path:
             raise ValueError('Path breaking only implemented for straight lines with 2 points')
 
         if styles is None:
-            styles = [self.style]*len(lengths)
+            styles = [self.style] * len(lengths)
         elif len(styles) != len(lengths):
             raise ValueError('Different number of lenghts and styles')
 
         p0 = self.points[0]
         p1 = self.points[1]
-        d = (p1[0]-p0[0], p1[1]-p0[1])
-        L = sqrt(d[0]**2 + d[1]**2)
+        d = (p1[0] - p0[0], p1[1] - p0[1])
+        L = sqrt(d[0] ** 2 + d[1] ** 2)
         dx = d[0] / L
         dy = d[1] / L
         paths = []
         start = 0
         p0_ = p0
         for l, s in zip(lengths, styles):
-            p1_ = (p0_[0] + dx*l, p0_[1] + dy*l)
+            p1_ = (p0_[0] + dx * l, p0_[1] + dy * l)
             paths.append(Path([p0_, p1_], style = s))
             p0_ = p1_
         return paths
 
-
-
     def __mul__(self, transform):
-        """ " * " operator overload.
+        """ Multiplication operator overload.
         Define multiplication of a Path to a vector in complex exponential representation
 
         Parameters
-        ---------
+        ----------
         transform: float of tuple of length 2 or 4
             if float, transform represents magnitude
                 Example: path * 3
@@ -551,6 +552,7 @@ class Path:
         return Path(points_new, self.style, self.closed, radius=radius, fold_angle=self.fold_angle)
 
     def shape(self):
+        """ Return bounds of path """
         points = self.points
         x = [p[0] for p in points]
         y = [p[1] for p in points]
@@ -561,7 +563,7 @@ class Path:
         """ Generate list of new Path instances, between each two points
 
             Parameters
-            ---------
+            ----------
             points: list of tuples
                 list of points
             styles: str or list of str
@@ -570,13 +572,13 @@ class Path:
                 list of maximum fold angle values
 
             Returns
-            ---------
+            -------
             paths_new: list
                 list of N Path instances
             """
         if fold_angles is None:
             fold_angles = [180]
-        elif type(fold_angles) != list:
+        elif not isinstance(fold_angles, list):
             fold_angles = [fold_angles]
 
         return [Path([points[i], points[i+1]],
@@ -588,7 +590,7 @@ class Path:
         """ Generate list of new Path instances, rotation each path by transform
 
         Parameters
-        ---------
+        ----------
         paths: Path or list
             list of N Path instances
         n: int
@@ -597,7 +599,7 @@ class Path:
             axis of rotation
 
         Returns
-        ---------
+        -------
         paths_new: list
             list of N Path instances
         """
@@ -606,7 +608,7 @@ class Path:
         paths_new = []
         for i in range(n):
             ith_rotation = cls.list_rotate(paths, theta, translation=translation)
-            if type(paths) == list:
+            if isinstance(paths, list):
                 paths_new += ith_rotation
             else:
                 paths_new.append(ith_rotation)
@@ -618,7 +620,7 @@ class Path:
         """ Generate list of new Path instances, rotation each path by transform
 
         Parameters
-        ---------
+        ----------
         paths: Path or list
             list of N Path instances
         theta: float (radians)
@@ -627,21 +629,21 @@ class Path:
             axis of rotation
 
         Returns
-        ---------
+        -------
         paths_new: list
             list of N Path instances
         """
         if len(translation) != 2:
             TypeError("Translation must have length 2")
 
-        if type(paths) != list:
+        if not isinstance(paths, list):
             paths = [paths]
 
         paths_new = []
         for path in paths:
-            if type(path) == Path:
+            if isinstance(path, Path):
                 paths_new.append(path*(1, theta, translation[0], translation[1]))
-            elif type(path) == list:
+            elif isinstance(path, list):
                 paths_new.append(cls.list_rotate(path, theta, translation))
 
         if len(paths_new) == 1:
@@ -655,13 +657,13 @@ class Path:
         """ Reflects each point of path on line defined by two points and return new Path instance with new reflected points
 
         Parameters
-        ---------
+        ----------
         path: Path
         p1: tuple or list of size 2
         p2: tuple or list of size 2
 
         Returns
-        ---------
+        -------
         path_reflected: Path
         """
 
@@ -694,19 +696,19 @@ class Path:
         """ Generate list of new Path instances, rotation each path by transform
 
         Parameters
-        ---------
+        ----------
         paths: Path or list
             list of N Path instances
         p1: tuple or list of size 2
         p2: tuple or list of size 2
 
         Returns
-        ---------
+        -------
         paths_new: list
             list of N Path instances
         """
 
-        if type(paths) == Path:
+        if isinstance(paths, Path):
             paths = [paths]
 
         paths_new = []
@@ -721,18 +723,18 @@ class Path:
         a simple list.
 
         Returns
-        ---------
+        -------
         paths: list
             list of Path instances
         """
-        if type(paths) == Path:
+        if isinstance(paths, Path):
             return paths
 
         simple_list = []
         for i in range(len(paths)):
-            if type(paths[i]) == Path:
+            if isinstance(paths[i], Path):
                 simple_list.append(paths[i])
-            elif type(paths[i]) == list:
+            elif isinstance(paths[i], list):
                 simple_list = simple_list + Path.list_simplify(paths[i])
         return simple_list
 
@@ -741,15 +743,15 @@ class Path:
         """ Invert list of paths and points of each path.
 
         Returns
-        ---------
+        -------
         paths: list
             list of Path instances
         """
 
-        if type(paths) == Path:
+        if isinstance(paths, Path):
             # return Path(paths.points[::-1], paths.style, paths.closed, paths.invert)
             return Path(paths.points, paths.style, paths.closed, True)
-        elif type(paths) == list:
+        elif isinstance(paths, list):
             paths_inverted = []
             # n = len(paths)
             # for i in range(n):
@@ -762,26 +764,20 @@ class Path:
 
     @classmethod
     def debug_points(cls, paths):
-        """ Plots points of path tree in drawing order.
-
-        """
-        if type(paths) == Path:
+        """ Plots points of path tree in drawing order """
+        if isinstance(paths, Path):
             inkex.debug(paths.points)
-        elif type(paths) == list:
+        elif isinstance(paths, list):
             for sub_path in paths:
                 Path.debug_points(sub_path)
 
     @classmethod
     def get_points(cls, paths):
-        """ Get points of path tree in drawing order.
-
-        """
+        """ Get points of path tree in drawing order """
         points = []
-        if type(paths) == Path:
+        if isinstance(paths, Path):
             points = points + paths.points
-        elif type(paths) == list:
+        elif isinstance(paths, list):
             for sub_path in paths:
                 points = points + Path.get_points(sub_path)
         return points
-
-

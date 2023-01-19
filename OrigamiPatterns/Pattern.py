@@ -1,12 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
-"""
-Helper functions
-
-"""
 import os
 from abc import abstractmethod
-
 from Path import Path, inkex, simplestyle
 
 class Pattern(inkex.Effect):
@@ -14,7 +9,7 @@ class Pattern(inkex.Effect):
     Patterns generation
 
     Attributes
-    ---------
+    ----------
     styles_dict: dict
             defines styles for every possible stroke. Default values are:
             styles_dict = {'m' : mountain_style,

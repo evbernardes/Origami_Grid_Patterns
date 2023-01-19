@@ -1,24 +1,19 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
-import numpy as np
 from abc import abstractmethod
-from math import pi, sin, cos, tan, asin, acos, atan, sqrt
+from math import pi, sin
 from itertools import accumulate
 
 import inkex
-
 from Path import Path
 from Pattern import Pattern
-
-
-# Select name of class, inherits from Pattern
-# TODO:
-# 1) Implement __init__ method to get all custom options and then call Pattern's __init__
-# 2) Implement generate_path_tree to define all of the desired strokes
 
 def generate_slot_line(n, slot_position,
                        slot_height, slot_width,
                        base_height, base_width):
+    """ Helper function for generation of entire line
+    of slots
+    """
 
     if slot_height == 0 and slot_width == 0:
         return []
@@ -322,7 +317,8 @@ class Cylindrical(Pattern):
             cell_right = cell_data['edge_right'][-(i + 1)]
             dx = cell_data['dx'][-(i + 2)]
             edges.append(
-                cell_right + (dx, cell_data['dy'][rows - i - 1] + base_height + (rows - i - 1) * distance))
+                cell_right + \
+                    (dx, cell_data['dy'][rows - i - 1] + base_height + (rows - i - 1) * distance))
 
         # TODO: Study why I had added the following lines
         #     if self.options.add_middle_slot and i < rows - 1:
@@ -333,4 +329,3 @@ class Cylindrical(Pattern):
             edges.append(base['right'][1])
 
         return Path.get_points(edges)
-

@@ -27,7 +27,7 @@ The extension can be found on `Extensions > Origami Patterns`
 - Semicreases, universal creases and cuts (for Kirigami) can also be implemented, if needed.
 
 ## Output:
-Creates the pattern. 
+Creates the pattern.
 To simplify manual editing on Inkscape, the drawn pattern is composed of subgroups of strokes.
 For example, ungrouping the Waterbomb tesselation, you get three distinct groups of objects:
 - the mountain creases
@@ -43,20 +43,20 @@ waterbomb
 │   ├── left
 │   ├── right
 │   └── top
-│   
+│
 ├── mountains
 │   ├── horizontal lines
 │   └── vertical lines
-│   
+│
 └── valleys
     ├── line 1_a
     ├── line 1_b
-    │   
+    │
     ├── line 2_a
     ├── line 2_b
-    │   
+    │
     ├── ...
-    │   
+    │
     ├── line N_a
     └── line N_b
 ```
@@ -95,4 +95,9 @@ To simulate the patterns, Amanda Ghassaei's [OrigamiSimulator](http://apps.amand
 - Import .svg file from OrigamiSimulator
 
 If pattern does not import correctly, you can try to create a bigger version of the same pattern.
+
+## TODO:
+- I was unaware of many Python style guidelines when I started this project, which must be fixed.
+- `Kresling` should be re-implemented as an instance of `Cylindrical`.
+- Implement the `Miura Ori` pattern.
 
