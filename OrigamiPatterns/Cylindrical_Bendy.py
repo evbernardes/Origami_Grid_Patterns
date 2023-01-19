@@ -277,8 +277,8 @@ class Bendy_Straw(Pattern):
         center_slot = self.options.center_base_slot
         base_slots = []
         if self.options.add_base_slot:
-            base_slot_height = self.options.base_slot_height
-            base_slot_width = self.options.base_slot_width
+            base_slot_height = self.options.base_slot_height * unit_factor
+            base_slot_width = self.options.base_slot_width * unit_factor
             if base_slot_height > base_height or base_slot_width > A:
                 inkex.debug('Base slot dimensions are too big')
                 base_slot_height = min(base_height, base_slot_height)
@@ -297,8 +297,8 @@ class Bendy_Straw(Pattern):
 
         dist_slots = []
         if self.options.add_distance_slot:
-            dist_slot_height = self.options.distance_slot_height
-            dist_slot_width = self.options.distance_slot_width
+            dist_slot_height = self.options.distance_slot_height * unit_factor
+            dist_slot_width = self.options.distance_slot_width * unit_factor
             if dist_slot_height > distance or dist_slot_width > A:
                 inkex.debug('Dimensions of slots between cells are too big')
                 dist_slot_height = min(distance, dist_slot_height)

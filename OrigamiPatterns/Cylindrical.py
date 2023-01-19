@@ -227,9 +227,9 @@ class Cylindrical(Pattern):
         cols = self.options.cols
         rows = self.options.rows
         width = self.options.width * unit_factor
-
         dist = self.options.distance * unit_factor
         base_height = self.options.base_height * unit_factor
+
         height = [dy_[i] + base_height + (i - 1) * dist for i in range(rows+1)]
 
         base = {'left': [],
