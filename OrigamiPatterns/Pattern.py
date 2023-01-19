@@ -32,7 +32,8 @@ class Pattern(inkex.Effect):
         Defines translation to be added when drawing to Inkscape (default: 0,0)
 
     Methods
-    ---------
+    -------
+
     effect(self)
         Main function, called when the extension is run.
 
@@ -49,7 +50,8 @@ class Pattern(inkex.Effect):
         Convert the long into a #RRGGBB color value
 
     Abstract Methods
-    ---------
+    ----------------
+
     __init__(self)
         Parse all options
 
@@ -71,7 +73,6 @@ class Pattern(inkex.Effect):
 
         Must be reimplemented in child classes to parse specialized options
         """
-
         inkex.Effect.__init__(self)  # initialize the super class
 
         # backwards compatibility

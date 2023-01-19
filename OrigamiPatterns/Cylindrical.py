@@ -47,10 +47,22 @@ def generate_slot_line(n, slot_position,
     return slots + dividers
 
 class Cylindrical(Pattern):
+    """ Class that inherits Pattern and further specializes it for different
+    Cylindrical classes generation.
+
+    Abstract Methods
+    ----------------
+
+    parse_parameters(self)
+        Parse custom parameters of Cylindrical pattern
+
+    generate_cell(self)
+        Generate the the origami cell
+
+    """
 
     def __init__(self):
-        """ Constructor
-        """
+        """ Constructor """
         Pattern.__init__(self)  # Must be called in order to parse common options
 
         # save all custom parameters defined on .inx file
@@ -72,20 +84,23 @@ class Cylindrical(Pattern):
         self.add_argument('--middle_slot_height', type=self.float, default=3.0)
         self.add_argument('--middle_slot_width', type=self.float, default=3.0)
 
+        self.path_tree = []
+        self.edge_points = []
+        self.vertex_points = []
+        self.translate = (0, 0)
+
     @abstractmethod
     def parse_parameters(self):
-        """ Parse custom parameters of Cylindrical pattern
-        """
+        """ Parse custom parameters of Cylindrical pattern """
         raise NotImplementedError("Function parse_parameters must be implemented")
+
     @abstractmethod
     def generate_cell(self):
-        """ Generate the the origami cell
-        """
+        """ Generate the the origami cell """
         raise NotImplementedError("Function generate_cell must be implemented")
 
     def generate_path_tree(self):
-        """ Specialized path generation for your origami pattern
-        """
+        """ Specialized path generation for your origami pattern """
         # zero distances when slot option not selected
         if not self.options.add_base_slot:
             self.options.base_height = 0
@@ -102,7 +117,6 @@ class Cylindrical(Pattern):
 
         # pre-calculate width before adding one to sides, for easier attachment
         self.options.width = 2 * self.options.radius * sin(pi / self.options.sides)
-
         self.options.cols = self.options.sides + self.options.extra_column
 
         # get cell definitions
@@ -118,24 +132,6 @@ class Cylindrical(Pattern):
         points = Path.get_points(cell_data['divider'])
         x = [p[0] for p in points]
         DX = max(x) - min(x)
-        # DX = 0
-
-        # if 'edge_right' not in cell_data and 'edge_left' not in cell_data:
-        #     cell_data['edge_left'] = []
-        #     for interior in cell_data['interior']:
-        #         points = Path.get_points(interior)
-        #         x = [p[0] for p in points]
-        #         y = [p[1] for p in points]
-        #         top = [p for p in points if p[1] == min(y)]
-        #         top_x = [p[0] for p in top]
-        #         # top_y = [p[1] for p in top]
-        #         bot = [p for p in points if p[1] == max(y)]
-        #         bot_x = [p[0] for p in bot]
-        #         # bot_y = [p[1] for p in bot]
-        #         top_left = [p for p in top if p[0] == min(top_x)][0]
-        #         bot_left = [p for p in bot if p[0] == min(bot_x)][0]
-        #         cell_data['edge_left'].append(Path([top_left, bot_left], 'e'))
-
 
         if 'edge_right' not in cell_data and 'edge_left' in cell_data:
             cell_data['edge_right'] = []
@@ -172,6 +168,7 @@ class Cylindrical(Pattern):
         self.path_tree.append(slots)
 
     def get_dxdy(self, cell_data):
+        """ Get starting position of rows and columns"""
         dx = [0]
         dy = [0]
         for edge in cell_data['edge_left']:
@@ -179,27 +176,23 @@ class Cylindrical(Pattern):
             dy.append(edge.points[1][1] - edge.points[0][1])
         return list(accumulate(dx)), list(accumulate(dy))
 
-
     def generate_interior(self, cell_data):
-        # retrieve conversion factor for selected unit
+        """ Retrieve conversion factor for selected unit"""
         unit_factor = self.calc_unit_factor()
         rows = self.options.rows
         base_height = self.options.base_height * unit_factor
         distance = self.options.distance * unit_factor
 
         interiors = []
-
         for i in range(rows):
             dx = cell_data['dx'][i]
             dy = cell_data['dy'][i] + base_height + i * distance
             pattern = cell_data['interior'][i]
             interiors.append(Path.list_add(pattern, (dx, dy)))
-
         return interiors
 
-
     def generate_horizontal_dividers(self, cell_data):
-        # retrieve conversion factor for selected unit
+        """ Return lines dividing cell rows """
         unit_factor = self.calc_unit_factor()
         rows = self.options.rows
         base_height = self.options.base_height * unit_factor
@@ -224,10 +217,11 @@ class Cylindrical(Pattern):
             dividers.append(divider + (dx, dy))
 
         return dividers
-        # pass
-
 
     def generate_all_slots(self, cell_data):
+        """ Return lines of all in base and between cells,
+        According to options
+        """
         dx_ = cell_data['dx']
         dy_ = cell_data['dy']
 
@@ -252,8 +246,10 @@ class Cylindrical(Pattern):
             base_slot_width = self.options.base_slot_width * unit_factor
             base_slot_sizes = [base_slot_height, base_slot_width, base_height, width]
 
-            base_slot_top = generate_slot_line(cols, +int(self.options.base_slot_position), *base_slot_sizes)
-            base_slot_bot = generate_slot_line(cols, -int(self.options.base_slot_position), *base_slot_sizes)
+            base_slot_top = generate_slot_line(
+                cols, +int(self.options.base_slot_position), *base_slot_sizes)
+            base_slot_bot = generate_slot_line(
+                cols, -int(self.options.base_slot_position), *base_slot_sizes)
 
             base['slots'] = [base_slot_top, Path.list_add(base_slot_bot, (dx_[-1], height[-1]))]
 
@@ -275,7 +271,8 @@ class Cylindrical(Pattern):
             middle_slot_width = self.options.middle_slot_width * unit_factor
             middle_slot_sizes = [middle_slot_height, middle_slot_width, dist, width]
 
-            middle_slot = generate_slot_line(cols, +int(self.options.middle_slot_position), *middle_slot_sizes)
+            middle_slot = generate_slot_line(
+                cols, +int(self.options.middle_slot_position), *middle_slot_sizes)
 
             middle['slots'] = [Path.list_add(middle_slot,
                                           (dx_[i], height[i]))
@@ -284,6 +281,7 @@ class Cylindrical(Pattern):
             middle['left'] = [Path([(0, 0),
                                     (0, dist)], style='e') +
                               (dx_[i+1], dy_[1] + dist + height[i]) for i in range(rows-1)]
+
             middle['right'] = [
                 Path([(0, height[rows-2] + base_height + (rows - 1) * dist),
                       (0, dy_[-2] + base_height +  (rows - 2) * dist)], style='e') +
@@ -292,29 +290,45 @@ class Cylindrical(Pattern):
         return base, middle
 
     def generate_fused_edge_points(self, base, middle, cell_data):
+        """ Generate edge lines """
         unit_factor = self.calc_unit_factor()
         base_height = self.options.base_height * unit_factor
         distance = self.options.distance * unit_factor
         rows = self.options.rows
 
         edges = []
-        if self.options.add_base_slot: edges.append(base['left'][0])
+        # top, left corner
+        if self.options.add_base_slot:
+            edges.append(base['left'][0])
+
         for i in range(rows):
             cell_left = cell_data['edge_left'][i]
             dx = cell_data['dx'][i]
-            edges.append(cell_left + (dx, cell_data['dy'][i] + base_height + i * distance))
+            edges.append(
+                cell_left + (dx, cell_data['dy'][i] + base_height + i * distance))
+
             if self.options.add_middle_slot and i < rows - 1:
                 edges.append(middle['left'][i] + (0, 0))
-        if self.options.add_base_slot: edges.append(base['left'][1])
 
-        if self.options.add_base_slot: edges.append(base['right'][0])
+        # bottom, left corner
+        if self.options.add_base_slot:
+            edges.append(base['left'][1])
+        # bottom, right corner
+        if self.options.add_base_slot:
+            edges.append(base['right'][0])
+
         for i in range(rows):
             cell_right = cell_data['edge_right'][-(i + 1)]
             dx = cell_data['dx'][-(i + 2)]
-            edges.append(cell_right + (dx, cell_data['dy'][rows - i - 1] + base_height + (rows - i - 1) * distance))
+            edges.append(
+                cell_right + (dx, cell_data['dy'][rows - i - 1] + base_height + (rows - i - 1) * distance))
+
             if self.options.add_middle_slot and i < rows - 1:
                 edges.append(middle['right'][i] + (0, 0))
-        if self.options.add_base_slot: edges.append(base['right'][1])
+
+        # top, right corner
+        if self.options.add_base_slot:
+            edges.append(base['right'][1])
 
         return Path.get_points(edges)
 
