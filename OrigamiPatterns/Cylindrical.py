@@ -313,6 +313,7 @@ class Cylindrical(Pattern):
         # bottom, left corner
         if self.options.add_base_slot:
             edges.append(base['left'][1])
+
         # bottom, right corner
         if self.options.add_base_slot:
             edges.append(base['right'][0])
@@ -323,8 +324,9 @@ class Cylindrical(Pattern):
             edges.append(
                 cell_right + (dx, cell_data['dy'][rows - i - 1] + base_height + (rows - i - 1) * distance))
 
-            if self.options.add_middle_slot and i < rows - 1:
-                edges.append(middle['right'][i] + (0, 0))
+        # TODO: Study why I had added the following lines
+        #     if self.options.add_middle_slot and i < rows - 1:
+        #         edges.append(middle['right'][i] + (0, 0))
 
         # top, right corner
         if self.options.add_base_slot:
