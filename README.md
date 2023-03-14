@@ -102,5 +102,3 @@ If pattern does not import correctly, you can try to create a bigger version of 
 
 ## TODO:
 - I was unaware of many Python style guidelines when I started this project, which must be fixed.
-- `Bendy` should be re-implemented as an instance of `Cylindrical`.
-
