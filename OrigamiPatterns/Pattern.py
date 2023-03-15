@@ -71,81 +71,77 @@ class Pattern(inkex.Effect):
         inkex.Effect.__init__(self)  # initialize the super class
 
         self.add_argument = self.arg_parser.add_argument
-        self.str = str
-        self.int = int
-        self.float = float
-        self.bool = inkex.Boolean
 
-        self.add_argument('-u', '--units', type=self.str, default='mm')
+        self.add_argument('-u', '--units', type=str, default='mm')
 
         # bypass most style options for OrigamiSimulator
-        self.add_argument('--simulation_mode', type=self.bool, default=False)
+        self.add_argument('--simulation_mode', type=inkex.Boolean, default=False)
 
         # mountain options
-        self.add_argument('--mountain_stroke_color', type=self.str,  default=4278190335)  # Red
-        self.add_argument('--mountain_stroke_width', type=self.float, default=0.1)
-        self.add_argument('--mountain_dashes_len', type=self.float, default=1.0)
-        self.add_argument('--mountain_dashes_duty', type=self.float, default=0.5)
-        self.add_argument('--mountain_dashes_bool', type=self.bool, default=True)
-        self.add_argument('--mountain_bool', type=self.bool, default=True)
-        self.add_argument('--mountain_bool_only', type=self.bool, default=False)
+        self.add_argument('--mountain_stroke_color', type=str,  default=4278190335)  # Red
+        self.add_argument('--mountain_stroke_width', type=float, default=0.1)
+        self.add_argument('--mountain_dashes_len', type=float, default=1.0)
+        self.add_argument('--mountain_dashes_duty', type=float, default=0.5)
+        self.add_argument('--mountain_dashes_bool', type=inkex.Boolean, default=True)
+        self.add_argument('--mountain_bool', type=inkex.Boolean, default=True)
+        self.add_argument('--mountain_bool_only', type=inkex.Boolean, default=False)
 
         # valley options
-        self.add_argument('--valley_stroke_color', type=self.str, default=65535)  # Blue
-        self.add_argument('--valley_stroke_width', type=self.float, default=0.1)
-        self.add_argument('--valley_dashes_len', type=self.float, default=1.0)
-        self.add_argument('--valley_dashes_duty', type=self.float, default=0.25)
-        self.add_argument('--valley_dashes_bool', type=self.bool, default=True)
-        self.add_argument('--valley_bool', type=self.bool, default=True)
-        self.add_argument('--valley_bool_only', type=self.bool, default=False)
+        self.add_argument('--valley_stroke_color', type=str, default=65535)  # Blue
+        self.add_argument('--valley_stroke_width', type=float, default=0.1)
+        self.add_argument('--valley_dashes_len', type=float, default=1.0)
+        self.add_argument('--valley_dashes_duty', type=float, default=0.25)
+        self.add_argument('--valley_dashes_bool', type=inkex.Boolean, default=True)
+        self.add_argument('--valley_bool', type=inkex.Boolean, default=True)
+        self.add_argument('--valley_bool_only', type=inkex.Boolean, default=False)
 
         # edge options
-        self.add_argument('--edge_stroke_color', type=self.str,  default=255)  # Black
-        self.add_argument('--edge_stroke_width', type=self.float, default=0.1)
-        self.add_argument('--edge_dashes_len', type=self.float, default=1.0)
-        self.add_argument('--edge_dashes_duty', type=self.float, default=0.25)
-        self.add_argument('--edge_dashes_bool', type=self.bool, default=False)
-        self.add_argument('--edge_bool', type=self.bool, default=True)
-        self.add_argument('--edge_bool_only', type=self.bool, default=False)
-        self.add_argument('--edge_single_path', type=self.bool, default=True)
+        self.add_argument('--edge_stroke_color', type=str,  default=255)  # Black
+        self.add_argument('--edge_stroke_width', type=float, default=0.1)
+        self.add_argument('--edge_dashes_len', type=float, default=1.0)
+        self.add_argument('--edge_dashes_duty', type=float, default=0.25)
+        self.add_argument('--edge_dashes_bool', type=inkex.Boolean, default=False)
+        self.add_argument('--edge_bool', type=inkex.Boolean, default=True)
+        self.add_argument('--edge_bool_only', type=inkex.Boolean, default=False)
+        self.add_argument('--edge_single_path', type=inkex.Boolean, default=True)
 
         # universal crease options
-        self.add_argument('--universal_stroke_color', type=self.str, default=4278255615)  # Magenta
-        self.add_argument('--universal_stroke_width', type=self.float, default=0.1)
-        self.add_argument('--universal_dashes_len',  type=self.float,  default=1.0)
-        self.add_argument('--universal_dashes_duty', type=self.float, default=0.25)
-        self.add_argument('--universal_dashes_bool', type=self.bool, default=False)
-        self.add_argument('--universal_bool', type=self.bool, default=True)
-        self.add_argument('--universal_bool_only', type=self.bool, default=False)
+        self.add_argument('--universal_stroke_color', type=str, default=4278255615)  # Magenta
+        self.add_argument('--universal_stroke_width', type=float, default=0.1)
+        self.add_argument('--universal_dashes_len',  type=float,  default=1.0)
+        self.add_argument('--universal_dashes_duty', type=float, default=0.25)
+        self.add_argument('--universal_dashes_bool', type=inkex.Boolean, default=False)
+        self.add_argument('--universal_bool', type=inkex.Boolean, default=True)
+        self.add_argument('--universal_bool_only', type=inkex.Boolean, default=False)
 
         # semicrease options
-        self.add_argument('--semicrease_stroke_color', type=self.str, default=4294902015)  # Yellow
-        self.add_argument('--semicrease_stroke_width', type=self.float, default=0.1)
-        self.add_argument('--semicrease_dashes_len', type=self.float, default=1.0)
-        self.add_argument('--semicrease_dashes_duty', type=self.float, default=0.25)
-        self.add_argument('--semicrease_dashes_bool', type=self.bool, default=False)
-        self.add_argument('--semicrease_bool', type=self.bool, default=True)
-        self.add_argument('--semicrease_bool_only', type=self.bool, default=False)
+        self.add_argument('--semicrease_stroke_color', type=str, default=4294902015)  # Yellow
+        self.add_argument('--semicrease_stroke_width', type=float, default=0.1)
+        self.add_argument('--semicrease_dashes_len', type=float, default=1.0)
+        self.add_argument('--semicrease_dashes_duty', type=float, default=0.25)
+        self.add_argument('--semicrease_dashes_bool', type=inkex.Boolean, default=False)
+        self.add_argument('--semicrease_bool', type=inkex.Boolean, default=True)
+        self.add_argument('--semicrease_bool_only', type=inkex.Boolean, default=False)
 
         # cut options
-        self.add_argument('--cut_stroke_color', type=self.str, default=16711935)  # Green
-        self.add_argument('--cut_stroke_width', type=self.float, default=0.1)
-        self.add_argument('--cut_dashes_len', type=self.float, default=1.0)
-        self.add_argument('--cut_dashes_duty', type=self.float, default=0.25)
-        self.add_argument('--cut_dashes_bool', type=self.bool, default=False)
-        self.add_argument('--cut_bool', type=self.bool, default=True)
-        self.add_argument('--cut_bool_only', type=self.bool, default=False)
+        self.add_argument('--cut_stroke_color', type=str, default=16711935)  # Green
+        self.add_argument('--cut_stroke_width', type=float, default=0.1)
+        self.add_argument('--cut_dashes_len', type=float, default=1.0)
+        self.add_argument('--cut_dashes_duty', type=float, default=0.25)
+        self.add_argument('--cut_dashes_bool', type=inkex.Boolean, default=False)
+        self.add_argument('--cut_bool', type=inkex.Boolean, default=True)
+        self.add_argument('--cut_bool_only', type=inkex.Boolean, default=False)
 
         # vertex options
-        self.add_argument('--vertex_stroke_color', type=self.str, default=255)  # Black
-        self.add_argument('--vertex_stroke_width', type=self.float, default=0.1)
-        self.add_argument('--vertex_radius', type=self.float, default=0.1)
-        self.add_argument('--vertex_dashes_bool', type=self.bool, default=False)
-        self.add_argument('--vertex_bool', type=self.bool, default=True)
-        self.add_argument('--vertex_bool_only', type=self.bool, default=False)
+        self.add_argument('--vertex_stroke_color', type=str, default=255)  # Black
+        self.add_argument('--vertex_stroke_width', type=float, default=0.1)
+        self.add_argument('--vertex_radius', type=float, default=0.1)
+        self.add_argument('--vertex_dashes_bool', type=inkex.Boolean, default=False)
+        self.add_argument('--vertex_bool', type=inkex.Boolean, default=True)
+        self.add_argument('--vertex_bool_only', type=inkex.Boolean, default=False)
 
         # here so we can have tabs - but we do not use it directly - else error
-        self.add_argument('--active-tab', type=self.str, default='title')  # use a legitimate default
+        self.add_argument('--active-tab', type=str, default='title')  # use a legitimate default
 
         self.path_tree = []
         self.edge_points = []

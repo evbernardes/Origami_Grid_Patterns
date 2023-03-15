@@ -61,23 +61,23 @@ class Cylindrical(Pattern):
         Pattern.__init__(self)  # Must be called in order to parse common options
 
         # save all custom parameters defined on .inx file
-        self.add_argument('--radius', type=self.float, default=10.0)
-        self.add_argument('--sides', type=self.int, default=6)
-        self.add_argument('--rows', type=self.int, default=3)
-        self.add_argument('--extra_column', type=self.bool, default=False)
+        self.add_argument('--radius', type=float, default=10.0)
+        self.add_argument('--sides', type=int, default=6)
+        self.add_argument('--rows', type=int, default=3)
+        self.add_argument('--extra_column', type=inkex.Boolean, default=False)
 
         # slot options for support ring
-        self.add_argument('--add_base_slot', type=self.bool, default=False)
-        self.add_argument('--base_slot_position', type=self.str, default="1")
-        self.add_argument('--base_height', type=self.float, default=5.0)
-        self.add_argument('--base_slot_height', type=self.float, default=3.0)
-        self.add_argument('--base_slot_width', type=self.float, default=3.0)
+        self.add_argument('--add_base_slot', type=inkex.Boolean, default=False)
+        self.add_argument('--base_slot_position', type=str, default="1")
+        self.add_argument('--base_height', type=float, default=5.0)
+        self.add_argument('--base_slot_height', type=float, default=3.0)
+        self.add_argument('--base_slot_width', type=float, default=3.0)
 
-        self.add_argument('--add_middle_slot', type=self.bool, default=False)
-        self.add_argument('--middle_slot_position', type=self.str, default="0")
-        self.add_argument('--distance', type=self.float, default=3.0)
-        self.add_argument('--middle_slot_height', type=self.float, default=3.0)
-        self.add_argument('--middle_slot_width', type=self.float, default=3.0)
+        self.add_argument('--add_middle_slot', type=inkex.Boolean, default=False)
+        self.add_argument('--middle_slot_position', type=str, default="0")
+        self.add_argument('--distance', type=float, default=3.0)
+        self.add_argument('--middle_slot_height', type=float, default=3.0)
+        self.add_argument('--middle_slot_width', type=float, default=3.0)
 
         self.path_tree = []
         self.edge_points = []

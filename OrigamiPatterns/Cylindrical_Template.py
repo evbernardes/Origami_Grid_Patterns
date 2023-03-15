@@ -24,9 +24,9 @@ class Template(Cylindrical):
         Cylindrical.__init__(self)  # Must be called in order to parse common options
 
         # save all custom parameters defined on .inx file
-        self.add_argument('--pattern', type=self.str, default='cylindrical_template')
-        self.add_argument('--length', type=self.float, default=10.)
-        self.add_argument('--angle', type=self.int, default=0)
+        self.add_argument('--pattern', type=str, default='cylindrical_template')
+        self.add_argument('--length', type=float, default=10.)
+        self.add_argument('--angle', type=int, default=0)
 
     def parse_parameters(self):
         pass

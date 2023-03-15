@@ -15,12 +15,12 @@ class Kresling(Pattern):
         """
         Pattern.__init__(self)  # Must be called in order to parse common options
 
-        self.add_argument('--pattern', type=self.str, default="kresling")
-        self.add_argument('--lines', type=self.int, default=1)
-        self.add_argument('--sides', type=self.int, default=3)
-        self.add_argument('--add_attachment', type=self.bool, default=False)
-        self.add_argument('--attachment_percentage', type=self.float, default=100.)
-        self.add_argument('--mirror_cells', type=self.bool, default=False)
+        self.add_argument('--pattern', type=str, default="kresling")
+        self.add_argument('--lines', type=int, default=1)
+        self.add_argument('--sides', type=int, default=3)
+        self.add_argument('--add_attachment', type=inkex.Boolean, default=False)
+        self.add_argument('--attachment_percentage', type=float, default=100.)
+        self.add_argument('--mirror_cells', type=inkex.Boolean, default=False)
 
     @staticmethod
     def generate_kresling_zigzag(sides, radius, angle_ratio, add_attachment):

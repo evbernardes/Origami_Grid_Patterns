@@ -23,10 +23,10 @@ class Template(Pattern):
         Pattern.__init__(self)  # Must be called in order to parse common options
 
         # save all custom parameters defined on .inx file
-        self.add_argument('--pattern', type=self.str, default='template1')
-        self.add_argument('--length', type=self.float, default=10.0)
-        self.add_argument('--angle', type=self.int, default=0)
-        self.add_argument('--fold_angle_valley', type=self.int, default=180)
+        self.add_argument('--pattern', type=str, default='template1')
+        self.add_argument('--length', type=float, default=10.0)
+        self.add_argument('--angle', type=int, default=0)
+        self.add_argument('--fold_angle_valley', type=int, default=180)
 
     def generate_path_tree(self):
         """ Specialized path generation for your origami pattern

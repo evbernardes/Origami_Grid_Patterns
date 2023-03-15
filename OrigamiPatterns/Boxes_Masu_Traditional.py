@@ -34,7 +34,7 @@ class MasuBoxSquare(MasuBox):
         MasuBox.__init__(self)  # Must be called in order to parse common options
 
         # save all custom parameters defined on .inx file
-        self.add_argument('--length', type=self.float, default=10.0)
+        self.add_argument('--length', type=float, default=10.0)
 
     def generate_path_tree(self):
         """ Specialized path generation for your origami pattern

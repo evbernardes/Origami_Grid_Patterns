@@ -19,13 +19,13 @@ class Waterbomb(Pattern):
         """
         Pattern.__init__(self)  # Must be called in order to parse common options
 
-        self.add_argument('--pattern', type=self.str, default='waterbomb')
-        self.add_argument('--pattern_first_line', type=self.str, default='waterbomb')
-        self.add_argument('--pattern_last_line', type=self.str, default='waterbomb')
-        self.add_argument('--lines', type=self.int, default=8)
-        self.add_argument('--columns', type=self.int, default=16)
-        self.add_argument('--length', type=self.float, default=10.0)
-        self.add_argument('--phase_shift', type=self.bool, default=True)
+        self.add_argument('--pattern', type=str, default='waterbomb')
+        self.add_argument('--pattern_first_line', type=str, default='waterbomb')
+        self.add_argument('--pattern_last_line', type=str, default='waterbomb')
+        self.add_argument('--lines', type=int, default=8)
+        self.add_argument('--columns', type=int, default=16)
+        self.add_argument('--length', type=float, default=10.0)
+        self.add_argument('--phase_shift', type=inkex.Boolean, default=True)
 
     def generate_path_tree(self):
         """ Specialized path generation for Waterbomb tesselation pattern

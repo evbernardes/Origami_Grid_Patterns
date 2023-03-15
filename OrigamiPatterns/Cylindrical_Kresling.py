@@ -16,14 +16,14 @@ class Kresling(Cylindrical):
         """
         Cylindrical.__init__(self)  # Must be called in order to parse common options
 
-        self.add_argument('--pattern', type=self.str, default="kresling")
+        self.add_argument('--pattern', type=str, default="kresling")
 
-        self.add_argument('--measure_value', type=self.float, default=10.0)
-        self.add_argument('--measure_type', type=self.str, default=60)
-        self.add_argument('--parameter_type', type=self.str, default=60)
-        self.add_argument('--radial_ratio', type=self.float, default=0.5)
-        self.add_argument('--angle_ratio', type=self.float, default=0.5)
-        self.add_argument('--lambdatheta', type=self.float, default=45)
+        self.add_argument('--measure_value', type=float, default=10.0)
+        self.add_argument('--measure_type', type=str, default=60)
+        self.add_argument('--parameter_type', type=str, default=60)
+        self.add_argument('--radial_ratio', type=float, default=0.5)
+        self.add_argument('--angle_ratio', type=float, default=0.5)
+        self.add_argument('--lambdatheta', type=float, default=45)
 
     def parse_parameters(self):
         n = self.options.sides

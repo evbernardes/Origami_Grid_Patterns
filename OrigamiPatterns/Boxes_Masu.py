@@ -38,11 +38,11 @@ class MasuBox(Pattern):
         Pattern.__init__(self)  # Must be called in order to parse common options
 
         # save all custom parameters defined on .inx file
-        self.add_argument('--pattern', type=self.str, default='boxes_masu')
-        self.add_argument('--width', type=self.float, default=10.0)
-        self.add_argument('--height', type=self.float, default=10.0)
-        self.add_argument('--width_delta', type=self.float, default=0.0)
-        self.add_argument('--width_delta_bool', type=self.bool, default=False)
+        self.add_argument('--pattern', type=str, default='boxes_masu')
+        self.add_argument('--width', type=float, default=10.0)
+        self.add_argument('--height', type=float, default=10.0)
+        self.add_argument('--width_delta', type=float, default=0.0)
+        self.add_argument('--width_delta_bool', type=inkex.Boolean, default=False)
 
     def generate_path_tree(self):
         """ Specialized path generation for your origami pattern
