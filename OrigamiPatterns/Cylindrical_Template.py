@@ -28,6 +28,9 @@ class Template(Cylindrical):
         self.add_argument('--length', type=self.float, default=10.)
         self.add_argument('--angle', type=self.int, default=0)
 
+    def parse_parameters(self):
+        pass
+
     def generate_cell(self):
         """ Generate the the origami cell
         """
