@@ -292,19 +292,19 @@ class Pattern(inkex.Effect):
                             'e': create_style("edge"),
                             'p': create_style("vertex")}
 
-    def get_color_string(self, longColor, verbose=False):
+    def get_color_string(self, long_color, verbose=False):
         """ Convert the long into a #RRGGBB color value
             - verbose=true pops up value for us in defaults
             conversion back is A + B*256^1 + G*256^2 + R*256^3
         """
-        longColor = int(longColor)
-        hexColor = hex(longColor)[2:-2]
-        inkex.debug = inkex.utils.debug
+        long_color = int(long_color)
+        hex_color = hex(long_color)[2:-2]
 
-        hexColor = '#' + hexColor.rjust(6, '0').upper()
-        if verbose: inkex.debug("longColor = {}, hex = {}".format(longColor,hexColor))
+        hex_color = '#' + hex_color.rjust(6, '0').upper()
+        if verbose:
+            inkex.utils.debug(f"long_color = {long_color}, hex = {hex_color}")
 
-        return hexColor
+        return hex_color
 
     def add_text(self, node, text, position, text_height=12):
         """ Create and insert a single line of text into the svg under node.

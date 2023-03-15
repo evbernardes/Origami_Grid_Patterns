@@ -82,8 +82,8 @@ class Hypar(Pattern):
                 if i % 2 == 0:
                     del diagonals[i][0]
 
-        # inkex.debug(len(diagonals))
-        # inkex.debug(len(diagonals[0]))
+        # inkex.utils.debug(len(diagonals))
+        # inkex.utils.debug(len(diagonals[0]))
         # diagonals = diagonals + diagonal
 
         # scale generic closed ring to create inner rings

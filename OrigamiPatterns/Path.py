@@ -766,7 +766,7 @@ class Path:
     def debug_points(cls, paths):
         """ Plots points of path tree in drawing order """
         if isinstance(paths, Path):
-            inkex.debug(paths.points)
+            inkex.utils.debug(paths.points)
         elif isinstance(paths, list):
             for sub_path in paths:
                 Path.debug_points(sub_path)

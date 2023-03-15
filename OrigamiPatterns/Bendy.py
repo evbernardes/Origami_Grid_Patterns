@@ -240,9 +240,9 @@ class Bendy_Straw(Pattern):
                 horizontal_grid_alternate[i] = Path.list_invert(horizontal_grid_alternate[i])
 
         # for i in range(len(horizontal_grid_alternate)):
-        #     inkex.debug(i)
+        #     inkex.utils.debug(i)
         #     Path.debug_points(horizontal_grid_alternate[i])
-        #     inkex.debug('\n')
+        #     inkex.utils.debug('\n')
 
         #
         # edge drawing
@@ -281,7 +281,7 @@ class Bendy_Straw(Pattern):
             base_slot_height = self.options.base_slot_height
             base_slot_width = self.options.base_slot_width
             if base_slot_height > base_height or base_slot_width > A:
-                inkex.debug('Base slot dimensions are too big')
+                inkex.utils.debug('Base slot dimensions are too big')
                 base_slot_height = min(base_height, base_slot_height)
                 base_slot_width = min(A, base_slot_width)
             if base_slot_height > 0 and base_slot_width > 0:
@@ -301,7 +301,7 @@ class Bendy_Straw(Pattern):
             dist_slot_height = self.options.distance_slot_height
             dist_slot_width = self.options.distance_slot_width
             if dist_slot_height > distance or dist_slot_width > A:
-                inkex.debug('Dimensions of slots between cells are too big')
+                inkex.utils.debug('Dimensions of slots between cells are too big')
                 dist_slot_height = min(distance, dist_slot_height)
                 dist_slot_width = min(A, dist_slot_width)
 
