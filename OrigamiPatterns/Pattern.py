@@ -84,13 +84,6 @@ class Pattern(inkex.Effect):
             self.float = "float"
             self.bool = "inkbool"
 
-        # Two ways to get debug info:
-        # OR just use inkex.debug(string) instead...
-        try:
-            self.tty = open("/dev/tty", 'w')
-        except:
-            self.tty = open(os.devnull, 'w')  # '/dev/null' for POSIX, 'nul' for Windows.
-
         self.add_argument('-u', '--units', type=self.str, default='mm')
 
         # bypass most style options for OrigamiSimulator
@@ -240,9 +233,7 @@ class Pattern(inkex.Effect):
         try:
             self.run() # new
         except:
-            self.affect() # old
-        # close(self.tty)
-        self.tty.close()
+            self.affect() # old)
 
     # compatibility hack
     def get_layer(self):
