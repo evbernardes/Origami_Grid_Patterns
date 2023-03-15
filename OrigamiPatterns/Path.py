@@ -1,7 +1,6 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 from math import sin, cos, pi, sqrt
-from lxml import etree
 import inkex
 
 def format_style(style):
@@ -152,17 +151,18 @@ class Path:
 
         Parameters
         ----------
-        path_tree: [nested list]
+        path_tree: nested list
             List of Path instances
-        group [etree.SubElement]
-        styles_dict [dict] containing all styles for path_tree
+        group: inkex.elements._groups.Group
+        styles_dict: dict
+            Contains all styles for path_tree
         """
         for subpath in path_tree:
             if isinstance(subpath, list):
                 if len(subpath) == 1:
                     subgroup = group
                 else:
-                    subgroup = etree.SubElement(group, 'g')
+                    subgroup = group.add(inkex.Group())
                 Path.draw_paths_recursively(subpath, subgroup, styles_dict)
 
             else:
@@ -176,16 +176,17 @@ class Path:
                         if subpath.closed:
                             path = path + 'L{},{} Z'.format(*points[0])
 
-                        attribs = {'style': format_style(styles_dict[subpath.style]),
-                                   'd': path,
-                                   'opacity': str(subpath.fold_angle/180)}
-                        etree.SubElement(group, inkex.addNS('path', 'svg'), attribs)
+                        elem = group.add(inkex.PathElement())
+                        elem.set('style', format_style(styles_dict[subpath.style]))
+                        elem.set('d', path)
+                        elem.set('opacity', subpath.fold_angle/180)
                     else:
-                        attribs = {'style': format_style(styles_dict[subpath.style]),
-                                   'cx': str(subpath.points[0][0]), 'cy': str(subpath.points[0][1]),
-                                   'r': str(subpath.radius),
-                                   'opacity': str(subpath.fold_angle/180)}
-                        etree.SubElement(group, inkex.addNS('circle', 'svg'), attribs)
+                        elem = group.add(inkex.Circle())
+                        elem.set('style', format_style(styles_dict[subpath.style]))
+                        elem.set('cx', subpath.points[0][0])
+                        elem.set('cy', subpath.points[0][1])
+                        elem.set('r', subpath.radius)
+                        elem.set('opacity', subpath.fold_angle/180)
 
     @classmethod
     def get_average_point(cls, paths):

@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 from abc import abstractmethod
 import inkex
-from lxml import etree
 from Path import Path
 
 class Pattern(inkex.Effect):
@@ -17,7 +16,7 @@ class Pattern(inkex.Effect):
                            'v' : valley_style,
                            'e' : edge_style}
 
-    topgroup: etree.SubElement
+    topgroup: inkex.elements._groups.Group
             Top Inkscape group element
 
     path_tree: nested list
@@ -187,18 +186,14 @@ class Pattern(inkex.Effect):
             vertices.append(Path(vertex_point, style='p', radius=vertex_radius))
         self.path_tree.append(vertices)
 
-        # Translate according to translate attribute
-        g_attribs = {
-            inkex.addNS('label', 'inkscape'): f'{self.options.pattern}',
-            inkex.addNS('transform-center-x', 'inkscape'): str(0),
-            inkex.addNS('transform-center-y', 'inkscape'): str(0),
-            'transform': 'translate{self.translate}'
-            }
-
         # add the group to the document's current layer
         layer = self.svg.get_current_layer()
         if isinstance(self.path_tree, list) and len(self.path_tree) != 1:
-            self.topgroup = etree.SubElement(layer, 'g', g_attribs)
+            self.topgroup = layer.add(inkex.Group())
+            self.topgroup.set('inkscape:label', f'{self.options.pattern}')
+            self.topgroup.set('inkscape:transform-center-x', 0)
+            self.topgroup.set('inkscape:transform-center-y', 0)
+            self.topgroup.set('inkscape:transform', 'translate{self.translate}')
         else:
             self.topgroup = layer
 
