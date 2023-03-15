@@ -70,7 +70,6 @@ class Pattern(inkex.Effect):
         """
         inkex.Effect.__init__(self)  # initialize the super class
 
-        # backwards compatibility
         self.add_argument = self.arg_parser.add_argument
         self.str = str
         self.int = int
@@ -221,7 +220,6 @@ class Pattern(inkex.Effect):
 
         # self.draw_paths_recursively(self.path_tree, self.topgroup, self.styles_dict)
 
-    # compatibility hack
     def get_layer(self):
         return self.svg.get_current_layer()
 
