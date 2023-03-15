@@ -39,9 +39,6 @@ class Pattern(inkex.Effect):
     calc_unit_factor(self)
         Return the scale factor for all dimension conversions
 
-    add_text(self, node, text, position, text_height=12)
-        Create and insert a single line of text into the svg under node.
-
     get_color_string(self, longColor, verbose=False)
         Convert the long into a #RRGGBB color value
 
@@ -163,6 +160,7 @@ class Pattern(inkex.Effect):
                           self.options.semicrease_bool_only,
                           self.options.cut_bool_only,
                           self.options.vertex_bool_only]
+
         if sum(bool_only_list) > 0:
             self.options.mountain_bool = self.options.mountain_bool and self.options.mountain_bool_only
             self.options.valley_bool = self.options.valley_bool and self.options.valley_bool_only
@@ -264,17 +262,18 @@ class Pattern(inkex.Effect):
         """
         unit_factor = self.calc_unit_factor()
 
-        def create_style(type):
-            style = {'draw': getattr(self.options,type+"_bool"),
-                     'stroke': self.get_color_string(getattr(self.options,type+"_stroke_color")),
+        def create_style(style_type):
+            style = {'draw': getattr(self.options, style_type+"_bool"),
+                     'stroke': self.get_color_string(getattr(self.options, style_type+"_stroke_color")),
                      'fill': 'none',
-                     'stroke-width': getattr(self.options,type+"_stroke_width") * unit_factor}
-            if getattr(self.options,type+"_dashes_bool"):
-                dash_gap_len = getattr(self.options,type+"_dashes_len")
-                duty = getattr(self.options,type+"_dashes_duty")
+                     'stroke-width': getattr(self.options, style_type+"_stroke_width") * unit_factor}
+
+            if getattr(self.options, style_type+"_dashes_bool"):
+                dash_gap_len = getattr(self.options, style_type+"_dashes_len")
+                duty = getattr(self.options, style_type+"_dashes_duty")
                 dash = (dash_gap_len * unit_factor) * duty
                 gap = (dash_gap_len * unit_factor) * (1 - duty)
-                style['stroke-dasharray'] = "{} {}".format(dash, gap)
+                style['stroke-dasharray'] = f'{dash} {gap}'
             return style
 
         self.styles_dict = {'m': create_style("mountain"),
@@ -298,21 +297,6 @@ class Pattern(inkex.Effect):
             inkex.utils.debug(f"long_color = {long_color}, hex = {hex_color}")
 
         return hex_color
-
-    def add_text(self, node, text, position, text_height=12):
-        """ Create and insert a single line of text into the svg under node.
-        """
-        line_style = {'font-size': '%dpx' % text_height, 'font-style':'normal', 'font-weight': 'normal',
-                     'fill': '#F6921E', 'font-family': 'Bitstream Vera Sans,sans-serif',
-                     'text-anchor': 'middle', 'text-align': 'center'}
-        line_attribs = {inkex.addNS('label','inkscape'): 'Annotation',
-                    #    'style': simplestyle.formatStyle(line_style),
-                       'x': str(position[0]),
-                       'y': str((position[1] + text_height) * 1.2)
-                       }
-        line = etree.SubElement(node, inkex.addNS('text','svg'), line_attribs)
-        line.text = text
-
 
     def calc_unit_factor(self):
         """ Return the scale factor for all dimension conversions.
