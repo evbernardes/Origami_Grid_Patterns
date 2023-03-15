@@ -145,6 +145,7 @@ class Pattern(inkex.Effect):
         self.edge_points = []
         self.vertex_points = []
         self.translate = (0, 0)
+        self.styles_dict = {}
 
     def effect(self):
         """ Main function, called when the extension is run.
@@ -269,13 +270,13 @@ class Pattern(inkex.Effect):
                 style['stroke-dasharray'] = f'{dash} {gap}'
             return style
 
-        self.styles_dict = {'m': create_style("mountain"),
-                            'v': create_style("valley"),
-                            'u': create_style("universal"),
-                            's': create_style("semicrease"),
-                            'c': create_style("cut"),
-                            'e': create_style("edge"),
-                            'p': create_style("vertex")}
+        self.styles_dict['m'] = create_style("mountain")
+        self.styles_dict['v'] = create_style("valley")
+        self.styles_dict['u'] = create_style("universal")
+        self.styles_dict['s'] = create_style("semicrease")
+        self.styles_dict['c'] = create_style("cut")
+        self.styles_dict['e'] = create_style("edge")
+        self.styles_dict['p'] = create_style("vertex")
 
     def get_color_string(self, long_color, verbose=False):
         """ Convert the long into a #RRGGBB color value
