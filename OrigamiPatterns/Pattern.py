@@ -179,7 +179,7 @@ class Pattern(inkex.Effect):
         # get vertex points and add them to path tree
         vertex_radius = self.options.vertex_radius * self.calc_unit_factor()
         vertices = []
-        self.vertex_points = list(set([i for i in self.vertex_points])) # remove duplicates
+        self.vertex_points = list(set(self.vertex_points)) # remove duplicates
         for vertex_point in self.vertex_points:
             vertices.append(Path(vertex_point, style='p', radius=vertex_radius))
         self.path_tree.append(vertices)
@@ -187,8 +187,6 @@ class Pattern(inkex.Effect):
         # Translate according to translate attribute
         g_attribs = {
             inkex.addNS('label', 'inkscape'): f'{self.options.pattern}',
-            # inkex.addNS('transform-center-x','inkscape'): str(-bbox_center[0]),
-            # inkex.addNS('transform-center-y','inkscape'): str(-bbox_center[1]),
             inkex.addNS('transform-center-x', 'inkscape'): str(0),
             inkex.addNS('transform-center-y', 'inkscape'): str(0),
             'transform': 'translate{self.translate}'
