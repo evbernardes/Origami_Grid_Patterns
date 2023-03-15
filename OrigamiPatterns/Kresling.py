@@ -159,4 +159,4 @@ class Kresling(Pattern):
 if __name__ == '__main__':
 
     e = Kresling()
-    e.draw()
+    e.run()

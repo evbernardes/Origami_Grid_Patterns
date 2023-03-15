@@ -122,8 +122,8 @@ class SupportRing(Pattern):
 
 
 
-# Main function, creates an instance of the Class and calls self.draw() to draw the origami on inkscape
-# self.draw() is either a call to inkex.affect() or to svg.run(), depending on python version
+# Main function, creates an instance of the Class and calls self.run() to draw the origami on inkscape
+# self.run() is either a call to inkex.affect() or to svg.run(), depending on python version
 if __name__ == '__main__':
     e = SupportRing()  # remember to put the name of your Class here!
-    e.draw()
+    e.run()

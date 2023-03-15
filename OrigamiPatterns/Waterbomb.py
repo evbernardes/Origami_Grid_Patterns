@@ -109,4 +109,4 @@ class Waterbomb(Pattern):
 if __name__ == '__main__':
 
     e = Waterbomb()
-    e.draw()
+    e.run()

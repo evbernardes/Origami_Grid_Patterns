@@ -89,4 +89,4 @@ class Kresling_Full(Kresling):
 
 if __name__ == '__main__':
     e = Kresling_Full()
-    e.draw()
+    e.run()

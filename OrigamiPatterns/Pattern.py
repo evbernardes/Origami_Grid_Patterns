@@ -221,10 +221,6 @@ class Pattern(inkex.Effect):
 
         # self.draw_paths_recursively(self.path_tree, self.topgroup, self.styles_dict)
 
-    # compatibility hack, "affect()" is replaced by "run()"
-    def draw(self):
-        self.run() # new
-
     # compatibility hack
     def get_layer(self):
         return self.svg.get_current_layer()

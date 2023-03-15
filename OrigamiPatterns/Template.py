@@ -106,8 +106,8 @@ class Template(Pattern):
         # valleys = Path.list_reflect(valleys, line_reflect)
         # edges = Path.list_reflect(edges, line_reflect)
 
-# Main function, creates an instance of the Class and calls self.draw() to draw the origami on inkscape
-# self.draw() is either a call to inkex.affect() or to svg.run(), depending on python version
+# Main function, creates an instance of the Class and calls self.run() to draw the origami on inkscape
+# self.run() is either a call to inkex.affect() or to svg.run(), depending on python version
 if __name__ == '__main__':
     e = Template()  # remember to put the name of your Class here!
-    e.draw()
+    e.run()

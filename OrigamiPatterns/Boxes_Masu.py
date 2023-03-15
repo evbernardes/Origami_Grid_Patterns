@@ -91,8 +91,8 @@ class MasuBox(Pattern):
         self.path_tree = [ring_inner, ring_middle, arms, corner_diagonals]
         self.path_tree = recenter(self.path_tree, length/2)
 
-# Main function, creates an instance of the Class and calls self.draw() to draw the origami on inkscape
-# self.draw() is either a call to inkex.affect() or to svg.run(), depending on python version
+# Main function, creates an instance of the Class and calls self.run() to draw the origami on inkscape
+# self.run() is either a call to inkex.affect() or to svg.run(), depending on python version
 if __name__ == '__main__':
     e = MasuBox()  # remember to put the name of your Class here!
-    e.draw()
+    e.run()

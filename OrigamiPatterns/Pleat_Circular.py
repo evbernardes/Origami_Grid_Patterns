@@ -98,4 +98,4 @@ class PleatCircular(Pattern):
 # Main function, creates an instance of the Class and calls inkex.affect() to draw the origami on inkscape
 if __name__ == '__main__':
     e = PleatCircular()  # remember to put the name of your Class here!
-    e.draw()
+    e.run()

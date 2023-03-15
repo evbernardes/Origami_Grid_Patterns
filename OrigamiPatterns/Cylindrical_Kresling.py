@@ -160,4 +160,4 @@ class Kresling(Cylindrical):
 if __name__ == '__main__':
 
     e = Kresling()
-    e.draw()
+    e.run()
