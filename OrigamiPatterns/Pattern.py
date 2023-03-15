@@ -176,11 +176,6 @@ class Pattern(inkex.Effect):
         # get paths for selected origami pattern
         self.generate_path_tree()
 
-        # ~ accuracy = self.options.accuracy
-        # ~ unit_factor = self.calc_unit_factor()
-        # what page are we on
-        # page_id = self.options.active_tab # sometimes wrong the very first time
-
         # get vertex points and add them to path tree
         vertex_radius = self.options.vertex_radius * self.calc_unit_factor()
         vertices = []
@@ -189,14 +184,15 @@ class Pattern(inkex.Effect):
             vertices.append(Path(vertex_point, style='p', radius=vertex_radius))
         self.path_tree.append(vertices)
 
-
         # Translate according to translate attribute
-        g_attribs = {inkex.addNS('label', 'inkscape'): f'{self.options.pattern} Origami pattern',
-                       # inkex.addNS('transform-center-x','inkscape'): str(-bbox_center[0]),
-                       # inkex.addNS('transform-center-y','inkscape'): str(-bbox_center[1]),
-                     inkex.addNS('transform-center-x', 'inkscape'): str(0),
-                     inkex.addNS('transform-center-y', 'inkscape'): str(0),
-                     'transform': 'translate(%s, %s)' % self.translate}
+        g_attribs = {
+            inkex.addNS('label', 'inkscape'): f'{self.options.pattern}',
+            # inkex.addNS('transform-center-x','inkscape'): str(-bbox_center[0]),
+            # inkex.addNS('transform-center-y','inkscape'): str(-bbox_center[1]),
+            inkex.addNS('transform-center-x', 'inkscape'): str(0),
+            inkex.addNS('transform-center-y', 'inkscape'): str(0),
+            'transform': 'translate{self.translate}'
+            }
 
         # add the group to the document's current layer
         layer = self.svg.get_current_layer()
@@ -254,7 +250,6 @@ class Pattern(inkex.Effect):
             self.options.cut_bool = True
 
             self.options.vertex_bool = False
-
 
     def create_styles_dict(self):
         """ Get stroke style parameters and use them to create the styles dictionary,
