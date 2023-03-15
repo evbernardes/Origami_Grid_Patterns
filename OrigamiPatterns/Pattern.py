@@ -71,18 +71,11 @@ class Pattern(inkex.Effect):
         inkex.Effect.__init__(self)  # initialize the super class
 
         # backwards compatibility
-        try:
-            self.add_argument = self.arg_parser.add_argument
-            self.str = str
-            self.int = int
-            self.float = float
-            self.bool = inkex.Boolean
-        except:
-            self.add_argument = self.OptionParser.add_option
-            self.str = "string"
-            self.int = "int"
-            self.float = "float"
-            self.bool = "inkbool"
+        self.add_argument = self.arg_parser.add_argument
+        self.str = str
+        self.int = int
+        self.float = float
+        self.bool = inkex.Boolean
 
         self.add_argument('-u', '--units', type=self.str, default='mm')
 
@@ -230,17 +223,11 @@ class Pattern(inkex.Effect):
 
     # compatibility hack, "affect()" is replaced by "run()"
     def draw(self):
-        try:
-            self.run() # new
-        except:
-            self.affect() # old)
+        self.run() # new
 
     # compatibility hack
     def get_layer(self):
-        try:
-            return self.svg.get_current_layer() # new
-        except:
-            return self.current_layer # old
+        return self.svg.get_current_layer()
 
     def check_simulation_mode(self):
         if not self.options.simulation_mode:
@@ -310,15 +297,9 @@ class Pattern(inkex.Effect):
             - verbose=true pops up value for us in defaults
             conversion back is A + B*256^1 + G*256^2 + R*256^3
         """
-        # compatibility hack, no "long" in Python 3
-        try:
-            longColor = long(longColor)
-            if longColor < 0: longColor = long(longColor) & 0xFFFFFFFF
-            hexColor = hex(longColor)[2:-3]
-        except:
-            longColor = int(longColor)
-            hexColor = hex(longColor)[2:-2]
-            inkex.debug = inkex.utils.debug
+        longColor = int(longColor)
+        hexColor = hex(longColor)[2:-2]
+        inkex.debug = inkex.utils.debug
 
         hexColor = '#' + hexColor.rjust(6, '0').upper()
         if verbose: inkex.debug("longColor = {}, hex = {}".format(longColor,hexColor))
@@ -349,13 +330,7 @@ class Pattern(inkex.Effect):
         # namedView = self.document.getroot().find(inkex.addNS('namedview', 'sodipodi'))
         # doc_units = self.getUnittouu(str(1.0) + namedView.get(inkex.addNS('document-units', 'inkscape')))
         # backwards compatibility
-        try:
-            return self.svg.unittouu(str(1.0) + self.options.units)
-        except:
-            try:
-                return inkex.unittouu(str(1.0) + self.options.units)
-            except AttributeError:
-                return self.unittouu(str(1.0) + self.options.units)
+        return self.svg.unittouu(str(1.0) + self.options.units)
 
 
 
