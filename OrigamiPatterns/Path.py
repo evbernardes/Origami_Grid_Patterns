@@ -1,10 +1,12 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
-import inkex
-from lxml import etree
 from math import sin, cos, pi, sqrt
+from lxml import etree
+import inkex
 
 def format_style(style):
+    """ Get formated string from style dict
+    """
     return str(inkex.Style(style))
 
 class Path:
@@ -24,10 +26,11 @@ class Path:
         's' for semicreases
         'c' for kirigami cuts
     angle: float
-        From 0 to 180 degrees, converted to an opacity level from 0 to 1. This is how OrigamiSimulator encodes maximum
-        fold angles
+        From 0 to 180 degrees, converted to an opacity level from 0 to 1.
+        This is how OrigamiSimulator encodes maximum fold angles
     closed: bool
-        Tells if desired path should contain a last stroke from the last point to the first point, closing the path
+        Tells if desired path should contain a last stroke from the last point to the first point,
+        closing the path
     radius: float
         If only one point is given, it's assumed to be a circle and radius sets the radius
 
@@ -41,7 +44,8 @@ class Path:
     --------------------
 
     __add__(self, offsets)
-        Adding a tuple to a Path returns a new path with all points having an offset defined by the tuple
+        Adding a tuple to a Path returns a new path with all points having an offset defined
+        by the tuple
 
     __mul__(self, transform)
         Define multiplication of a Path to a vector in complex exponential representation
@@ -51,24 +55,25 @@ class Path:
     --------------
 
     draw_paths_recursively(path_tree, group, styles_dict)
-        Draws strokes defined on "path_tree" to "group". Styles dict maps style of path_tree element to the definition
-        of the style. Ex.:
+        Draws strokes defined on "path_tree" to "group".
+        Styles dict maps style of path_tree element to the definition of the style. Ex.:
         if path_tree[i].style = 'm', styles_dict must have an element 'm'.
 
     generate_hgrid(cls, xlims, ylims, nb_of_divisions, style, include_edge=False)
-        Generate list of Path instances, in which each Path is a stroke defining a horizontal grid dividing the space
-        xlims * ylims nb_of_divisions times.
+        Generate list of Path instances, in which each Path is a stroke defining a
+        horizontal grid dividing the space xlims * ylims nb_of_divisions times.
 
     generate_vgrid(cls, xlims, ylims, nb_of_divisions, style, include_edge=False)
-        Generate list of Path instances, in which each Path is a stroke defining a vertical grid dividing the space
-        xlims * ylims nb_of_divisions times.
+        Generate list of Path instances, in which each Path is a stroke defining a
+        vertical grid dividing the space xlims * ylims nb_of_divisions times.
 
     generate_separated_paths(cls, points, styles, closed=False)
-        Generate list of Path instances, in which each Path is the stroke between each two point tuples, in case each
-        stroke must be handled separately
+        Generate list of Path instances, in which each Path is the stroke between each
+        two point tuples, in case each stroke must be handled separately
 
     reflect(cls, path, p1, p2)
-        Reflects each point of path on line defined by two points and return new Path instance with new reflected points
+        Reflects each point of path on line defined by two points and return new
+        Path instance with new reflected points
 
     list_reflect(cls, paths, p1, p2)
         Generate list of new Path instances, rotation each path by transform
@@ -89,11 +94,11 @@ class Path:
     list_invert(cls, paths)
         Invert list of paths and points of each path.
 
-    debug_points(cls, paths):
+    debug_points(cls, paths)
         Plots points of path tree in drawing order.
     """
 
-    def __init__(self, points, style, closed=False, invert=False, radius=0.1, separated=False, fold_angle = 180.0):
+    def __init__(self, points, style, closed=False, invert=False, radius=0.1, fold_angle = 180.0):
         """ Constructor
 
         Parameters
@@ -102,8 +107,8 @@ class Path:
         points: list of 2D tuples
             stroke will connect all points
         style: str
-            Single character defining style of stroke. For use with the OrigamiPatterns class (probably the only
-            project that will ever use this file) the default values are:
+            Single character defining style of stroke. For use with the OrigamiPatterns class
+            (probably the only project that will ever use this file) the default values are:
             'm' for mountain creases
             'v' for valley creases
             'e' for edge borders
@@ -130,7 +135,8 @@ class Path:
             self.radius = radius
 
         else:
-            raise TypeError("Points must be tuple of length 2 (for a circle) or a list of tuples of length 2 each")
+            raise TypeError('Points must be tuple of length 2 (for a circle)'
+                            'or a list of tuples of length 2 each')
 
         self.fold_angle = max(min(fold_angle, 180.), 0.)
         self.style = style
@@ -139,7 +145,6 @@ class Path:
     def invert(self):
         """ Inverts path """
         self.points = self.points[::-1]
-
 
     @staticmethod
     def draw_paths_recursively(path_tree, group, styles_dict):
@@ -194,7 +199,7 @@ class Path:
         return (x/n, y/n)
 
     @classmethod
-    def get_square_points(cls, width, height, center = None, rotation = 1):
+    def get_square_points(cls, width, height, center = None):
         """ Get points of a square at given center or origin
 
         Parameters
@@ -202,8 +207,6 @@ class Path:
             width: float
             height: float
             center: list of floats
-            rotation: float
-                rotation in degrees
 
         Returns
         -------
@@ -212,25 +215,17 @@ class Path:
         if center is None:
             center = [width/2, height/2]
 
-        #TODO: Implement rotation
-        # c = cos(rotation * pi / 180)
-        # s = sin(rotation * pi / 180)
-
         points = [
             (center[0] - 0.5*width, center[1] + 0.5*height),  # top left
             (center[0] + 0.5*width, center[1] + 0.5*height),  # top right
             (center[0] + 0.5*width, center[1] - 0.5*height),  # bottom right
             (center[0] - 0.5*width, center[1] - 0.5*height)]  # bottom left
-        # points = [
-            # (center[0] + (-0.5*width*c - 0.5*height*s), center[1] + (-0.5*width*s + 0.5*height*c)),  # top left
-            # (center[0] + (+0.5*width*c - 0.5*height*s), center[1] + (+0.5*width*s + 0.5*height*c)),  # top right
-            # (center[0] + (+0.5*width*c + 0.5*height*s), center[1] - (+0.5*width*s - 0.5*height*c)),  # bottom right
-            # (center[0] + (-0.5*width*c + 0.5*height*s), center[1] - (-0.5*width*s - 0.5*height*c))]  # bottom left
+
         return points
 
     @classmethod
     def generate_square(cls, width, height,
-        style ='e', fold_angle=180, center = None, rotation = 0):
+        style ='e', fold_angle=180, center = None):
         """ Generate a closed square at given center or origin
 
         Parameters
@@ -247,7 +242,7 @@ class Path:
         -------
         path: Path instance
         """
-        points = cls.get_square_points(width, height, center, rotation)
+        points = cls.get_square_points(width, height, center)
         return Path(points, style, fold_angle=fold_angle, closed=True)
 
     @classmethod

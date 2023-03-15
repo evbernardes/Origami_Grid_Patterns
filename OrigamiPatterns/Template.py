@@ -14,7 +14,6 @@ from Pattern import Pattern
 # 1) Implement __init__ method to get all custom options and then call Pattern's __init__
 # 2) Implement generate_path_tree to define all of the desired strokes
 
-
 class Template(Pattern):
 
     def __init__(self):
@@ -85,7 +84,7 @@ class Template(Pattern):
 
         # create a list for edge strokes
         # create path from points to be able to use the already built rotate method
-        edges = Path.generate_square(length, length, 'e', rotation = angle)
+        edges = Path.generate_square(length, length, 'e')
         edges = Path.list_rotate(edges, angle, (1 * length, 1 * length))
 
         # IMPORTANT: the attribute "path_tree" must be created at the end, saving all strokes

@@ -154,13 +154,15 @@ class Pattern(inkex.Effect):
         self.check_simulation_mode()
 
         # check if any selected to print only some of the crease types:
-        bool_only_list = [self.options.mountain_bool_only,
-                          self.options.valley_bool_only,
-                          self.options.edge_bool_only,
-                          self.options.universal_bool_only,
-                          self.options.semicrease_bool_only,
-                          self.options.cut_bool_only,
-                          self.options.vertex_bool_only]
+        bool_only_list = [
+            self.options.mountain_bool_only,
+            self.options.valley_bool_only,
+            self.options.edge_bool_only,
+            self.options.universal_bool_only,
+            self.options.semicrease_bool_only,
+            self.options.cut_bool_only,
+            self.options.vertex_bool_only
+            ]
 
         if sum(bool_only_list) > 0:
             self.options.mountain_bool = self.options.mountain_bool and self.options.mountain_bool_only
@@ -208,8 +210,6 @@ class Pattern(inkex.Effect):
         else:
             edges = Path.generate_separated_paths(self.edge_points, 'e', closed=True)
             Path.draw_paths_recursively(self.path_tree + edges, self.topgroup, self.styles_dict)
-
-        # self.draw_paths_recursively(self.path_tree, self.topgroup, self.styles_dict)
 
     def check_simulation_mode(self):
         """ If simulation mode is selected, use OrigamiSimulator settings
