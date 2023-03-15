@@ -298,21 +298,6 @@ class Pattern(inkex.Effect):
 
         return hex_color
 
-    # def add_text(self, node, text, position, text_height=12):
-    #     """ Create and insert a single line of text into the svg under node.
-    #     """
-    #     line_style = {'font-size': '%dpx' % text_height, 'font-style':'normal', 'font-weight': 'normal',
-    #                  'fill': '#F6921E', 'font-family': 'Bitstream Vera Sans,sans-serif',
-    #                  'text-anchor': 'middle', 'text-align': 'center'}
-    #     line_attribs = {inkex.addNS('label','inkscape'): 'Annotation',
-    #                 #    'style': simplestyle.formatStyle(line_style),
-    #                    'x': str(position[0]),
-    #                    'y': str((position[1] + text_height) * 1.2)
-    #                    }
-    #     line = etree.SubElement(node, inkex.addNS('text','svg'), line_attribs)
-    #     line.text = text
-
-
     def calc_unit_factor(self):
         """ Return the scale factor for all dimension conversions.
 
