@@ -1,14 +1,8 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
-import inkex        # Required
+import inkex
+from lxml import etree
 from math import sin, cos, pi, sqrt
-
-# compatibility hack
-try:
-    from lxml import etree
-    inkex.etree = etree
-except:
-    pass
 
 def format_style(style):
     return str(inkex.Style(style))
@@ -155,7 +149,7 @@ class Path:
         ----------
         path_tree: [nested list]
             List of Path instances
-        group [inkex.etree.SubElement]
+        group [etree.SubElement]
         styles_dict [dict] containing all styles for path_tree
         """
         for subpath in path_tree:
@@ -163,7 +157,7 @@ class Path:
                 if len(subpath) == 1:
                     subgroup = group
                 else:
-                    subgroup = inkex.etree.SubElement(group, 'g')
+                    subgroup = etree.SubElement(group, 'g')
                 Path.draw_paths_recursively(subpath, subgroup, styles_dict)
 
             else:
@@ -180,13 +174,13 @@ class Path:
                         attribs = {'style': format_style(styles_dict[subpath.style]),
                                    'd': path,
                                    'opacity': str(subpath.fold_angle/180)}
-                        inkex.etree.SubElement(group, inkex.addNS('path', 'svg'), attribs)
+                        etree.SubElement(group, inkex.addNS('path', 'svg'), attribs)
                     else:
                         attribs = {'style': format_style(styles_dict[subpath.style]),
                                    'cx': str(subpath.points[0][0]), 'cy': str(subpath.points[0][1]),
                                    'r': str(subpath.radius),
                                    'opacity': str(subpath.fold_angle/180)}
-                        inkex.etree.SubElement(group, inkex.addNS('circle', 'svg'), attribs)
+                        etree.SubElement(group, inkex.addNS('circle', 'svg'), attribs)
 
     @classmethod
     def get_average_point(cls, paths):

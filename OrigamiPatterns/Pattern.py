@@ -1,8 +1,10 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 import os
+import inkex
+from lxml import etree
 from abc import abstractmethod
-from Path import Path, inkex
+from Path import Path
 
 class Pattern(inkex.Effect):
     """ Class that inherits inkex.Effect and further specializes it for different
@@ -16,7 +18,7 @@ class Pattern(inkex.Effect):
                            'v' : valley_style,
                            'e' : edge_style}
 
-    topgroup: inkex.etree.SubElement
+    topgroup: etree.SubElement
             Top Inkscape group element
 
     path_tree: nested list
@@ -201,7 +203,7 @@ class Pattern(inkex.Effect):
 
         # add the group to the document's current layer
         if type(self.path_tree) == list and len(self.path_tree) != 1:
-            self.topgroup = inkex.etree.SubElement(self.get_layer(), 'g', g_attribs)
+            self.topgroup = etree.SubElement(self.get_layer(), 'g', g_attribs)
         else:
             self.topgroup = self.get_layer()
 
@@ -307,7 +309,7 @@ class Pattern(inkex.Effect):
                        'x': str(position[0]),
                        'y': str((position[1] + text_height) * 1.2)
                        }
-        line = inkex.etree.SubElement(node, inkex.addNS('text','svg'), line_attribs)
+        line = etree.SubElement(node, inkex.addNS('text','svg'), line_attribs)
         line.text = text
 
 
