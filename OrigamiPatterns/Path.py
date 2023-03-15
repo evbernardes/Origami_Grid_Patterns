@@ -503,13 +503,7 @@ class Path:
         """
         points_new = []
 
-        # "temporary" (probably permanent) compatibility hack
-        try:
-            long_ = long
-        except:
-            long_ = int
-
-        if isinstance(transform, (int, long_, float)):
+        if isinstance(transform, (int, float)):
             for p in self.points:
                 points_new.append((transform * p[0],
                                    transform * p[1]))
