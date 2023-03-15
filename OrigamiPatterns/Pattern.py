@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import os
 from abc import abstractmethod
-from Path import Path, inkex, simplestyle
+from Path import Path, inkex
 
 class Pattern(inkex.Effect):
     """ Class that inherits inkex.Effect and further specializes it for different

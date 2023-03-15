@@ -1,7 +1,6 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 import inkex        # Required
-import simplestyle  # will be needed here for styles support
 from math import sin, cos, pi, sqrt
 
 # compatibility hack
