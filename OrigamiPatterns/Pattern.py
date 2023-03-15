@@ -1,9 +1,8 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
-import os
+from abc import abstractmethod
 import inkex
 from lxml import etree
-from abc import abstractmethod
 from Path import Path
 
 class Pattern(inkex.Effect):
@@ -194,18 +193,19 @@ class Pattern(inkex.Effect):
 
 
         # Translate according to translate attribute
-        g_attribs = {inkex.addNS('label', 'inkscape'): '{} Origami pattern'.format(self.options.pattern),
+        g_attribs = {inkex.addNS('label', 'inkscape'): f'{self.options.pattern} Origami pattern',
                        # inkex.addNS('transform-center-x','inkscape'): str(-bbox_center[0]),
                        # inkex.addNS('transform-center-y','inkscape'): str(-bbox_center[1]),
                      inkex.addNS('transform-center-x', 'inkscape'): str(0),
                      inkex.addNS('transform-center-y', 'inkscape'): str(0),
-                     'transform': 'translate(%s,%s)' % self.translate}
+                     'transform': 'translate(%s, %s)' % self.translate}
 
         # add the group to the document's current layer
-        if type(self.path_tree) == list and len(self.path_tree) != 1:
-            self.topgroup = etree.SubElement(self.get_layer(), 'g', g_attribs)
+        layer = self.svg.get_current_layer()
+        if isinstance(self.path_tree, list) and len(self.path_tree) != 1:
+            self.topgroup = etree.SubElement(layer, 'g', g_attribs)
         else:
-            self.topgroup = self.get_layer()
+            self.topgroup = layer
 
         if len(self.edge_points) == 0:
             Path.draw_paths_recursively(self.path_tree, self.topgroup, self.styles_dict)
@@ -218,12 +218,12 @@ class Pattern(inkex.Effect):
 
         # self.draw_paths_recursively(self.path_tree, self.topgroup, self.styles_dict)
 
-    def get_layer(self):
-        return self.svg.get_current_layer()
-
     def check_simulation_mode(self):
+        """ If simulation mode is selected, use OrigamiSimulator settings
+        """
         if not self.options.simulation_mode:
             pass
+
         else:
             self.options.mountain_stroke_color = 4278190335
             self.options.mountain_dashes_len = 0
@@ -259,7 +259,8 @@ class Pattern(inkex.Effect):
 
 
     def create_styles_dict(self):
-        """ Get stroke style parameters and use them to create the styles dictionary, used for the Path generation
+        """ Get stroke style parameters and use them to create the styles dictionary,
+            used for the Path generation.
         """
         unit_factor = self.calc_unit_factor()
 
