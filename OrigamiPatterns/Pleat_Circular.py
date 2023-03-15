@@ -91,9 +91,7 @@ class PleatCircular(Pattern):
                 all_paths.append(Path.list_rotate(all_paths[0], i*2*dtheta))
 
             self.path_tree = all_paths
-
-
-
+            # self.vertex_points = Path.get_points(self.path_tree)
 
 # Main function, creates an instance of the Class and calls inkex.affect() to draw the origami on inkscape
 if __name__ == '__main__':
