@@ -303,7 +303,7 @@ class Pattern(inkex.Effect):
                      'fill': '#F6921E', 'font-family': 'Bitstream Vera Sans,sans-serif',
                      'text-anchor': 'middle', 'text-align': 'center'}
         line_attribs = {inkex.addNS('label','inkscape'): 'Annotation',
-                       'style': simplestyle.formatStyle(line_style),
+                    #    'style': simplestyle.formatStyle(line_style),
                        'x': str(position[0]),
                        'y': str((position[1] + text_height) * 1.2)
                        }

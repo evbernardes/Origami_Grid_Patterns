@@ -11,11 +11,7 @@ except:
     pass
 
 def format_style(style):
-    """ Compatibility hack for formatStyle """
-    try:
-        return str(inkex.Style(style)) # new
-    except:
-        return simplestyle.formatStyle(style) # old
+    return str(inkex.Style(style))
 
 class Path:
     """ Class that defines an svg stroke to be drawn in Inkscape
