@@ -114,7 +114,7 @@
             <param name="edge_stroke_width" type="float" min="0.01" max="3" appearance="full"  gui-text="Width of edge strokes">0.1</param>
             <param name="edge_stroke_color" type="color" appearance="colorbutton" gui-text="Edge color: ">255</param>
         </page>
-        
+
         <page name="vertices" gui-text="Vertices">
             <param name="vertex_bool" type="bool" gui-text="Draw vertices?">true</param>
             <param name="vertex_bool_only" type="bool" gui-text="Draw ONLY vertices?">false</param>
@@ -123,7 +123,7 @@
             <param name="vertex_stroke_color" type="color" appearance="colorbutton" gui-text="Vertices' color: ">255</param>
         </page>
     </param>
-    
+
     <effect>
     <object-type>all</object-type>
         <effects-menu>
@@ -134,7 +134,7 @@
     </effect>
 
     <script>
-        <command location="inx" interpreter="python">OrigamiPatterns/Cylindrical_Kresling.py</command>
+        <command location="inx" interpreter="python">OrigamiPatterns/cylindrical_kresling.py</command>
     </script>
 
 </inkscape-extension>

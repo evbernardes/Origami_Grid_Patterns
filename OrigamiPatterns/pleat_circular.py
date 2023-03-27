@@ -4,8 +4,8 @@ import numpy as np
 
 from math import pi, sin, cos
 
-from Path import Path
-from Pattern import Pattern
+from path import Path
+from pattern import Pattern
 
 
 # Select name of class, inherits from Pattern

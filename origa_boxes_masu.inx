@@ -17,7 +17,7 @@
                 gui-description="Slightly modifies the pattern for having a slightly bigger width and slightly smaller height, while keeping the same paper size. This is useful for creating companion box lids.">
                 false</param>
             <param name="width_delta" type="float" max="10000" precision="3" gui-text="Width increase:">0.0</param>
-            
+
             <separator/>
             <hbox>
                 <param name="simulation_mode" type="bool" gui-text="Simulation mode (?)"
@@ -73,7 +73,7 @@
             <param name="vertex_stroke_color" type="color" appearance="colorbutton" gui-text="Vertices' color: ">255</param>
         </page>
     </param>
-    
+
     <effect>
     <object-type>all</object-type>
         <effects-menu>
@@ -84,7 +84,7 @@
     </effect>
 
     <script>
-        <command location="inx" interpreter="python">OrigamiPatterns/Boxes_Masu.py</command>
+        <command location="inx" interpreter="python">OrigamiPatterns/boxes_masu.py</command>
     </script>
 
 </inkscape-extension>

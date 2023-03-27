@@ -5,9 +5,9 @@ from math import pi
 
 import inkex
 import math
-from Path import Path
-from Boxes_Masu import MasuBox
-from Pattern import Pattern
+from path import Path
+from pattern import Pattern
+from boxes_masu import MasuBox
 
 
 # Select name of class, inherits from Pattern

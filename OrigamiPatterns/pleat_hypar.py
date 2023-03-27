@@ -6,8 +6,8 @@ from math import pi, tan, sqrt, sin, cos
 
 import inkex
 
-from Path import Path
-from Pattern import Pattern
+from path import Path
+from pattern import Pattern
 
 
 class Hypar(Pattern):

@@ -5,8 +5,8 @@ import numpy as np
 
 import inkex
 
-from Path import Path
-from Pattern import Pattern
+from path import Path
+from pattern import Pattern
 
 # TODO:
 # Add fractional column number option

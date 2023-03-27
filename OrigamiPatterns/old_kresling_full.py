@@ -3,9 +3,9 @@
 from math import sin, cos, sqrt, asin, pi, ceil
 import inkex
 
-from Path import Path
-from Pattern import Pattern
-from Kresling import Kresling
+from path import Path
+from pattern import Pattern
+from old_kresling import Kresling
 
 
 class Kresling_Full(Kresling):

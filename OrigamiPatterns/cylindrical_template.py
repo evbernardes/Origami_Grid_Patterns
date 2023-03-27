@@ -6,9 +6,9 @@ from math import pi, sin, cos, tan, asin, acos, atan, sqrt
 
 import inkex
 
-from Path import Path
-from Pattern import Pattern
-from Cylindrical import Cylindrical
+from path import Path
+from pattern import Pattern
+from cylindrical import Cylindrical
 
 
 # Select name of class, inherits from Pattern

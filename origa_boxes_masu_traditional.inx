@@ -36,7 +36,7 @@
             <param name="mountain_stroke_width" type="float" min="0.01" max="3" appearance="full" gui-text="Width of mountain strokes">0.1</param>
             <param name="mountain_stroke_color" type="color" appearance="colorbutton" gui-text="Mountain creases color: ">4278190335</param>
         </page>
-        
+
         <page name="valleys" gui-text="Valley creases">
             <param name="valley_bool" type="bool" gui-text="Draw valley?">true</param>
             <param name="valley_bool_only" type="bool" gui-text="Draw ONLY valleys?">false</param>
@@ -77,7 +77,7 @@
     </effect>
 
     <script>
-        <command location="inx" interpreter="python">OrigamiPatterns/Boxes_Masu_Traditional.py</command>
+        <command location="inx" interpreter="python">OrigamiPatterns/boxes_masu_traditional.py</command>
     </script>
 
 </inkscape-extension>

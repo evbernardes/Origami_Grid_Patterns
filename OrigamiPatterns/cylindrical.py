@@ -5,8 +5,8 @@ from math import pi, sin
 from itertools import accumulate
 
 import inkex
-from Path import Path
-from Pattern import Pattern
+from path import Path
+from pattern import Pattern
 
 def generate_slot_line(n, slot_position,
                        slot_height, slot_width,

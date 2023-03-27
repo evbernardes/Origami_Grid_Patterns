@@ -36,7 +36,7 @@
                 <label appearance="url">https://doi.org/10.1007/s00373-011-1025-2</label>
             </hbox>
         </page>
-        
+
         <page name="mountains" gui-text="Mountain creases">
             <param name="mountain_bool" type="bool" gui-text="Draw mountains?">true</param>
             <param name="mountain_bool_only" type="bool" gui-text="Draw ONLY mountains?">false</param>
@@ -98,7 +98,7 @@
     </effect>
 
     <script>
-        <command location="inx" interpreter="python">OrigamiPatterns/Hypar.py</command>
+        <command location="inx" interpreter="python">OrigamiPatterns/pleat_hypar.py</command>
     </script>
 
 </inkscape-extension>

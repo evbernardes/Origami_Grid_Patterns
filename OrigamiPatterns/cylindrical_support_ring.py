@@ -5,8 +5,8 @@ from math import pi, sin, cos
 
 import inkex
 
-from Path import Path
-from Pattern import Pattern
+from path import Path
+from pattern import Pattern
 
 
 # Select name of class, inherits from Pattern

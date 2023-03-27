@@ -47,7 +47,7 @@
             </hbox>
             <separator/>
         </page>
-        
+
         <page name="extra_options" gui-text="Extra Options">
             <param name="add_attachment" type="bool" gui-text="Add one more facet to close tower?">false</param>
             <param name="attachment_percentage" type="float" min="0" max="100" precision="1" appearance="full" gui-text="Length percentage of extra facet">100</param>
@@ -93,7 +93,7 @@
             <param name="vertex_stroke_color" type="color" appearance="colorbutton" gui-text="Vertices' color: ">255</param>
         </page>
     </param>
-    
+
     <effect>
     <object-type>all</object-type>
         <effects-menu>
@@ -103,12 +103,12 @@
             </submenu>
         </effects-menu>
     </effect>
-    
+
     <script>
-        <command location="inx" interpreter="python">OrigamiPatterns/Kresling_full.py</command>
+        <command location="inx" interpreter="python">OrigamiPatterns/old_kresling.py</command>
     </script>
 </inkscape-extension>
 
-        
-        
-        
+
+
+

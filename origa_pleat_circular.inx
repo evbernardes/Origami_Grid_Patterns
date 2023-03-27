@@ -25,15 +25,15 @@
                     <option value="pt">pt</option>
                     <option value="px">px</option></param>
             </hbox>
-                <param name="sides" type="int" min="10" max="100" 
-                    gui-text="Number of sides for polygon approximating half circle (?)" 
+                <param name="sides" type="int" min="10" max="100"
+                    gui-text="Number of sides for polygon approximating half circle (?)"
                     gui-description="To simulate with OrigamiSimulator, semicreases (or facet creases) must be added to properly simulate paper, and the circles must be approximated as polygons."
                     >20</param>
             <separator/>
-            
-            
+
+
         </page>
-        
+
         <page name="mountains" gui-text="Mountain creases">
             <param name="mountain_bool" type="bool" gui-text="Draw mountains?">true</param>
             <param name="mountain_bool_only" type="bool" gui-text="Draw ONLY mountains?">false</param>
@@ -94,7 +94,7 @@
     </effect>
 
     <script>
-        <command location="inx" interpreter="python">OrigamiPatterns/Pleat_Circular.py</command>
+        <command location="inx" interpreter="python">OrigamiPatterns/pleat_circular.py</command>
     </script>
 
 </inkscape-extension>

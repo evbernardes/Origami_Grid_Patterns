@@ -4,9 +4,9 @@ from math import pi, sin, asin, cos, tan, acos, sqrt
 import inkex
 import os
 
-from Path import Path
-from Pattern import Pattern
-from Cylindrical import Cylindrical
+from path import Path
+from pattern import Pattern
+from cylindrical import Cylindrical
 
 
 class Kresling(Cylindrical):

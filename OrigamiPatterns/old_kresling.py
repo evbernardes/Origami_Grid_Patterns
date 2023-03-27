@@ -4,8 +4,8 @@ from math import pi, sin, cos, tan, acos, sqrt
 import inkex
 import os
 
-from Path import Path
-from Pattern import Pattern
+from path import Path
+from pattern import Pattern
 
 
 class Kresling(Pattern):

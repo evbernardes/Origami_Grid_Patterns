@@ -129,7 +129,7 @@
 <!--			<param name="cut_stroke_color" type="color" appearance="colorbutton" gui-text="Cut creases color: ">16711935</param>-->
 <!--		</page>-->
     </param>
-    
+
     <effect>
     <object-type>all</object-type>
         <effects-menu>
@@ -140,7 +140,7 @@
     </effect>
 
     <script>
-        <command location="inx" interpreter="python">OrigamiPatterns/Cylindrical_Template.py</command>
+        <command location="inx" interpreter="python">OrigamiPatterns/cylindrical_template.py</command>
     </script>
 
 </inkscape-extension>

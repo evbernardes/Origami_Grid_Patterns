@@ -116,7 +116,7 @@
 
     <!-- Python file for pattern -->
     <script>
-        <command location="inx" interpreter="python">OrigamiPatterns/Template.py</command>
+        <command location="inx" interpreter="python">OrigamiPatterns/template.py</command>
     </script>
 
 </inkscape-extension>

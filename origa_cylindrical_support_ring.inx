@@ -33,7 +33,7 @@
                 <option value="px">px</option></param>
             <separator/>
             <label>Length must be at least the thickness of the origami material + the thickness of the belt.</label>
-            <label>For an OpenSCAD simple implementation of the belt, see:</label> 
+            <label>For an OpenSCAD simple implementation of the belt, see:</label>
             <label appearance="url">https://github.com/evbernardes/Origami_Patterns/tree/master/Support_Ring_Belt</label>
         </page>
 
@@ -56,7 +56,7 @@
     </effect>
 
     <script>
-        <command location="inx" interpreter="python">OrigamiPatterns/SupportRing.py</command>
+        <command location="inx" interpreter="python">OrigamiPatterns/cylindrical_support_ring.py</command>
     </script>
 
 </inkscape-extension>

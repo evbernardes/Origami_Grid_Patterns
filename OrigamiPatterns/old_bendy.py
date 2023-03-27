@@ -5,8 +5,8 @@ from math import pi, sin, cos, tan, asin, acos, atan, sqrt
 
 import inkex
 
-from Path import Path
-from Pattern import Pattern
+from path import Path
+from pattern import Pattern
 
 # Select name of class, inherits from Pattern
 # TODO:
@@ -96,7 +96,8 @@ class Bendy_Straw(Pattern):
         b2 = l2 * sin(beta2)
         height = (b1 + b2) * lines + distance * (lines - 1)
 
-        if self.options.add_attachment: n = n+1
+        if self.options.add_attachment:
+            n = n+1
 
         #
         # big horizontal mountains grid
@@ -277,8 +278,8 @@ class Bendy_Straw(Pattern):
         center_slot = self.options.center_base_slot
         base_slots = []
         if self.options.add_base_slot:
-            base_slot_height = self.options.base_slot_height * unit_factor
-            base_slot_width = self.options.base_slot_width * unit_factor
+            base_slot_height = self.options.base_slot_height
+            base_slot_width = self.options.base_slot_width
             if base_slot_height > base_height or base_slot_width > A:
                 inkex.utils.debug('Base slot dimensions are too big')
                 base_slot_height = min(base_height, base_slot_height)
@@ -297,8 +298,8 @@ class Bendy_Straw(Pattern):
 
         dist_slots = []
         if self.options.add_distance_slot:
-            dist_slot_height = self.options.distance_slot_height * unit_factor
-            dist_slot_width = self.options.distance_slot_width * unit_factor
+            dist_slot_height = self.options.distance_slot_height
+            dist_slot_width = self.options.distance_slot_width
             if dist_slot_height > distance or dist_slot_width > A:
                 inkex.utils.debug('Dimensions of slots between cells are too big')
                 dist_slot_height = min(distance, dist_slot_height)
@@ -366,9 +367,6 @@ class Bendy_Straw(Pattern):
         #     if path.style != 'n':
         #         self.vertex_points = self.vertex_points + path.points
 
-
-
-#
 
 # Main function, creates an instance of the Class and calls self.run() to draw the origami on inkscape
 # self.run() is either a call to inkex.affect() or to svg.run(), depending on python version
