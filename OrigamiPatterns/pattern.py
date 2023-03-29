@@ -252,7 +252,7 @@ class Pattern(inkex.Effect):
         unit_factor = self.calc_unit_factor()
 
         def create_style(style_type):
-            style = {'draw': getattr(self.options, style_type+"_bool"),
+            style = {'isEnabled': getattr(self.options, style_type+"_bool"),
                      'stroke': self.get_color_string(getattr(self.options, style_type+"_stroke_color")),
                      'fill': 'none',
                      'stroke-width': getattr(self.options, style_type+"_stroke_width") * unit_factor}

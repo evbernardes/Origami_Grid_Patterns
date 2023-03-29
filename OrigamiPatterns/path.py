@@ -166,7 +166,7 @@ class Path:
                 Path.draw_paths_recursively(subpath, subgroup, styles_dict)
 
             else:
-                if subpath.style != 'n' and styles_dict[subpath.style]['draw']:
+                if subpath.style != 'n' and styles_dict[subpath.style]['isEnabled']:
                     if subpath.type == 'linear':
 
                         points = subpath.points
